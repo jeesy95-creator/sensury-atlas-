@@ -174,6 +174,13 @@ low resolution + atmosphere + memory + lingering feeling
 
 ## 9. Streamlit Demo
 
+Live demo: [https://ecmsmrpxk8qqtuhvtivnly.streamlit.app/](https://ecmsmrpxk8qqtuhvtivnly.streamlit.app/)
+
+Portfolio copy:
+
+> Sensory Atlas는 사용자의 은유적 감각 표현을 구조화된 감각 객체와 감각 축으로 번역하는 AI parser 프로젝트입니다.
+> 데모에서는 사용자가 감각 표현을 입력하면 anchor object, cue group, confidence, sensory profile을 확인할 수 있습니다.
+
 Run:
 
 ```bash
@@ -192,6 +199,20 @@ Compare default, blind, and holdout evaluation results.
 ### Ontology Browser
 
 Explore sensory objects, families, axes, and relationships.
+
+### Demo Screenshots
+
+| Parse: film-like rendering | Parse: marble hall polish |
+| --- | --- |
+| <img src="assets/screenshots/parse_film_like.png" alt="Film-like parser output" width="420"> | <img src="assets/screenshots/parse_marble_hall.png" alt="Marble hall parser output" width="420"> |
+
+| Parse: mountain stream | Evaluation dashboard |
+| --- | --- |
+| <img src="assets/screenshots/parse_mountain_stream.png" alt="Mountain stream parser output" width="420"> | <img src="assets/screenshots/evaluation_dashboard.png" alt="Evaluation dashboard" width="420"> |
+
+| Ontology browser: film grain |
+| --- |
+| <img src="assets/screenshots/ontology_browser_film_grain.png" alt="Ontology browser film grain detail" width="420"> |
 
 ## 10. Evaluation Strategy
 
