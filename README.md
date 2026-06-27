@@ -103,6 +103,25 @@ Sensory Atlas uses staged evaluation sets.
 The goal is not to maximize holdout performance by overfitting phrase cues.
 The holdout set is used to reveal parser limitations and guide future ontology expansion.
 
+## Cue Hierarchy
+
+v0.7 introduces a cue hierarchy layer.
+
+Instead of directly mapping every phrase to an object, the parser first detects abstract cue groups such as:
+
+- `film_like_rendering`
+- `four_k_clarity`
+- `marble_hall_polish`
+- `mountain_water_flow`
+- `cold_metal_tension`
+- `textile_body_warmth`
+- `food_roasted_warmth`
+- `wet_earth_green`
+
+This allows the parser to handle cases where a surface word may be misleading.
+
+For example, "해상도는 낮지만 분위기만 남아" contains the word "해상도", but the surrounding context indicates Film-like rendering rather than 4K-like clarity.
+
 ## Example Output
 
 ```json

@@ -12,7 +12,7 @@ def test_parser_runs_on_sample_sentence() -> None:
     assert result.axes
     assert result.interpretation_summary
     assert result.confidence >= 0
-    assert result.parser_version == "rule_based_v0.5"
+    assert result.parser_version == "rule_based_v0.7"
 
 
 def test_parser_output_contains_required_fields() -> None:
@@ -24,6 +24,7 @@ def test_parser_output_contains_required_fields() -> None:
         "input_text",
         "detected_objects",
         "anchor_object",
+        "activated_cue_groups",
         "axes",
         "interpretation_summary",
         "confidence",
@@ -92,3 +93,59 @@ def test_4k_not_film() -> None:
     assert result.anchor_object is not None
     assert result.anchor_object.object_id == "four_k_clarity"
     assert result.axes.rendering == "4K-like"
+
+
+def test_film_low_resolution_not_4k() -> None:
+    objects = load_sensory_objects()
+    result = parse_sentence("해상도는 낮지만 분위기만 남아", objects)
+    detected = {item.object_id for item in result.detected_objects[:3]}
+    groups = {item.group_id for item in result.activated_cue_groups}
+
+    assert result.anchor_object is not None
+    assert result.anchor_object.object_id != "four_k_clarity"
+    assert "film_grain" in detected
+    assert result.axes.rendering == "Film-like"
+    assert "film_like_rendering" in groups
+
+
+def test_four_k_high_resolution_not_film() -> None:
+    objects = load_sensory_objects()
+    result = parse_sentence("고해상도 화면처럼 초점이 정확하고 윤곽이 또렷해", objects)
+    groups = {item.group_id for item in result.activated_cue_groups}
+
+    assert result.anchor_object is not None
+    assert result.anchor_object.object_id == "four_k_clarity"
+    assert result.axes.rendering == "4K-like"
+    assert "four_k_clarity" in groups
+
+
+def test_marble_hall_polish() -> None:
+    objects = load_sensory_objects()
+    result = parse_sentence("차가운 큰 홀의 매끈한 바닥처럼 고요하고 윤이 나", objects)
+    detected = {item.object_id for item in result.detected_objects[:3]}
+    groups = {item.group_id for item in result.activated_cue_groups}
+
+    assert "marble" in detected
+    assert result.anchor_object is not None
+    assert result.anchor_object.object_id == "marble"
+    assert "marble_hall_polish" in groups
+
+
+def test_mountain_water_flow() -> None:
+    objects = load_sensory_objects()
+    result = parse_sentence("바위틈 사이로 차가운 물줄기가 흐르는 듯한 향", objects)
+    detected = {item.object_id for item in result.detected_objects[:3]}
+    groups = {item.group_id for item in result.activated_cue_groups}
+
+    assert detected & {"mountain_stream", "wet_stone"}
+    assert "mountain_water_flow" in groups
+
+
+def test_cold_metal_tension() -> None:
+    objects = load_sensory_objects()
+    result = parse_sentence("차가운 창틀에 손을 댔을 때처럼 조용한 긴장감이 있어", objects)
+    detected = {item.object_id for item in result.detected_objects[:3]}
+    groups = {item.group_id for item in result.activated_cue_groups}
+
+    assert detected & {"cold_metal", "crystal"}
+    assert "cold_metal_tension" in groups

@@ -14,7 +14,7 @@
 | test_004 | True | True | False | roasted_almond, butter_toast, burnt_sugar | roasted_almond, butter_toast, burnt_sugar |
 | test_005 | True | True | False | old_library, old_wood, black_tea | old_library, old_wood, film_grain |
 | test_006 | True | True | False | film_grain, butter_toast, warm_cotton | butter_toast, film_grain, vanilla_cream |
-| test_007 | True | True | False | four_k_clarity, cut_diamond, crystal | four_k_clarity, crystal, mountain_stream |
+| test_007 | True | True | False | four_k_clarity, cut_diamond, crystal | four_k_clarity, crystal, cut_diamond |
 | test_008 | True | True | False | rainy_street, rain_on_asphalt, wet_stone | rainy_street, wet_stone, rain_on_asphalt |
 | test_009 | True | True | False | wool_blanket, cashmere, warm_cotton | wool_blanket, cashmere, warm_cotton |
 | test_010 | True | True | False | citrus_peel, green_stem, fresh_linen | citrus_peel, fresh_linen, green_stem |
@@ -28,3 +28,9 @@
 | test_018 | True | True | False | fresh_linen, clean_room, warm_cotton | warm_cotton, fresh_linen, cashmere |
 | test_019 | True | True | False | barrel_cellar, old_wood, leather | leather, old_wood, barrel_cellar |
 | test_020 | True | True | False | cold_fog, winter_dawn, mountain_stream | cold_fog, film_grain, mountain_stream |
+
+## Cue Group Analysis
+
+| Cue Group | Count |
+| --- | --- |
+| four_k_clarity | 1 |

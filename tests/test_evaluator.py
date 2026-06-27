@@ -89,4 +89,6 @@ def test_holdout_report_contains_failure_analysis(tmp_path) -> None:
 
     content = report_path.read_text(encoding="utf-8")
     assert "## Failure Analysis" in content
+    assert "## Cue Group Analysis" in content
+    assert "Activated cue groups" in content
     assert "### Common Failure Patterns" in content

@@ -41,6 +41,7 @@ class EvaluationRow(BaseModel):
     low_confidence: bool = False
     error_type: str = "none"
     error_notes: str = ""
+    activated_cue_groups: list[str] = Field(default_factory=list)
 
 
 class EvaluationReport(BaseModel):
@@ -51,6 +52,7 @@ class EvaluationReport(BaseModel):
     low_confidence_count: int
     top1_hit_rate: float
     top3_hit_rate: float
+    cue_group_counts: dict[str, int] = Field(default_factory=dict)
     rows: list[EvaluationRow]
 
 
@@ -118,6 +120,7 @@ def evaluate_parser(
         result = parse_sentence(input_text, sensory_objects)
         detected = [item.object_id for item in result.detected_objects]
         detected_scores = [item.score for item in result.detected_objects]
+        activated_cue_groups = [item.group_id for item in result.activated_cue_groups]
         top1 = detected[:1]
         top3 = detected[:3]
         top1_hit = bool(set(top1) & set(targets))
@@ -143,6 +146,7 @@ def evaluate_parser(
                 low_confidence=result.low_confidence,
                 error_type=error_type,
                 error_notes=error_notes,
+                activated_cue_groups=activated_cue_groups,
             )
         )
 
@@ -150,6 +154,10 @@ def evaluate_parser(
     top1_hits = sum(row.top1_hit for row in rows)
     top3_hits = sum(row.top3_hit for row in rows)
     low_confidence_count = sum(row.low_confidence for row in rows)
+    cue_group_counts: dict[str, int] = {}
+    for row in rows:
+        for group_id in row.activated_cue_groups:
+            cue_group_counts[group_id] = cue_group_counts.get(group_id, 0) + 1
     return EvaluationReport(
         dataset_name=dataset_name,
         total=total,
@@ -158,6 +166,7 @@ def evaluate_parser(
         low_confidence_count=low_confidence_count,
         top1_hit_rate=round(top1_hits / total, 2) if total else 0.0,
         top3_hit_rate=round(top3_hits / total, 2) if total else 0.0,
+        cue_group_counts=cue_group_counts,
         rows=rows,
     )
 
@@ -184,6 +193,19 @@ def write_eval_report(path: str | Path, report: EvaluationReport) -> None:
             f"| {row.test_id} | {row.top1_hit} | {row.top3_hit} | {row.low_confidence} | {targets} | {detected} |"
         )
 
+    if report.cue_group_counts:
+        lines.extend(
+            [
+                "",
+                "## Cue Group Analysis",
+                "",
+                "| Cue Group | Count |",
+                "| --- | --- |",
+            ]
+        )
+        for group_id, count in sorted(report.cue_group_counts.items(), key=lambda item: (-item[1], item[0])):
+            lines.append(f"| {group_id} | {count} |")
+
     misses = [row for row in report.rows if not row.top3_hit]
     top1_misses = [row for row in report.rows if not row.top1_hit]
     low_confidence_rows = [row for row in report.rows if row.low_confidence]
@@ -196,15 +218,16 @@ def write_eval_report(path: str | Path, report: EvaluationReport) -> None:
                 "",
                 "### Top-1 failures",
                 "",
-                "| Test ID | Input | Targets | Detected top 3 | Error Type | Notes |",
-                "| --- | --- | --- | --- | --- | --- |",
+                "| Test ID | Input | Targets | Detected top 3 | Activated cue groups | Error Type | Notes |",
+                "| --- | --- | --- | --- | --- | --- | --- |",
             ]
         )
         for row in top1_misses:
             targets = ", ".join(row.target_objects)
             detected = ", ".join(row.detected_objects[:3])
+            groups = ", ".join(row.activated_cue_groups)
             lines.append(
-                f"| {row.test_id} | {row.input_text} | {targets} | {detected} | {row.error_type} | {row.error_notes} |"
+                f"| {row.test_id} | {row.input_text} | {targets} | {detected} | {groups} | {row.error_type} | {row.error_notes} |"
             )
 
     if misses:
@@ -213,15 +236,16 @@ def write_eval_report(path: str | Path, report: EvaluationReport) -> None:
                 "",
                 "### Top-3 failures",
                 "",
-                "| Test ID | Input | Targets | Detected top 3 | Error Type | Notes |",
-                "| --- | --- | --- | --- | --- | --- |",
+                "| Test ID | Input | Targets | Detected top 3 | Activated cue groups | Error Type | Notes |",
+                "| --- | --- | --- | --- | --- | --- | --- |",
             ]
         )
         for row in misses:
             targets = ", ".join(row.target_objects)
             detected = ", ".join(row.detected_objects[:3])
+            groups = ", ".join(row.activated_cue_groups)
             lines.append(
-                f"| {row.test_id} | {row.input_text} | {targets} | {detected} | {row.error_type} | {row.error_notes} |"
+                f"| {row.test_id} | {row.input_text} | {targets} | {detected} | {groups} | {row.error_type} | {row.error_notes} |"
             )
 
     if low_confidence_rows:

@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from sensory_atlas.schema import SensoryObject
+from sensory_atlas.cue_hierarchy import apply_cue_hierarchy_scores, detect_cue_groups
 
 
 TOKEN_RE = re.compile(r"[A-Za-z0-9가-힣]+")
@@ -286,6 +287,8 @@ def match_objects(
 ) -> list[MatchResult]:
     object_by_id = {obj.object_id: obj for obj in sensory_objects}
     scores = {obj.object_id: score_object(text, obj) for obj in sensory_objects}
+    activations = detect_cue_groups(text)
+    apply_cue_hierarchy_scores(scores, activations)
 
     # A sensory expression often names one object while implying adjacent ones.
     # Seed ontology relations let the fallback parser preserve that bridge.

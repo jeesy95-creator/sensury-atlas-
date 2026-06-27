@@ -2,9 +2,9 @@
 
 - Dataset: blind
 - Total test sentences: 30
-- Top-1 hit rate: 0.97
+- Top-1 hit rate: 1.00
 - Top-3 hit rate: 1.00
-- Low confidence cases: 2
+- Low confidence cases: 1
 
 | Test ID | Top-1 | Top-3 | Low confidence | Targets | Detected top 3 |
 | --- | --- | --- | --- | --- | --- |
@@ -16,7 +16,7 @@
 | blind_006 | True | True | False | mountain_stream, winter_dawn, crystal | crystal, mountain_stream, winter_dawn |
 | blind_007 | True | True | False | rainy_street, rain_on_asphalt, wet_stone | wet_stone, wet_moss, mountain_stream |
 | blind_008 | True | True | False | film_grain, old_library, warm_cotton | film_grain, old_library, warm_cotton |
-| blind_009 | True | True | False | four_k_clarity, cut_diamond, crystal | four_k_clarity, mountain_stream, crystal |
+| blind_009 | True | True | False | four_k_clarity, cut_diamond, crystal | four_k_clarity, crystal, mountain_stream |
 | blind_010 | True | True | False | cold_fog, winter_dawn, mountain_stream | cold_fog, film_grain, winter_dawn |
 | blind_011 | True | True | False | roasted_almond, butter_toast, burnt_sugar | roasted_almond, butter_toast, burnt_sugar |
 | blind_012 | True | True | False | burnt_sugar, dark_chocolate, charred_oak | burnt_sugar, dark_chocolate, roasted_almond |
@@ -34,26 +34,31 @@
 | blind_024 | True | True | False | honeycomb, vanilla_cream, burnt_sugar | honeycomb, burnt_sugar, butter_toast |
 | blind_025 | True | True | False | black_tea, dry_herb, old_wood | black_tea, old_library, cedarwood |
 | blind_026 | True | True | False | slate, cold_metal, cut_diamond | slate, mountain_stream, cold_metal |
-| blind_027 | False | True | True | marble, cold_metal, crystal | cold_fog, cold_metal, slate |
+| blind_027 | True | True | False | marble, cold_metal, crystal | marble, crystal, cold_metal |
 | blind_028 | True | True | False | silver_spoon, cold_metal | cold_metal, silver_spoon, crystal |
 | blind_029 | True | True | True | summer_noon, citrus_peel, fresh_linen | citrus_peel, summer_noon |
 | blind_030 | True | True | False | late_night_air, cold_fog, film_grain | late_night_air, cold_fog, film_grain |
+
+## Cue Group Analysis
+
+| Cue Group | Count |
+| --- | --- |
+| four_k_clarity | 1 |
+| marble_hall_polish | 1 |
 
 ## Failure Analysis
 
 ### Top-1 failures
 
-| Test ID | Input | Targets | Detected top 3 | Error Type | Notes |
-| --- | --- | --- | --- | --- | --- |
-| blind_027 | 차가운 큰 홀의 매끈한 바닥처럼 고요하고 윤이 나 | marble, cold_metal, crystal | cold_fog, cold_metal, slate | low_confidence | Top-1 score is below the low-confidence threshold. |
+| Test ID | Input | Targets | Detected top 3 | Activated cue groups | Error Type | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
 
 ### Low confidence cases
 
-Low confidence case count: 2
+Low confidence case count: 1
 
 | Test ID | Input | Top-1 | Score | Notes |
 | --- | --- | --- | --- | --- |
-| blind_027 | 차가운 큰 홀의 매끈한 바닥처럼 고요하고 윤이 나 | cold_fog | 0.19 | Top-1 score is below the low-confidence threshold. |
 | blind_029 | 정오의 뜨거운 창가처럼 밝고 건조하게 확 퍼져 | citrus_peel | 0.19 | Top-1 score is below the low-confidence threshold. |
 
 ### Common Failure Patterns

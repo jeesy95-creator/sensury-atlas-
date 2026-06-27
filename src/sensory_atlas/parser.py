@@ -4,12 +4,14 @@ from __future__ import annotations
 
 from collections import Counter
 
+from sensory_atlas.cue_hierarchy import CueGroupActivation, detect_cue_groups
 from sensory_atlas.matcher import MatchResult, match_objects
-from sensory_atlas.schema import CoreAxes, DetectedObject, ParserOutput, SensoryObject
+from sensory_atlas.schema import ActivatedCueGroup, CoreAxes, DetectedObject, ParserOutput, SensoryObject
 
 
-PARSER_VERSION = "rule_based_v0.5"
+PARSER_VERSION = "rule_based_v0.7"
 LOW_CONFIDENCE_THRESHOLD = 0.20
+CUE_AXIS_UPDATE_THRESHOLD = 0.2
 AXIS_FIELDS = (
     "material",
     "temperature",
@@ -103,6 +105,17 @@ def merge_axes(matches: list[MatchResult]) -> CoreAxes:
     return CoreAxes.model_validate(payload)
 
 
+def apply_axis_updates(axes: CoreAxes, activations: list[CueGroupActivation]) -> CoreAxes:
+    payload = axes.model_dump()
+    for activation in sorted(activations, key=lambda item: item.score):
+        if activation.score < CUE_AXIS_UPDATE_THRESHOLD:
+            continue
+        for field, value in activation.axis_updates.items():
+            if field in AXIS_FIELDS:
+                payload[field] = value
+    return CoreAxes.model_validate(payload)
+
+
 def summarize(text: str, matches: list[MatchResult], axes: CoreAxes, low_confidence: bool) -> str:
     if not matches:
         return "이 표현은 기존 sensory object와 약하게만 연결됩니다. 해석 신뢰도가 낮아 사용자 확인이 필요합니다."
@@ -136,7 +149,8 @@ def parse_sentence(
     limit: int = 5,
 ) -> ParserOutput:
     matches = match_objects(text, sensory_objects, limit=limit)
-    axes = merge_axes(matches)
+    activations = detect_cue_groups(text)
+    axes = apply_axis_updates(merge_axes(matches), activations)
     confidence = round(sum(match.score for match in matches[:3]) / max(min(len(matches), 3), 1), 2)
     top1_score = matches[0].score if matches else 0.0
     low_confidence = top1_score < LOW_CONFIDENCE_THRESHOLD
@@ -154,6 +168,15 @@ def parse_sentence(
             if matches
             else None
         ),
+        activated_cue_groups=[
+            ActivatedCueGroup(
+                group_id=activation.group_id,
+                score=round(activation.score, 2),
+                matched_positive_cues=activation.matched_positive_cues,
+                matched_negative_cues=activation.matched_negative_cues,
+            )
+            for activation in activations
+        ],
         axes=axes,
         interpretation_summary=summarize(text, matches, axes, low_confidence),
         confidence=min(confidence, 1.0),

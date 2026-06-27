@@ -65,10 +65,18 @@ class DetectedObject(BaseModel):
     score: float = Field(ge=0.0, le=1.0)
 
 
+class ActivatedCueGroup(BaseModel):
+    group_id: str
+    score: float
+    matched_positive_cues: list[str] = Field(default_factory=list)
+    matched_negative_cues: list[str] = Field(default_factory=list)
+
+
 class ParserOutput(BaseModel):
     input_text: str
     detected_objects: list[DetectedObject]
     anchor_object: DetectedObject | None = None
+    activated_cue_groups: list[ActivatedCueGroup] = Field(default_factory=list)
     axes: CoreAxes
     interpretation_summary: str
     confidence: float = Field(ge=0.0, le=1.0)
