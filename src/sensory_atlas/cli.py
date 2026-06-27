@@ -16,6 +16,30 @@ from sensory_atlas.evaluator import evaluate_parser, write_eval_report
 from sensory_atlas.parser import parse_sentence
 
 
+DATASET_PATHS = {
+    "default": ("test_sentences_20.jsonl", "eval_report.md"),
+    "blind": ("blind_test_sentences_30.jsonl", "eval_report_blind.md"),
+    "holdout": ("holdout_test_sentences_50.jsonl", "eval_report_holdout.md"),
+}
+
+
+def resolve_dataset_paths(
+    root: Path,
+    dataset: str,
+    tests_path: Path | None,
+    output_path: Path | None,
+) -> tuple[Path, Path]:
+    if dataset not in DATASET_PATHS:
+        allowed = ", ".join(sorted(DATASET_PATHS))
+        raise ValueError(f"Unknown dataset '{dataset}'. Expected one of: {allowed}")
+
+    dataset_file, report_file = DATASET_PATHS[dataset]
+    return (
+        tests_path or root / "data" / dataset_file,
+        output_path or root / "outputs" / report_file,
+    )
+
+
 def validate_data(args: argparse.Namespace) -> int:
     try:
         objects = load_sensory_objects(args.objects_path)
@@ -51,17 +75,27 @@ def dry_run(args: argparse.Namespace) -> int:
 def evaluate(args: argparse.Namespace) -> int:
     root = project_root()
     objects_path = args.objects_path or root / "data" / "sensory_objects.jsonl"
-    tests_path = args.tests_path or root / "data" / "test_sentences_20.jsonl"
-    output_path = args.output_path or root / "outputs" / "eval_report.md"
+    try:
+        tests_path, output_path = resolve_dataset_paths(
+            root,
+            args.dataset,
+            args.tests_path,
+            args.output_path,
+        )
+    except ValueError as exc:
+        print(exc)
+        return 1
 
     objects = load_sensory_objects(objects_path)
     sentences = load_test_sentences(tests_path)
-    report = evaluate_parser(sentences, objects)
+    report = evaluate_parser(sentences, objects, dataset_name=args.dataset)
     write_eval_report(output_path, report)
 
+    print(f"Dataset: {report.dataset_name}")
     print(f"Total test sentences: {report.total}")
     print(f"Top-1 hit rate: {report.top1_hit_rate:.2f}")
     print(f"Top-3 hit rate: {report.top3_hit_rate:.2f}")
+    print(f"Low confidence cases: {report.low_confidence_count}")
     print(f"Report saved to {Path(output_path).resolve()}")
     return 0
 
@@ -81,6 +115,7 @@ def build_parser() -> argparse.ArgumentParser:
     dry.set_defaults(func=dry_run)
 
     eval_parser = subparsers.add_parser("evaluate", help="Evaluate parser against target objects")
+    eval_parser.add_argument("--dataset", choices=sorted(DATASET_PATHS), default="default")
     eval_parser.add_argument("--objects-path", type=Path, default=None)
     eval_parser.add_argument("--tests-path", type=Path, default=None)
     eval_parser.add_argument("--output-path", type=Path, default=None)

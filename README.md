@@ -80,13 +80,28 @@ outputs/parser_results.jsonl
 
 ```bash
 python -m sensory_atlas.cli evaluate
+python -m sensory_atlas.cli evaluate --dataset blind
+python -m sensory_atlas.cli evaluate --dataset holdout
 ```
 
-This compares parser `detected_objects` with test-set `target_objects` and writes:
+This compares parser `detected_objects` with test-set `target_objects`.
 
 ```text
 outputs/eval_report.md
+outputs/eval_report_blind.md
+outputs/eval_report_holdout.md
 ```
+
+## Evaluation Strategy
+
+Sensory Atlas uses staged evaluation sets.
+
+- `default`: ontology sanity check. Sentences are close to the seed vocabulary.
+- `blind`: phrase-level generalization test. Direct object names are mostly avoided, but phrase cues are still within the known design space.
+- `holdout`: stricter generalization test. Sentences avoid direct object names and try not to reuse phrase cues.
+
+The goal is not to maximize holdout performance by overfitting phrase cues.
+The holdout set is used to reveal parser limitations and guide future ontology expansion.
 
 ## Example Output
 
