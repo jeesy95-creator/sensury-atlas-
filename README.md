@@ -1,28 +1,28 @@
 # Sensory Atlas
 
-Translate metaphorical sensory language into structured sensory profiles.
+은유적인 감각 언어를 구조화된 sensory profile로 번역하는 AI parser 프로젝트입니다.
 
-Sensory Atlas is not a conventional flavor-note recommender.
+Sensory Atlas는 일반적인 flavor-note recommender가 아닙니다.
 
-It is a semantic translation layer that maps users' metaphorical sensory language into structured sensory objects, sensory axes, and interpretable profiles.
+이 프로젝트는 사용자의 은유적 감각 표현을 구조화된 sensory object, sensory axis, 해석 가능한 profile로 변환하는 semantic translation layer입니다.
 
 ```text
-User metaphorical sensory language
+사용자의 은유적 감각 언어
 → sensory parser
 → sensory objects
 → sensory axes
 → cue hierarchy
-→ interpretable sensory profile
-→ future recommendation interface
+→ 해석 가능한 sensory profile
+→ 향후 recommendation interface
 ```
 
-## 1. Overview
+## 1. 개요
 
-Sensory Atlas parses sensory expressions such as taste, scent, texture, atmosphere, memory, and visual rendering into a structured profile. It currently runs fully locally with a deterministic rule-based parser, phrase cue matching, cue hierarchy activation, and Streamlit demo UI.
+Sensory Atlas는 맛, 향, 질감, 분위기, 기억, 시각적 렌더링과 같은 감각 표현을 구조화된 profile로 파싱합니다. 현재 버전은 외부 LLM API 없이 로컬에서 실행되는 deterministic rule-based parser, phrase cue matching, cue hierarchy activation, Streamlit demo UI로 구성되어 있습니다.
 
-## 2. Why This Project Matters
+## 2. 왜 이 프로젝트가 중요한가
 
-Most recommendation systems start from product-side descriptors:
+대부분의 추천 시스템은 제품 측 descriptor에서 출발합니다.
 
 ```text
 smoke
@@ -33,7 +33,7 @@ floral
 fruity
 ```
 
-But users often describe sensation through metaphor:
+하지만 사용자는 감각을 이런 식으로 말하는 경우가 많습니다.
 
 ```text
 11월 말 새벽 공기처럼 차갑고 투명한 느낌
@@ -42,24 +42,24 @@ But users often describe sensation through metaphor:
 비 온 뒤 계곡 이끼처럼 축축한 초록색 냄새
 ```
 
-Sensory Atlas treats these not as vague emotional sentences, but as structured sensory signals.
+Sensory Atlas는 이런 문장을 막연한 감정 표현으로 보지 않고, 구조화 가능한 감각 신호로 다룹니다.
 
-## 3. Problem Statement
+## 3. 문제 정의
 
-The core problem is semantic translation: how can metaphorical sensory language be mapped into an ontology that future recommendation systems can use?
+핵심 문제는 semantic translation입니다. 사용자의 은유적 감각 언어를 향후 추천 시스템이 사용할 수 있는 ontology로 어떻게 변환할 수 있을까요?
 
-Instead of immediately recommending products, Sensory Atlas first asks:
+Sensory Atlas는 바로 제품을 추천하기보다 먼저 다음 질문에 답합니다.
 
-- What sensory object does the expression evoke?
-- Which axes are active?
-- Which cue groups explain the interpretation?
-- How confident is the parser?
+- 이 표현은 어떤 sensory object를 떠올리게 하는가?
+- 어떤 감각 축이 활성화되는가?
+- 어떤 cue group이 해석을 설명하는가?
+- parser의 confidence는 어느 정도인가?
 
-## 4. Core Idea
+## 4. 핵심 아이디어
 
-The core unit is the **sensory object**.
+핵심 단위는 **sensory object**입니다.
 
-Examples:
+예시:
 
 ```text
 Cashmere
@@ -71,9 +71,9 @@ Film Grain
 4K Clarity
 ```
 
-Each object represents a reusable sensory metaphor with structured axes. This allows the system to reason beyond flat tasting notes.
+각 object는 재사용 가능한 감각 은유이며, 구조화된 axes를 가집니다. 이를 통해 시스템은 단순 tasting note를 넘어 더 풍부한 감각 해석을 수행할 수 있습니다.
 
-## 5. System Architecture
+## 5. 시스템 구조
 
 ```mermaid
 flowchart TD
@@ -100,7 +100,7 @@ flowchart TD
 
 ## 6. Sensory Ontology
 
-Each sensory object contains:
+각 sensory object는 다음 축을 포함합니다.
 
 ```text
 Material
@@ -115,7 +115,7 @@ Rendering
 Organic / Mineral
 ```
 
-Example:
+예시:
 
 ```json
 {
@@ -133,30 +133,30 @@ Example:
 
 ## 7. Parser Pipeline
 
-The current parser is deterministic and local:
+현재 parser는 deterministic하고 로컬에서 실행됩니다.
 
-1. Load sensory objects from `data/sensory_objects.jsonl`
-2. Match direct labels and example expressions
-3. Apply cue hierarchy groups
-4. Apply phrase-level object cues
-5. Rank sensory objects
-6. Select an `anchor_object`
-7. Merge sensory axes around the anchor
-8. Return an interpretable parser output
+1. `data/sensory_objects.jsonl`에서 sensory object를 로드합니다.
+2. 직접 label과 example expression을 매칭합니다.
+3. cue hierarchy group을 적용합니다.
+4. phrase-level object cue를 적용합니다.
+5. sensory object를 ranking합니다.
+6. `anchor_object`를 선택합니다.
+7. anchor 중심으로 sensory axes를 병합합니다.
+8. 해석 가능한 parser output을 반환합니다.
 
-The parser intentionally exposes `anchor_object`, `detected_objects`, `activated_cue_groups`, `axes`, `confidence`, and `low_confidence`.
+parser output은 의도적으로 `anchor_object`, `detected_objects`, `activated_cue_groups`, `axes`, `confidence`, `low_confidence`를 노출합니다.
 
 ## 8. Cue Hierarchy
 
-v0.7 introduced a cue hierarchy layer to resolve conflicts between surface keywords and contextual meaning.
+v0.7에서는 표면 keyword와 문맥적 의미가 충돌할 때 이를 해결하기 위해 cue hierarchy layer를 도입했습니다.
 
-For example:
+예를 들어:
 
 ```text
 "해상도는 낮지만 분위기만 남아"
 ```
 
-The surface word `해상도` can point toward 4K-like clarity. But the surrounding context says:
+표면 단어 `해상도`는 4K-like clarity를 가리킬 수 있습니다. 하지만 주변 문맥은 다른 방향을 말합니다.
 
 ```text
 low resolution + atmosphere + memory + lingering feeling
@@ -164,7 +164,7 @@ low resolution + atmosphere + memory + lingering feeling
 → film_grain
 ```
 
-| Cue Group | Purpose | Example |
+| Cue Group | 역할 | 예시 |
 | --- | --- | --- |
 | `film_like_rendering` | Film-like ambiguity resolution | 해상도는 낮지만 분위기만 남아 |
 | `four_k_clarity` | High-resolution clarity | 4K 화면처럼 입자가 다 보임 |
@@ -176,12 +176,12 @@ low resolution + atmosphere + memory + lingering feeling
 
 Live demo: [https://sensory-atlas.streamlit.app/](https://sensory-atlas.streamlit.app/)
 
-Portfolio copy:
+포트폴리오 문구:
 
 > Sensory Atlas는 사용자의 은유적 감각 표현을 구조화된 감각 객체와 감각 축으로 번역하는 AI parser 프로젝트입니다.
 > 데모에서는 사용자가 감각 표현을 입력하면 anchor object, cue group, confidence, sensory profile을 확인할 수 있습니다.
 
-Run:
+실행:
 
 ```bash
 pip install -e ".[dev]"
@@ -190,15 +190,15 @@ streamlit run app/streamlit_app.py
 
 ### Parse Demo
 
-Try custom sensory expressions and inspect parser outputs.
+사용자가 직접 감각 표현을 입력하고 parser output을 확인할 수 있습니다.
 
 ### Evaluation Dashboard
 
-Compare default, blind, and holdout evaluation results.
+default, blind, holdout evaluation 결과를 비교합니다.
 
 ### Ontology Browser
 
-Explore sensory objects, families, axes, and relationships.
+sensory object, family, axis, object 간 관계를 탐색합니다.
 
 ### Demo Screenshots
 
@@ -214,47 +214,47 @@ Explore sensory objects, families, axes, and relationships.
 | --- |
 | <img src="assets/screenshots/ontology_browser_film_grain.png" alt="Ontology browser film grain detail" width="420"> |
 
-## 10. Evaluation Strategy
+## 10. 평가 전략
 
-Sensory Atlas is not evaluated with a single accuracy number.
+Sensory Atlas는 하나의 accuracy 숫자만으로 평가하지 않습니다.
 
-It uses staged evaluation:
+단계별 evaluation을 사용합니다.
 
 1. `default` — ontology sanity check
 2. `blind` — phrase-level generalization
 3. `holdout` — stricter metaphor generalization
 
-The holdout set is intentionally difficult. Its purpose is to reveal parser limitations rather than inflate performance.
+holdout set은 의도적으로 어렵게 설계되어 있습니다. 목적은 성능을 부풀리는 것이 아니라 parser의 한계를 드러내는 것입니다.
 
-| Dataset | Purpose | Total | Top-1 | Top-3 | Low Confidence |
+| Dataset | 목적 | Total | Top-1 | Top-3 | Low Confidence |
 | --- | --- | ---: | ---: | ---: | ---: |
 | default | Ontology sanity check | 20 | 1.00 | 1.00 | 0 |
 | blind | Phrase-level generalization | 30 | 1.00 | 1.00 | 0 |
 | holdout | Stricter metaphor generalization | 50 | 0.78 | 0.88 | 6 |
 
-## 11. Results
+## 11. 결과
 
-The project shows that a deterministic parser can be useful when the ontology, cues, and evaluation strategy are explicit.
+이 프로젝트는 ontology, cue, evaluation strategy가 명시적일 때 deterministic parser도 유용한 semantic translation layer가 될 수 있음을 보여줍니다.
 
-Key findings:
+주요 발견:
 
-- Cue hierarchy improves context-sensitive interpretation.
-- v1.0 ontology coverage improves sparse object recall without changing parser logic.
-- Holdout evaluation reveals real parser limits.
-- Low-confidence outputs are useful product signals, not just failures.
-- The system is strongest when surface cues and abstract cue groups align.
+- Cue hierarchy는 문맥 의존적 감각 해석을 개선합니다.
+- v1.0 ontology coverage 확장은 parser logic을 바꾸지 않고도 sparse object recall을 개선했습니다.
+- Holdout evaluation은 parser의 실제 한계를 드러냅니다.
+- Low-confidence output은 단순 실패가 아니라 제품적으로 유용한 신호입니다.
+- 시스템은 surface cue와 abstract cue group이 함께 정렬될 때 가장 강합니다.
 
 ## v1.0 — Ontology Data Coverage Expansion
 
-- Expanded example expressions for all sensory objects.
-- Added phrase cues for weak or missing objects.
-- Added ontology annotation guidelines.
-- Added dev failure cases for future parser iteration.
-- Added ontology coverage tests.
+- 모든 sensory object의 example expression을 확장했습니다.
+- 약하거나 누락된 object의 phrase cue를 보강했습니다.
+- ontology annotation guideline을 추가했습니다.
+- 향후 parser iteration을 위한 dev failure case를 추가했습니다.
+- ontology coverage test를 추가했습니다.
 
-See [Ontology Annotation Guidelines](docs/ontology_annotation_guidelines.md) and [v1.0 Data Coverage Report](docs/v1_0_data_coverage_report.md).
+자세한 내용은 [Ontology Annotation Guidelines](docs/ontology_annotation_guidelines.md)와 [v1.0 Data Coverage Report](docs/v1_0_data_coverage_report.md)를 참고하세요.
 
-## 12. Project Structure
+## 12. 프로젝트 구조
 
 ```text
 sensory-atlas/
@@ -284,7 +284,7 @@ sensory-atlas/
 └── tests/
 ```
 
-## 13. How to Run
+## 13. 실행 방법
 
 ```bash
 cd /Users/jisoyun/Desktop/sensory-atlas
@@ -293,19 +293,19 @@ source .venv/bin/activate
 python -m pip install -e ".[dev]"
 ```
 
-Validate data:
+데이터 검증:
 
 ```bash
 python -m sensory_atlas.cli validate-data
 ```
 
-Run parser dry run:
+parser dry run:
 
 ```bash
 python -m sensory_atlas.cli dry-run
 ```
 
-Run evaluations:
+evaluation 실행:
 
 ```bash
 python -m sensory_atlas.cli evaluate --dataset default
@@ -313,21 +313,21 @@ python -m sensory_atlas.cli evaluate --dataset blind
 python -m sensory_atlas.cli evaluate --dataset holdout
 ```
 
-Run tests:
+테스트 실행:
 
 ```bash
 pytest
 ```
 
-Run Streamlit:
+Streamlit 실행:
 
 ```bash
 streamlit run app/streamlit_app.py
 ```
 
-## 14. Example Inputs
+## 14. 예시 입력
 
-Example 1:
+예시 1:
 
 ```text
 Input:
@@ -339,7 +339,7 @@ rendering: Film-like
 activated cue group: film_like_rendering
 ```
 
-Example 2:
+예시 2:
 
 ```text
 Input:
@@ -352,7 +352,7 @@ texture: Smooth / Hard / Clean
 activated cue group: marble_hall_polish
 ```
 
-Example 3:
+예시 3:
 
 ```text
 Input:
@@ -364,23 +364,23 @@ motion: Flow / Rise
 activated cue group: mountain_water_flow
 ```
 
-## 15. Limitations
+## 15. 한계
 
-- The parser is still rule-based and does not use embeddings or an LLM.
-- Cue groups can miss metaphors outside the current design space.
-- Some atmospheric expressions over-match broad scene objects.
-- Holdout performance is intentionally not optimized to 1.00.
-- The project does not yet include product recommendation logic.
+- parser는 아직 rule-based이며 embedding이나 LLM을 사용하지 않습니다.
+- 현재 cue group 설계 범위를 벗어나는 은유는 놓칠 수 있습니다.
+- 일부 atmosphere 표현은 넓은 scene object로 과매칭될 수 있습니다.
+- holdout 성능은 의도적으로 1.00에 맞추어 최적화하지 않습니다.
+- 아직 product recommendation logic은 포함되어 있지 않습니다.
 
-## 16. Next Steps
+## 16. 다음 단계
 
-- Add axis-level evidence and confidence per axis
-- Add user confirmation questions for low-confidence outputs
-- Add a candidate sensory object workflow
-- Explore embedding or LLM-assisted parsing behind the same schema
-- Build a recommendation interface on top of sensory profiles
+- axis별 evidence와 confidence 추가
+- low-confidence output에 대한 사용자 확인 질문 추가
+- candidate sensory object workflow 추가
+- 동일 schema 뒤에 embedding 또는 LLM-assisted parsing 실험
+- sensory profile 위에 recommendation interface 구축
 
-## 17. Tech Stack
+## 17. 기술 스택
 
 - Python 3.11+
 - Pydantic
@@ -390,7 +390,7 @@ activated cue group: mountain_water_flow
 - JSONL/JSON seed ontology
 - Deterministic rule-based parser
 
-## Documentation
+## 문서
 
 - [Portfolio Case Study](docs/portfolio_case_study.md)
 - [Architecture](docs/architecture.md)
