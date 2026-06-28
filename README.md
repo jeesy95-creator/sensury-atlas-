@@ -229,8 +229,8 @@ The holdout set is intentionally difficult. Its purpose is to reveal parser limi
 | Dataset | Purpose | Total | Top-1 | Top-3 | Low Confidence |
 | --- | --- | ---: | ---: | ---: | ---: |
 | default | Ontology sanity check | 20 | 1.00 | 1.00 | 0 |
-| blind | Phrase-level generalization | 30 | 1.00 | 1.00 | 1 |
-| holdout | Stricter metaphor generalization | 50 | 0.64 | 0.78 | 12 |
+| blind | Phrase-level generalization | 30 | 1.00 | 1.00 | 0 |
+| holdout | Stricter metaphor generalization | 50 | 0.78 | 0.88 | 6 |
 
 ## 11. Results
 
@@ -239,9 +239,20 @@ The project shows that a deterministic parser can be useful when the ontology, c
 Key findings:
 
 - Cue hierarchy improves context-sensitive interpretation.
+- v1.0 ontology coverage improves sparse object recall without changing parser logic.
 - Holdout evaluation reveals real parser limits.
 - Low-confidence outputs are useful product signals, not just failures.
 - The system is strongest when surface cues and abstract cue groups align.
+
+## v1.0 — Ontology Data Coverage Expansion
+
+- Expanded example expressions for all sensory objects.
+- Added phrase cues for weak or missing objects.
+- Added ontology annotation guidelines.
+- Added dev failure cases for future parser iteration.
+- Added ontology coverage tests.
+
+See [Ontology Annotation Guidelines](docs/ontology_annotation_guidelines.md) and [v1.0 Data Coverage Report](docs/v1_0_data_coverage_report.md).
 
 ## 12. Project Structure
 
@@ -255,6 +266,7 @@ sensory-atlas/
 │   ├── sensory_objects.jsonl
 │   ├── phrase_cues.json
 │   ├── cue_hierarchy.json
+│   ├── dev_failure_cases.jsonl
 │   ├── test_sentences_20.jsonl
 │   ├── blind_test_sentences_30.jsonl
 │   └── holdout_test_sentences_50.jsonl
@@ -262,8 +274,10 @@ sensory-atlas/
 │   ├── architecture.md
 │   ├── demo_script.md
 │   ├── evaluation_strategy.md
+│   ├── ontology_annotation_guidelines.md
 │   ├── portfolio_case_study.md
-│   └── screenshot_guide.md
+│   ├── screenshot_guide.md
+│   └── v1_0_data_coverage_report.md
 ├── outputs/
 ├── src/
 │   └── sensory_atlas/
@@ -381,5 +395,7 @@ activated cue group: mountain_water_flow
 - [Portfolio Case Study](docs/portfolio_case_study.md)
 - [Architecture](docs/architecture.md)
 - [Evaluation Strategy](docs/evaluation_strategy.md)
+- [Ontology Annotation Guidelines](docs/ontology_annotation_guidelines.md)
+- [v1.0 Data Coverage Report](docs/v1_0_data_coverage_report.md)
 - [Demo Script](docs/demo_script.md)
 - [Screenshot Guide](docs/screenshot_guide.md)

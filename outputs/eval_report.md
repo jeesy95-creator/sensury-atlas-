@@ -12,9 +12,9 @@
 | test_002 | True | True | False | cashmere, warm_cotton, wool_blanket | cashmere, warm_cotton, wool_blanket |
 | test_003 | True | True | False | wet_moss, mountain_stream, wet_stone | wet_moss, mountain_stream, wet_stone |
 | test_004 | True | True | False | roasted_almond, butter_toast, burnt_sugar | roasted_almond, butter_toast, burnt_sugar |
-| test_005 | True | True | False | old_library, old_wood, black_tea | old_library, old_wood, film_grain |
-| test_006 | True | True | False | film_grain, butter_toast, warm_cotton | butter_toast, film_grain, vanilla_cream |
-| test_007 | True | True | False | four_k_clarity, cut_diamond, crystal | four_k_clarity, crystal, cut_diamond |
+| test_005 | True | True | False | old_library, old_wood, black_tea | old_wood, old_library, film_grain |
+| test_006 | True | True | False | film_grain, butter_toast, warm_cotton | butter_toast, film_grain, old_library |
+| test_007 | True | True | False | four_k_clarity, cut_diamond, crystal | four_k_clarity, cut_diamond, crystal |
 | test_008 | True | True | False | rainy_street, rain_on_asphalt, wet_stone | rainy_street, wet_stone, rain_on_asphalt |
 | test_009 | True | True | False | wool_blanket, cashmere, warm_cotton | wool_blanket, cashmere, warm_cotton |
 | test_010 | True | True | False | citrus_peel, green_stem, fresh_linen | citrus_peel, fresh_linen, green_stem |

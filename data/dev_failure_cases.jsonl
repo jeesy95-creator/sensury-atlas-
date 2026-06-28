@@ -1,0 +1,20 @@
+{"id": "dev_001", "input": "소금기 어린 바람이 넓게 밀려오는 차가운 향", "expected_top_objects": ["sea_breeze", "cold_fog"], "notes": "바다라는 직접명 없이 소금기와 넓은 바람으로 sea_breeze를 유도"}
+{"id": "dev_002", "input": "여름비가 막 지나간 도시의 젖은 도로 같은 냄새", "expected_top_objects": ["rain_on_asphalt", "rainy_street"], "notes": "도시 도로와 비의 결합"}
+{"id": "dev_003", "input": "가로등 아래 젖은 보도블록이 낮게 반짝이는 공기", "expected_top_objects": ["rainy_street", "rain_on_asphalt"], "notes": "거리 장면 중심의 rainy_street"}
+{"id": "dev_004", "input": "오래된 가죽 소파 안쪽처럼 어둡고 드라이한 향", "expected_top_objects": ["leather", "barrel_cellar"], "notes": "동물성 드라이 가죽"}
+{"id": "dev_005", "input": "스웨이드 표면처럼 보송하지만 건조하게 깔리는 느낌", "expected_top_objects": ["suede", "leather"], "notes": "매트하고 짧은 털감"}
+{"id": "dev_006", "input": "손에 걸리는 나무껍질처럼 거칠고 흙이 묻은 냄새", "expected_top_objects": ["bark", "forest_floor"], "notes": "거친 나무 표면과 흙"}
+{"id": "dev_007", "input": "따뜻한 찻잔 위로 마른 잎의 떫은 기운이 올라와", "expected_top_objects": ["black_tea", "dry_herb"], "notes": "홍차 직접명 없는 찻잎과 떫음"}
+{"id": "dev_008", "input": "갈색 잎이 오래 묵어 달큰하고 어둡게 접힌 향", "expected_top_objects": ["tobacco_leaf", "leather"], "notes": "담뱃잎 우회 표현"}
+{"id": "dev_009", "input": "습기 없이 곧게 뻗는 마른 목재의 깨끗한 냄새", "expected_top_objects": ["cedarwood", "old_wood"], "notes": "정돈된 드라이 우디"}
+{"id": "dev_010", "input": "줄기를 꺾었을 때 올라오는 물기 있는 풋내", "expected_top_objects": ["green_stem", "after_rain_garden"], "notes": "초록 줄기 단면과 풋내"}
+{"id": "dev_011", "input": "손가락 사이에서 바스러지는 말린 풀잎의 씁쓸함", "expected_top_objects": ["dry_herb", "black_tea"], "notes": "마른 식물성 가루감"}
+{"id": "dev_012", "input": "납작하고 어두운 돌판이 차갑게 놓인 듯한 향", "expected_top_objects": ["slate", "cold_metal"], "notes": "점판암 우회 표현"}
+{"id": "dev_013", "input": "혀끝에 작은 은빛 금속성이 차갑게 남아", "expected_top_objects": ["silver_spoon", "cold_metal"], "notes": "은수저 직접명 없는 입안 금속성"}
+{"id": "dev_014", "input": "방금 환기한 방처럼 먼지 없이 하얗고 건조해", "expected_top_objects": ["clean_room", "fresh_linen"], "notes": "청결한 실내 공기"}
+{"id": "dev_015", "input": "늦은 밤 창문을 열었을 때 들어오는 차갑고 조용한 공기", "expected_top_objects": ["late_night_air", "cold_fog"], "notes": "밤공기 직접 장면"}
+{"id": "dev_016", "input": "지하 저장고의 차가운 오크통과 술기운이 두껍게 머물러", "expected_top_objects": ["barrel_cellar", "old_wood"], "notes": "숙성고 공간감"}
+{"id": "dev_017", "input": "달큰하지만 끝은 드라이하게 탄 나무 표면 같은 향", "expected_top_objects": ["charred_oak", "fireplace_ash"], "notes": "그을린 오크의 탄 목재와 단맛"}
+{"id": "dev_018", "input": "비 온 숲의 갈색 낙엽과 흙이 낮게 깔려 있어", "expected_top_objects": ["forest_floor", "wet_moss"], "notes": "숲 바닥 복합 습도"}
+{"id": "dev_019", "input": "계곡 옆 자갈에 남은 물기처럼 차갑고 회색빛이야", "expected_top_objects": ["wet_stone", "mountain_stream"], "notes": "젖은 돌과 계곡 맥락"}
+{"id": "dev_020", "input": "햇빛에 마른 하얀 침구처럼 깨끗하고 얇게 날려", "expected_top_objects": ["fresh_linen", "clean_room"], "notes": "리넨과 청결 공간 사이"}
