@@ -84,7 +84,7 @@ REQUIRED_MODIFIER_GROUPS = {
 
 
 def test_general_sensory_vocabulary_csv_shape() -> None:
-    path = PROJECT_ROOT / "data" / "general_sensory_vocabulary.csv"
+    path = PROJECT_ROOT / "data" / "vocabulary" / "general_sensory_vocabulary.csv"
 
     assert path.exists()
     with path.open(encoding="utf-8", newline="") as handle:
@@ -97,7 +97,7 @@ def test_general_sensory_vocabulary_csv_shape() -> None:
 
 
 def test_sensory_axis_descriptors_json_shape() -> None:
-    path = PROJECT_ROOT / "data" / "sensory_axis_descriptors.json"
+    path = PROJECT_ROOT / "data" / "vocabulary" / "sensory_axis_descriptors.json"
 
     assert path.exists()
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -109,7 +109,7 @@ def test_sensory_axis_descriptors_json_shape() -> None:
 
 
 def test_sensory_modifier_groups_json_shape() -> None:
-    path = PROJECT_ROOT / "data" / "sensory_modifier_groups.json"
+    path = PROJECT_ROOT / "data" / "vocabulary" / "sensory_modifier_groups.json"
 
     assert path.exists()
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -119,7 +119,7 @@ def test_sensory_modifier_groups_json_shape() -> None:
 
 
 def test_sensory_expression_patterns_jsonl_shape() -> None:
-    path = PROJECT_ROOT / "data" / "sensory_expression_patterns.jsonl"
+    path = PROJECT_ROOT / "data" / "vocabulary" / "sensory_expression_patterns.jsonl"
     records = read_jsonl(path)
 
     assert path.exists()

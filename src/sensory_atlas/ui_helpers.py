@@ -24,9 +24,9 @@ from sensory_atlas.schema import ParserOutput, SensoryObject
 
 
 DATASETS = {
-    "default": "test_sentences_20.jsonl",
-    "blind": "blind_test_sentences_30.jsonl",
-    "holdout": "holdout_test_sentences_50.jsonl",
+    "default": "evaluation/test_sentences_20.jsonl",
+    "blind": "evaluation/blind_test_sentences_30.jsonl",
+    "holdout": "evaluation/holdout_test_sentences_50.jsonl",
 }
 AXIS_LABELS = {
     "material": "Material",
@@ -153,12 +153,11 @@ def curated_shortlist_to_dataframe(shortlist: list[dict[str, Any]]) -> pd.DataFr
 
 
 def load_candidate_review_for_ui(root: str | Path | None = None) -> dict[str, Any]:
-    root_path = Path(root) if root else project_root()
-    candidates = load_candidate_objects(root_path / "data" / "sensory_object_candidates.jsonl")
-    existing = load_existing_objects(root_path / "data" / "sensory_objects.jsonl")
-    status = load_candidate_review_status(root_path / "data" / "candidate_review_status.jsonl")
+    candidates = load_candidate_objects()
+    existing = load_existing_objects()
+    status = load_candidate_review_status()
     rows = build_candidate_review_rows(candidates, existing, status)
-    shortlist = load_curated_shortlist(root_path / "data" / "curated_candidate_shortlist_v1_5.jsonl")
+    shortlist = load_curated_shortlist()
     return {
         "candidates": candidates,
         "existing_objects": existing,
@@ -255,10 +254,10 @@ def parser_output_to_display_dict(
 
 
 def evaluate_all_datasets(root: str | Path | None = None) -> dict[str, EvaluationReport]:
-    root_path = Path(root) if root else project_root()
-    objects = load_sensory_objects(root_path / "data" / "sensory_objects.jsonl")
+    from sensory_atlas.paths import EVALUATION_DATASET_PATHS
+    objects = load_sensory_objects()
     reports: dict[str, EvaluationReport] = {}
-    for dataset_name, file_name in DATASETS.items():
-        records = load_test_sentences(root_path / "data" / file_name)
+    for dataset_name, file_path in EVALUATION_DATASET_PATHS.items():
+        records = load_test_sentences(file_path)
         reports[dataset_name] = evaluate_parser(records, objects, dataset_name=dataset_name)
     return reports

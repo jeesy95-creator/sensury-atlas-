@@ -1,0 +1,847 @@
+{
+  "version": "v1.2",
+  "description": "Modifier groups for general sensory vocabulary.",
+  "modifier_groups": {
+    "cold_clear": {
+      "axis_combination": [
+        "temperature",
+        "clarity",
+        "light"
+      ],
+      "terms": [
+        "차갑고 맑은",
+        "서늘하고 투명한",
+        "냉랭하게 선명한"
+      ],
+      "related_objects": [
+        "crystal",
+        "cut_diamond",
+        "cold_metal",
+        "winter_dawn"
+      ],
+      "negative_objects": [
+        "warm_cotton",
+        "vanilla_cream",
+        "butter_toast"
+      ],
+      "example_phrases": [
+        "차갑고 맑은 향",
+        "서늘하고 투명한 느낌",
+        "냉랭하게 선명한 잔향"
+      ],
+      "notes": "cold_clear modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "cold_metallic": {
+      "axis_combination": [
+        "temperature",
+        "mineral",
+        "edge"
+      ],
+      "terms": [
+        "차갑고 금속적인",
+        "은빛으로 냉랭한",
+        "단단하게 식은"
+      ],
+      "related_objects": [
+        "cold_metal",
+        "silver_spoon",
+        "cut_diamond"
+      ],
+      "negative_objects": [
+        "cashmere",
+        "honeycomb",
+        "warm_cotton"
+      ],
+      "example_phrases": [
+        "차갑고 금속적인 향",
+        "은빛으로 냉랭한 느낌",
+        "단단하게 식은 잔향"
+      ],
+      "notes": "cold_metallic modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "warm_soft": {
+      "axis_combination": [
+        "temperature",
+        "texture",
+        "atmosphere"
+      ],
+      "terms": [
+        "따뜻하고 부드러운",
+        "포근하게 감싸는",
+        "온기 있게 둥근"
+      ],
+      "related_objects": [
+        "cashmere",
+        "warm_cotton",
+        "wool_blanket"
+      ],
+      "negative_objects": [
+        "cold_metal",
+        "crystal",
+        "slate"
+      ],
+      "example_phrases": [
+        "따뜻하고 부드러운 향",
+        "포근하게 감싸는 느낌",
+        "온기 있게 둥근 잔향"
+      ],
+      "notes": "warm_soft modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "warm_sweet": {
+      "axis_combination": [
+        "temperature",
+        "density",
+        "texture"
+      ],
+      "terms": [
+        "따뜻하고 달큰한",
+        "금빛으로 둥근",
+        "부드럽게 단"
+      ],
+      "related_objects": [
+        "vanilla_cream",
+        "honeycomb",
+        "butter_toast"
+      ],
+      "negative_objects": [
+        "wet_stone",
+        "cold_fog",
+        "silver_spoon"
+      ],
+      "example_phrases": [
+        "따뜻하고 달큰한 향",
+        "금빛으로 둥근 느낌",
+        "부드럽게 단 잔향"
+      ],
+      "notes": "warm_sweet modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "soft_powdery": {
+      "axis_combination": [
+        "texture",
+        "density",
+        "light"
+      ],
+      "terms": [
+        "보송하고 파우더리한",
+        "가루처럼 부드러운",
+        "매트하게 보송한"
+      ],
+      "related_objects": [
+        "suede",
+        "velvet",
+        "dry_herb"
+      ],
+      "negative_objects": [
+        "wet_stone",
+        "rain_on_asphalt",
+        "cold_metal"
+      ],
+      "example_phrases": [
+        "보송하고 파우더리한 향",
+        "가루처럼 부드러운 느낌",
+        "매트하게 보송한 잔향"
+      ],
+      "notes": "soft_powdery modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "soft_textile": {
+      "axis_combination": [
+        "texture",
+        "organic",
+        "atmosphere"
+      ],
+      "terms": [
+        "섬유처럼 부드러운",
+        "천처럼 감싸는",
+        "보송한 직물감"
+      ],
+      "related_objects": [
+        "cashmere",
+        "warm_cotton",
+        "fresh_linen"
+      ],
+      "negative_objects": [
+        "granite",
+        "silver_spoon",
+        "wet_stone"
+      ],
+      "example_phrases": [
+        "섬유처럼 부드러운 향",
+        "천처럼 감싸는 느낌",
+        "보송한 직물감 잔향"
+      ],
+      "notes": "soft_textile modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "wet_green": {
+      "axis_combination": [
+        "moisture",
+        "organic",
+        "atmosphere"
+      ],
+      "terms": [
+        "축축하고 초록빛의",
+        "젖은 식물 같은",
+        "비 온 뒤 초록 습기"
+      ],
+      "related_objects": [
+        "wet_moss",
+        "green_stem",
+        "after_rain_garden"
+      ],
+      "negative_objects": [
+        "charred_oak",
+        "leather",
+        "cold_metal"
+      ],
+      "example_phrases": [
+        "축축하고 초록빛의 향",
+        "젖은 식물 같은 느낌",
+        "비 온 뒤 초록 습기 잔향"
+      ],
+      "notes": "wet_green modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "wet_mineral": {
+      "axis_combination": [
+        "moisture",
+        "mineral",
+        "temperature"
+      ],
+      "terms": [
+        "젖고 차가운 돌 같은",
+        "물기 어린 광물감",
+        "축축한 미네랄"
+      ],
+      "related_objects": [
+        "wet_stone",
+        "mountain_stream",
+        "slate"
+      ],
+      "negative_objects": [
+        "vanilla_cream",
+        "cashmere",
+        "butter_toast"
+      ],
+      "example_phrases": [
+        "젖고 차가운 돌 같은 향",
+        "물기 어린 광물감 느낌",
+        "축축한 미네랄 잔향"
+      ],
+      "notes": "wet_mineral modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "dry_woody": {
+      "axis_combination": [
+        "moisture",
+        "organic",
+        "texture"
+      ],
+      "terms": [
+        "마르고 목질적인",
+        "건조한 나무결",
+        "드라이한 우디감"
+      ],
+      "related_objects": [
+        "cedarwood",
+        "bark",
+        "old_wood"
+      ],
+      "negative_objects": [
+        "sea_breeze",
+        "wet_moss",
+        "vanilla_cream"
+      ],
+      "example_phrases": [
+        "마르고 목질적인 향",
+        "건조한 나무결 느낌",
+        "드라이한 우디감 잔향"
+      ],
+      "notes": "dry_woody modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "dry_smoky": {
+      "axis_combination": [
+        "moisture",
+        "atmosphere",
+        "density"
+      ],
+      "terms": [
+        "건조하고 스모키한",
+        "마른 연기 같은",
+        "드라이하게 탄"
+      ],
+      "related_objects": [
+        "fireplace_ash",
+        "charred_oak",
+        "tobacco_leaf"
+      ],
+      "negative_objects": [
+        "fresh_linen",
+        "green_stem",
+        "clean_room"
+      ],
+      "example_phrases": [
+        "건조하고 스모키한 향",
+        "마른 연기 같은 느낌",
+        "드라이하게 탄 잔향"
+      ],
+      "notes": "dry_smoky modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "heavy_dark": {
+      "axis_combination": [
+        "density",
+        "light",
+        "atmosphere"
+      ],
+      "terms": [
+        "무겁고 어두운",
+        "묵직하게 검은",
+        "낮게 깔리는 어둠"
+      ],
+      "related_objects": [
+        "dark_chocolate",
+        "barrel_cellar",
+        "tobacco_leaf"
+      ],
+      "negative_objects": [
+        "organza",
+        "sea_breeze",
+        "fresh_linen"
+      ],
+      "example_phrases": [
+        "무겁고 어두운 향",
+        "묵직하게 검은 느낌",
+        "낮게 깔리는 어둠 잔향"
+      ],
+      "notes": "heavy_dark modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "light_airy": {
+      "axis_combination": [
+        "density",
+        "space",
+        "motion"
+      ],
+      "terms": [
+        "가볍고 공기 같은",
+        "얇게 떠오르는",
+        "공기처럼 퍼지는"
+      ],
+      "related_objects": [
+        "organza",
+        "cold_fog",
+        "sea_breeze"
+      ],
+      "negative_objects": [
+        "dark_chocolate",
+        "leather",
+        "barrel_cellar"
+      ],
+      "example_phrases": [
+        "가볍고 공기 같은 향",
+        "얇게 떠오르는 느낌",
+        "공기처럼 퍼지는 잔향"
+      ],
+      "notes": "light_airy modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "sharp_bright": {
+      "axis_combination": [
+        "edge",
+        "light",
+        "clarity"
+      ],
+      "terms": [
+        "날카롭고 밝은",
+        "쨍하게 선명한",
+        "밝게 잘리는"
+      ],
+      "related_objects": [
+        "citrus_peel",
+        "cut_diamond",
+        "four_k_clarity"
+      ],
+      "negative_objects": [
+        "cashmere",
+        "vanilla_cream",
+        "velvet"
+      ],
+      "example_phrases": [
+        "날카롭고 밝은 향",
+        "쨍하게 선명한 느낌",
+        "밝게 잘리는 잔향"
+      ],
+      "notes": "sharp_bright modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "round_mellow": {
+      "axis_combination": [
+        "shape",
+        "balance",
+        "texture"
+      ],
+      "terms": [
+        "둥글고 부드러운",
+        "모서리 없이 mellow한",
+        "완만하게 감싸는"
+      ],
+      "related_objects": [
+        "vanilla_cream",
+        "warm_cotton",
+        "honeycomb"
+      ],
+      "negative_objects": [
+        "cut_diamond",
+        "cold_metal",
+        "citrus_peel"
+      ],
+      "example_phrases": [
+        "둥글고 부드러운 향",
+        "모서리 없이 mellow한 느낌",
+        "완만하게 감싸는 잔향"
+      ],
+      "notes": "round_mellow modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "transparent_clean": {
+      "axis_combination": [
+        "clarity",
+        "light",
+        "atmosphere"
+      ],
+      "terms": [
+        "투명하고 깨끗한",
+        "맑고 정돈된",
+        "잡음 없이 클린한"
+      ],
+      "related_objects": [
+        "crystal",
+        "fresh_linen",
+        "clean_room"
+      ],
+      "negative_objects": [
+        "tobacco_leaf",
+        "forest_floor",
+        "barrel_cellar"
+      ],
+      "example_phrases": [
+        "투명하고 깨끗한 향",
+        "맑고 정돈된 느낌",
+        "잡음 없이 클린한 잔향"
+      ],
+      "notes": "transparent_clean modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "cloudy_muted": {
+      "axis_combination": [
+        "clarity",
+        "light",
+        "rendering"
+      ],
+      "terms": [
+        "흐릿하고 muted한",
+        "뿌옇게 낮은",
+        "선명하지 않고 차분한"
+      ],
+      "related_objects": [
+        "film_grain",
+        "cold_fog",
+        "old_library"
+      ],
+      "negative_objects": [
+        "four_k_clarity",
+        "cut_diamond",
+        "crystal"
+      ],
+      "example_phrases": [
+        "흐릿하고 muted한 향",
+        "뿌옇게 낮은 느낌",
+        "선명하지 않고 차분한 잔향"
+      ],
+      "notes": "cloudy_muted modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "dense_resinous": {
+      "axis_combination": [
+        "density",
+        "organic",
+        "finish"
+      ],
+      "terms": [
+        "밀도 있고 수지 같은",
+        "두껍고 끈적한 잔향",
+        "어둡게 농축된"
+      ],
+      "related_objects": [
+        "pine_resin",
+        "honeycomb",
+        "charred_oak"
+      ],
+      "negative_objects": [
+        "sea_breeze",
+        "fresh_linen",
+        "cold_fog"
+      ],
+      "example_phrases": [
+        "밀도 있고 수지 같은 향",
+        "두껍고 끈적한 잔향 느낌",
+        "어둡게 농축된 잔향"
+      ],
+      "notes": "dense_resinous modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "thin_linear": {
+      "axis_combination": [
+        "density",
+        "edge",
+        "motion"
+      ],
+      "terms": [
+        "얇고 선형적인",
+        "가느다랗게 지나가는",
+        "선이 얇은"
+      ],
+      "related_objects": [
+        "silk",
+        "organza",
+        "citrus_peel"
+      ],
+      "negative_objects": [
+        "velvet",
+        "honeycomb",
+        "barrel_cellar"
+      ],
+      "example_phrases": [
+        "얇고 선형적인 향",
+        "가느다랗게 지나가는 느낌",
+        "선이 얇은 잔향"
+      ],
+      "notes": "thin_linear modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "spreading_air": {
+      "axis_combination": [
+        "motion",
+        "space",
+        "density"
+      ],
+      "terms": [
+        "공기처럼 퍼지는",
+        "넓게 번지는",
+        "수평으로 열리는"
+      ],
+      "related_objects": [
+        "sea_breeze",
+        "cold_fog",
+        "summer_noon"
+      ],
+      "negative_objects": [
+        "leather",
+        "dark_chocolate",
+        "barrel_cellar"
+      ],
+      "example_phrases": [
+        "공기처럼 퍼지는 향",
+        "넓게 번지는 느낌",
+        "수평으로 열리는 잔향"
+      ],
+      "notes": "spreading_air modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "wrapping_body": {
+      "axis_combination": [
+        "motion",
+        "density",
+        "texture"
+      ],
+      "terms": [
+        "몸을 감싸는",
+        "부드럽게 두르는",
+        "두껍게 덮는"
+      ],
+      "related_objects": [
+        "cashmere",
+        "wool_blanket",
+        "warm_cotton"
+      ],
+      "negative_objects": [
+        "cut_diamond",
+        "citrus_peel",
+        "cold_metal"
+      ],
+      "example_phrases": [
+        "몸을 감싸는 향",
+        "부드럽게 두르는 느낌",
+        "두껍게 덮는 잔향"
+      ],
+      "notes": "wrapping_body modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "rising_topnote": {
+      "axis_combination": [
+        "motion",
+        "time",
+        "light"
+      ],
+      "terms": [
+        "처음에 올라오는",
+        "상단으로 튀는",
+        "밝게 솟는"
+      ],
+      "related_objects": [
+        "citrus_peel",
+        "green_stem",
+        "mountain_stream"
+      ],
+      "negative_objects": [
+        "forest_floor",
+        "tobacco_leaf",
+        "barrel_cellar"
+      ],
+      "example_phrases": [
+        "처음에 올라오는 향",
+        "상단으로 튀는 느낌",
+        "밝게 솟는 잔향"
+      ],
+      "notes": "rising_topnote modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "settling_baseline": {
+      "axis_combination": [
+        "motion",
+        "density",
+        "finish"
+      ],
+      "terms": [
+        "낮게 가라앉는",
+        "바닥에 깔리는",
+        "베이스처럼 남는"
+      ],
+      "related_objects": [
+        "forest_floor",
+        "dark_chocolate",
+        "tobacco_leaf"
+      ],
+      "negative_objects": [
+        "organza",
+        "citrus_peel",
+        "sea_breeze"
+      ],
+      "example_phrases": [
+        "낮게 가라앉는 향",
+        "바닥에 깔리는 느낌",
+        "베이스처럼 남는 잔향"
+      ],
+      "notes": "settling_baseline modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "long_lingering": {
+      "axis_combination": [
+        "finish",
+        "time",
+        "density"
+      ],
+      "terms": [
+        "오래 남는",
+        "여운이 긴",
+        "잔향이 길게 이어지는"
+      ],
+      "related_objects": [
+        "barrel_cellar",
+        "tobacco_leaf",
+        "old_library"
+      ],
+      "negative_objects": [
+        "fresh_linen",
+        "citrus_peel",
+        "clean_room"
+      ],
+      "example_phrases": [
+        "오래 남는 향",
+        "여운이 긴 느낌",
+        "잔향이 길게 이어지는 잔향"
+      ],
+      "notes": "long_lingering modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "short_clean_finish": {
+      "axis_combination": [
+        "finish",
+        "clarity",
+        "balance"
+      ],
+      "terms": [
+        "짧고 깨끗하게 끊기는",
+        "깨끗하게 떨어지는",
+        "금방 사라지는"
+      ],
+      "related_objects": [
+        "fresh_linen",
+        "clean_room",
+        "citrus_peel"
+      ],
+      "negative_objects": [
+        "honeycomb",
+        "tobacco_leaf",
+        "barrel_cellar"
+      ],
+      "example_phrases": [
+        "짧고 깨끗하게 끊기는 향",
+        "깨끗하게 떨어지는 느낌",
+        "금방 사라지는 잔향"
+      ],
+      "notes": "short_clean_finish modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "film_like_mood": {
+      "axis_combination": [
+        "rendering",
+        "atmosphere",
+        "time"
+      ],
+      "terms": [
+        "필름처럼 분위기가 남는",
+        "노이즈 있고 감정적인",
+        "낮은 해상도의 무드"
+      ],
+      "related_objects": [
+        "film_grain",
+        "old_library",
+        "late_night_air"
+      ],
+      "negative_objects": [
+        "four_k_clarity",
+        "cut_diamond",
+        "crystal"
+      ],
+      "example_phrases": [
+        "필름처럼 분위기가 남는 향",
+        "노이즈 있고 감정적인 느낌",
+        "낮은 해상도의 무드 잔향"
+      ],
+      "notes": "film_like_mood modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "four_k_precision": {
+      "axis_combination": [
+        "rendering",
+        "clarity",
+        "edge"
+      ],
+      "terms": [
+        "4K처럼 정밀한",
+        "입자가 다 보이는",
+        "초점이 정확한"
+      ],
+      "related_objects": [
+        "four_k_clarity",
+        "cut_diamond",
+        "crystal"
+      ],
+      "negative_objects": [
+        "film_grain",
+        "old_library",
+        "cold_fog"
+      ],
+      "example_phrases": [
+        "4K처럼 정밀한 향",
+        "입자가 다 보이는 느낌",
+        "초점이 정확한 잔향"
+      ],
+      "notes": "four_k_precision modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "urban_wet": {
+      "axis_combination": [
+        "atmosphere",
+        "moisture",
+        "mineral"
+      ],
+      "terms": [
+        "도시의 젖은 바닥 같은",
+        "비 맞은 아스팔트 같은",
+        "젖은 거리의"
+      ],
+      "related_objects": [
+        "rain_on_asphalt",
+        "rainy_street",
+        "wet_stone"
+      ],
+      "negative_objects": [
+        "after_rain_garden",
+        "wet_moss",
+        "forest_floor"
+      ],
+      "example_phrases": [
+        "도시의 젖은 바닥 같은 향",
+        "비 맞은 아스팔트 같은 느낌",
+        "젖은 거리의 잔향"
+      ],
+      "notes": "urban_wet modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "forest_wet": {
+      "axis_combination": [
+        "atmosphere",
+        "moisture",
+        "organic"
+      ],
+      "terms": [
+        "비 온 숲 같은",
+        "젖은 낙엽과 흙의",
+        "축축한 숲 바닥"
+      ],
+      "related_objects": [
+        "forest_floor",
+        "wet_moss",
+        "bark"
+      ],
+      "negative_objects": [
+        "rain_on_asphalt",
+        "silver_spoon",
+        "clean_room"
+      ],
+      "example_phrases": [
+        "비 온 숲 같은 향",
+        "젖은 낙엽과 흙의 느낌",
+        "축축한 숲 바닥 잔향"
+      ],
+      "notes": "forest_wet modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "mineral_sparkle": {
+      "axis_combination": [
+        "mineral",
+        "light",
+        "clarity"
+      ],
+      "terms": [
+        "차가운 미네랄이 반짝이는",
+        "결정질로 쨍한",
+        "돌처럼 맑게 튀는"
+      ],
+      "related_objects": [
+        "crystal",
+        "wet_stone",
+        "cut_diamond"
+      ],
+      "negative_objects": [
+        "vanilla_cream",
+        "cashmere",
+        "honeycomb"
+      ],
+      "example_phrases": [
+        "차가운 미네랄이 반짝이는 향",
+        "결정질로 쨍한 느낌",
+        "돌처럼 맑게 튀는 잔향"
+      ],
+      "notes": "mineral_sparkle modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    },
+    "skin_like_softness": {
+      "axis_combination": [
+        "organic",
+        "texture",
+        "temperature"
+      ],
+      "terms": [
+        "살갗처럼 부드러운",
+        "체온 섞인 보송함",
+        "피부 가까이 남는"
+      ],
+      "related_objects": [
+        "warm_cotton",
+        "cashmere",
+        "leather"
+      ],
+      "negative_objects": [
+        "cold_metal",
+        "wet_stone",
+        "slate"
+      ],
+      "example_phrases": [
+        "살갗처럼 부드러운 향",
+        "체온 섞인 보송함 느낌",
+        "피부 가까이 남는 잔향"
+      ],
+      "notes": "skin_like_softness modifier group은 object가 아니라 향후 ranking constraint 또는 axis modifier로 사용한다."
+    }
+  }
+}

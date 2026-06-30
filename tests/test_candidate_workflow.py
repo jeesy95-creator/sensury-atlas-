@@ -18,9 +18,9 @@ from sensory_atlas.candidate_workflow import (
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 EVALUATION_DATASETS = [
-    PROJECT_ROOT / "data" / "test_sentences_20.jsonl",
-    PROJECT_ROOT / "data" / "blind_test_sentences_30.jsonl",
-    PROJECT_ROOT / "data" / "holdout_test_sentences_50.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "test_sentences_20.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "blind_test_sentences_30.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "holdout_test_sentences_50.jsonl",
 ]
 
 
@@ -39,7 +39,7 @@ def test_existing_objects_load_successfully() -> None:
 
 
 def test_candidate_review_status_exists_and_covers_candidates() -> None:
-    path = PROJECT_ROOT / "data" / "candidate_review_status.jsonl"
+    path = PROJECT_ROOT / "data" / "workflow" / "candidate_review_status.jsonl"
     candidates = load_candidate_objects()
     status = load_candidate_review_status(path)
 
@@ -100,7 +100,7 @@ def test_compare_candidate_to_existing_returns_list() -> None:
 
 
 def test_generate_promotion_draft_does_not_modify_main_ontology() -> None:
-    ontology_path = PROJECT_ROOT / "data" / "sensory_objects.jsonl"
+    ontology_path = PROJECT_ROOT / "data" / "core" / "sensory_objects.jsonl"
     before = ontology_path.read_text(encoding="utf-8")
     candidate = load_candidate_objects()[0]
     draft = generate_promotion_draft(candidate)

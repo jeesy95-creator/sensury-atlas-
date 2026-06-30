@@ -9,6 +9,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
+from sensory_atlas.paths import PHRASE_CUES_PATH
 from sensory_atlas.schema import SensoryObject
 from sensory_atlas.cue_hierarchy import apply_cue_hierarchy_scores, detect_cue_groups
 
@@ -155,7 +156,7 @@ def _candidate_terms(obj: SensoryObject) -> list[str]:
 
 @lru_cache(maxsize=1)
 def load_phrase_cues() -> dict[str, dict[str, Any]]:
-    path = Path(__file__).resolve().parents[2] / "data" / "phrase_cues.json"
+    path = PHRASE_CUES_PATH
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))

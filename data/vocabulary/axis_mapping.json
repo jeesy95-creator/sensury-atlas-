@@ -1,0 +1,47 @@
+{
+  "version": "v1.0",
+  "description": "Extended axis (sensory_axis_descriptors.json v1.2) to parser canonical axis mapping. Parser operates on 10 canonical axes; extended axes provide richer vocabulary for data annotation and future axis expansion.",
+  "canonical_axes": [
+    "material",
+    "temperature",
+    "texture",
+    "light",
+    "motion",
+    "time",
+    "atmosphere",
+    "density",
+    "rendering",
+    "organic_mineral"
+  ],
+  "extended_to_canonical": {
+    "clarity": {
+      "maps_to": ["light", "rendering"],
+      "note": "Perceptual sharpness or diffusion. High clarity → light=Crystal/Clear, rendering=4K-like. Low clarity → light=Diffuse, rendering=Film-like."
+    },
+    "finish": {
+      "maps_to": ["time"],
+      "note": "Temporal tail of a sensory experience (lingering, sharp cutoff, fading). Maps to time axis as duration/finish quality."
+    },
+    "space": {
+      "maps_to": ["atmosphere"],
+      "note": "Perceived spatial scale or containment (expansive, enclosed, open). Maps to atmosphere as spatial quality."
+    },
+    "shape": {
+      "maps_to": ["texture", "rendering"],
+      "note": "Perceived geometric quality (round, angular, layered). Round/soft → texture. Sharp/geometric → rendering."
+    },
+    "edge": {
+      "maps_to": ["texture", "light"],
+      "note": "Perceptual boundary sharpness. Hard edge → texture=Hard/Sharp, light=Metallic. Soft edge → texture=Soft, light=Diffuse."
+    },
+    "moisture": {
+      "maps_to": ["texture", "organic_mineral", "atmosphere"],
+      "note": "Perceived wetness or dryness. Wet → texture=Moist, organic_mineral=Vegetal/Aquatic. Dry → texture=Dry/Crisp, atmosphere=Arid."
+    },
+    "balance": {
+      "maps_to": ["density", "atmosphere"],
+      "note": "Compositional equilibrium or weight distribution. Heavy/dense → density=Dense. Light/airy → density=Light, atmosphere=Airy."
+    }
+  },
+  "usage_note": "Extended axes are used in vocabulary/sensory_axis_descriptors.json for data annotation and ontology design. They do not directly appear in ParserOutput. When writing sensory_objects.jsonl, use canonical axes only."
+}

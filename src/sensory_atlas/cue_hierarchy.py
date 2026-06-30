@@ -8,6 +8,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
+from sensory_atlas.paths import CUE_HIERARCHY_PATH
+
 
 ACTIVATION_THRESHOLD = 0.2
 
@@ -29,7 +31,7 @@ def normalize(text: str) -> str:
 
 @lru_cache(maxsize=1)
 def load_cue_hierarchy() -> dict[str, dict[str, Any]]:
-    path = Path(__file__).resolve().parents[2] / "data" / "cue_hierarchy.json"
+    path = CUE_HIERARCHY_PATH
     if not path.exists():
         return {}
     return json.loads(path.read_text(encoding="utf-8"))

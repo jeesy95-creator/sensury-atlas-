@@ -40,6 +40,19 @@ class CoreAxes(BaseModel):
         return str(value)
 
 
+OBJECT_ROLES = frozenset({
+    "material_anchor",
+    "scene_anchor",
+    "organic_anchor",
+    "mineral_anchor",
+    "atmosphere_anchor",
+    "texture_finish_anchor",
+    "light_density_anchor",
+    "rendering_anchor",
+    "taste_feel_anchor",
+})
+
+
 class SensoryObject(BaseModel):
     """A semantic sensory object in the ontology."""
 
@@ -50,6 +63,7 @@ class SensoryObject(BaseModel):
     korean_label: str
     object_type: str
     family: str
+    object_role: str | None = None
     definition: str
     core_axes: CoreAxes
     example_expressions: list[str] = Field(default_factory=list)

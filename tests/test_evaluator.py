@@ -2,6 +2,7 @@ from sensory_atlas.evaluator import evaluate_parser
 from sensory_atlas.evaluator import write_eval_report
 from sensory_atlas.loaders import load_sensory_objects, load_test_sentences, project_root
 from sensory_atlas.cli import resolve_dataset_paths
+from sensory_atlas.paths import TEST_SENTENCES_BLIND_PATH, TEST_SENTENCES_HOLDOUT_PATH
 
 
 def test_evaluator_runs() -> None:
@@ -20,7 +21,7 @@ def test_evaluator_runs() -> None:
 
 def test_blind_dataset_evaluator_runs() -> None:
     objects = load_sensory_objects()
-    sentences = load_test_sentences("data/blind_test_sentences_30.jsonl")
+    sentences = load_test_sentences(TEST_SENTENCES_BLIND_PATH)
 
     report = evaluate_parser(sentences, objects, dataset_name="blind")
 
@@ -33,7 +34,6 @@ def test_blind_dataset_evaluator_runs() -> None:
 
 def test_resolve_blind_dataset_paths() -> None:
     tests_path, output_path = resolve_dataset_paths(
-        root=project_root(),
         dataset="blind",
         tests_path=None,
         output_path=None,
@@ -44,7 +44,7 @@ def test_resolve_blind_dataset_paths() -> None:
 
 
 def test_holdout_dataset_jsonl_is_valid() -> None:
-    sentences = load_test_sentences("data/holdout_test_sentences_50.jsonl")
+    sentences = load_test_sentences(TEST_SENTENCES_HOLDOUT_PATH)
 
     assert len(sentences) == 50
     for row in sentences:
@@ -56,7 +56,7 @@ def test_holdout_dataset_jsonl_is_valid() -> None:
 
 def test_holdout_dataset_evaluator_runs() -> None:
     objects = load_sensory_objects()
-    sentences = load_test_sentences("data/holdout_test_sentences_50.jsonl")
+    sentences = load_test_sentences(TEST_SENTENCES_HOLDOUT_PATH)
 
     report = evaluate_parser(sentences, objects, dataset_name="holdout")
 
@@ -69,7 +69,6 @@ def test_holdout_dataset_evaluator_runs() -> None:
 
 def test_resolve_holdout_dataset_paths() -> None:
     tests_path, output_path = resolve_dataset_paths(
-        root=project_root(),
         dataset="holdout",
         tests_path=None,
         output_path=None,
@@ -81,7 +80,7 @@ def test_resolve_holdout_dataset_paths() -> None:
 
 def test_holdout_report_contains_failure_analysis(tmp_path) -> None:
     objects = load_sensory_objects()
-    sentences = load_test_sentences("data/holdout_test_sentences_50.jsonl")
+    sentences = load_test_sentences(TEST_SENTENCES_HOLDOUT_PATH)
     report = evaluate_parser(sentences, objects, dataset_name="holdout")
     report_path = tmp_path / "eval_report_holdout.md"
 

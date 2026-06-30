@@ -23,9 +23,9 @@ DEFERRED_SHORTLIST_IDS = {
     "syrupy_body",
 }
 LOCKED_FILES = [
-    PROJECT_ROOT / "data" / "test_sentences_20.jsonl",
-    PROJECT_ROOT / "data" / "blind_test_sentences_30.jsonl",
-    PROJECT_ROOT / "data" / "holdout_test_sentences_50.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "test_sentences_20.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "blind_test_sentences_30.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "holdout_test_sentences_50.jsonl",
     PROJECT_ROOT / "src" / "sensory_atlas" / "parser.py",
     PROJECT_ROOT / "src" / "sensory_atlas" / "matcher.py",
     PROJECT_ROOT / "src" / "sensory_atlas" / "cue_hierarchy.py",
@@ -37,13 +37,13 @@ def _object_lookup() -> dict[str, dict]:
 
 
 def _phrase_cues() -> dict:
-    return json.loads((PROJECT_ROOT / "data" / "phrase_cues.json").read_text(encoding="utf-8"))
+    return json.loads((PROJECT_ROOT / "data" / "core" / "phrase_cues.json").read_text(encoding="utf-8"))
 
 
 def _review_status() -> dict[str, dict]:
     return {
         row["candidate_object_id"]: row
-        for row in read_jsonl(PROJECT_ROOT / "data" / "candidate_review_status.jsonl")
+        for row in read_jsonl(PROJECT_ROOT / "data" / "workflow" / "candidate_review_status.jsonl")
     }
 
 
@@ -112,7 +112,7 @@ def test_deferred_shortlist_candidates_are_not_in_main_ontology() -> None:
 
 
 def test_v1_5_regression_cases_exist_and_cover_promoted_objects() -> None:
-    path = PROJECT_ROOT / "data" / "ontology_expansion_v1_5_cases.jsonl"
+    path = PROJECT_ROOT / "data" / "regression" / "ontology_expansion_v1_5_cases.jsonl"
     rows = read_jsonl(path)
     counts = {object_id: 0 for object_id in PROMOTED_OBJECT_IDS}
 

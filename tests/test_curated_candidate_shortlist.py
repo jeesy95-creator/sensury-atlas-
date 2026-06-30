@@ -16,10 +16,10 @@ from sensory_atlas.cli import select_curated_candidates
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LOCKED_FILES = [
-    PROJECT_ROOT / "data" / "sensory_objects.jsonl",
-    PROJECT_ROOT / "data" / "test_sentences_20.jsonl",
-    PROJECT_ROOT / "data" / "blind_test_sentences_30.jsonl",
-    PROJECT_ROOT / "data" / "holdout_test_sentences_50.jsonl",
+    PROJECT_ROOT / "data" / "core" / "sensory_objects.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "test_sentences_20.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "blind_test_sentences_30.jsonl",
+    PROJECT_ROOT / "data" / "evaluation" / "holdout_test_sentences_50.jsonl",
     PROJECT_ROOT / "src" / "sensory_atlas" / "parser.py",
     PROJECT_ROOT / "src" / "sensory_atlas" / "matcher.py",
     PROJECT_ROOT / "src" / "sensory_atlas" / "cue_hierarchy.py",
@@ -79,7 +79,7 @@ def test_selected_candidates_have_required_fields() -> None:
 
 
 def test_shortlist_file_exists_and_has_valid_jsonl_lines() -> None:
-    path = PROJECT_ROOT / "data" / "curated_candidate_shortlist_v1_5.jsonl"
+    path = PROJECT_ROOT / "data" / "workflow" / "curated_candidate_shortlist_v1_5.jsonl"
     rows = load_curated_shortlist(path)
 
     assert path.exists()

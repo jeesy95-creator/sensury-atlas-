@@ -9,6 +9,12 @@ from pathlib import Path
 from typing import Any
 
 from sensory_atlas.loaders import project_root, read_jsonl
+from sensory_atlas.paths import (
+    SENSORY_OBJECTS_PATH,
+    CANDIDATE_OBJECTS_PATH,
+    CANDIDATE_REVIEW_STATUS_PATH,
+    CURATED_SHORTLIST_PATH,
+)
 
 
 ALLOWED_REVIEW_STATUSES = {
@@ -111,18 +117,18 @@ def _score_from_count(count: int, high: int, medium: int) -> float:
     return 0.0
 
 
-def load_candidate_objects(path: str | Path = "data/sensory_object_candidates.jsonl") -> list[dict[str, Any]]:
-    return read_jsonl(_resolve(path))
+def load_candidate_objects(path: str | Path | None = None) -> list[dict[str, Any]]:
+    return read_jsonl(_resolve(path) if path else CANDIDATE_OBJECTS_PATH)
 
 
-def load_existing_objects(path: str | Path = "data/sensory_objects.jsonl") -> list[dict[str, Any]]:
-    return read_jsonl(_resolve(path))
+def load_existing_objects(path: str | Path | None = None) -> list[dict[str, Any]]:
+    return read_jsonl(_resolve(path) if path else SENSORY_OBJECTS_PATH)
 
 
 def load_candidate_review_status(
-    path: str | Path = "data/candidate_review_status.jsonl",
+    path: str | Path | None = None,
 ) -> dict[str, dict[str, Any]]:
-    status_path = _resolve(path)
+    status_path = _resolve(path) if path else CANDIDATE_REVIEW_STATUS_PATH
     if not status_path.exists():
         return {}
     rows = read_jsonl(status_path)
@@ -490,9 +496,9 @@ def select_curated_shortlist(
 
 
 def load_curated_shortlist(
-    path: str | Path = "data/curated_candidate_shortlist_v1_5.jsonl",
+    path: str | Path | None = None,
 ) -> list[dict[str, Any]]:
-    shortlist_path = _resolve(path)
+    shortlist_path = _resolve(path) if path else CURATED_SHORTLIST_PATH
     if not shortlist_path.exists():
         return []
     return read_jsonl(shortlist_path)
@@ -629,7 +635,7 @@ def generate_curated_shortlist_report(
 
 
 def write_curated_shortlist_outputs(
-    output_path: str | Path = "data/curated_candidate_shortlist_v1_5.jsonl",
+    output_path: str | Path | None = None,
     report_path: str | Path = "outputs/curated_candidate_shortlist_report.md",
     summary_path: str | Path = "outputs/curated_candidate_shortlist_summary.json",
     *,
@@ -650,7 +656,7 @@ def write_curated_shortlist_outputs(
     report = generate_curated_shortlist_report(candidates, existing_objects, review_status, shortlist)
     summary = _shortlist_summary(candidates, rows, shortlist)
 
-    resolved_output_path = _resolve(output_path)
+    resolved_output_path = _resolve(output_path) if output_path else CURATED_SHORTLIST_PATH
     resolved_report_path = _resolve(report_path)
     resolved_summary_path = _resolve(summary_path)
     for path in (resolved_output_path, resolved_report_path, resolved_summary_path):

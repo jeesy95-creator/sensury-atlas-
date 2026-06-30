@@ -8,6 +8,7 @@ from typing import TypeVar
 
 from pydantic import BaseModel, ValidationError
 
+from sensory_atlas.paths import PROJECT_ROOT, SENSORY_OBJECTS_PATH, TEST_SENTENCES_DEFAULT_PATH
 from sensory_atlas.schema import SensoryObject
 
 
@@ -19,7 +20,7 @@ class JsonlValidationError(ValueError):
 
 
 def project_root() -> Path:
-    return Path(__file__).resolve().parents[2]
+    return PROJECT_ROOT
 
 
 def read_jsonl(path: str | Path) -> list[dict]:
@@ -48,12 +49,12 @@ def load_model_jsonl(path: str | Path, model: type[T]) -> list[T]:
 
 
 def load_sensory_objects(path: str | Path | None = None) -> list[SensoryObject]:
-    path = Path(path) if path else project_root() / "data" / "sensory_objects.jsonl"
+    path = Path(path) if path else SENSORY_OBJECTS_PATH
     return load_model_jsonl(path, SensoryObject)
 
 
 def load_test_sentences(path: str | Path | None = None) -> list[dict]:
-    path = Path(path) if path else project_root() / "data" / "test_sentences_20.jsonl"
+    path = Path(path) if path else TEST_SENTENCES_DEFAULT_PATH
     records = read_jsonl(path)
     missing = [idx for idx, record in enumerate(records, start=1) if "raw_text" not in record]
     if missing:

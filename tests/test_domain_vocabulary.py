@@ -40,7 +40,7 @@ REQUIRED_CROSS_DOMAIN_MAPPINGS = {
 
 
 def test_domain_vocabulary_seed_csv_shape() -> None:
-    path = PROJECT_ROOT / "data" / "domain_vocabulary_seed.csv"
+    path = PROJECT_ROOT / "data" / "vocabulary" / "domain_vocabulary_seed.csv"
 
     assert path.exists()
     with path.open(encoding="utf-8", newline="") as handle:
@@ -53,7 +53,7 @@ def test_domain_vocabulary_seed_csv_shape() -> None:
 
 
 def test_sensory_object_candidates_jsonl_shape() -> None:
-    path = PROJECT_ROOT / "data" / "sensory_object_candidates.jsonl"
+    path = PROJECT_ROOT / "data" / "workflow" / "sensory_object_candidates.jsonl"
     records = read_jsonl(path)
 
     assert path.exists()
@@ -71,7 +71,7 @@ def test_sensory_object_candidates_jsonl_shape() -> None:
 
 
 def test_domain_mapping_json_shape() -> None:
-    path = PROJECT_ROOT / "data" / "domain_mapping.json"
+    path = PROJECT_ROOT / "data" / "vocabulary" / "domain_mapping.json"
 
     assert path.exists()
     mapping = json.loads(path.read_text(encoding="utf-8"))

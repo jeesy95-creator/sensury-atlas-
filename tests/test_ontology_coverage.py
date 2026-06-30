@@ -42,7 +42,7 @@ def test_every_sensory_object_has_expanded_examples() -> None:
 
 
 def test_priority_phrase_cue_objects_are_covered() -> None:
-    phrase_cues = json.loads((PROJECT_ROOT / "data" / "phrase_cues.json").read_text(encoding="utf-8"))
+    phrase_cues = json.loads((PROJECT_ROOT / "data" / "core" / "phrase_cues.json").read_text(encoding="utf-8"))
 
     missing = sorted(PRIORITY_OBJECTS - set(phrase_cues))
     weak = {
@@ -56,7 +56,7 @@ def test_priority_phrase_cue_objects_are_covered() -> None:
 
 
 def test_dev_failure_cases_jsonl_is_valid() -> None:
-    records = read_jsonl(PROJECT_ROOT / "data" / "dev_failure_cases.jsonl")
+    records = read_jsonl(PROJECT_ROOT / "data" / "regression" / "dev_failure_cases.jsonl")
 
     assert len(records) >= 20
     for record in records:

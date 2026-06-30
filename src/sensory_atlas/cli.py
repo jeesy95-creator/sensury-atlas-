@@ -12,6 +12,12 @@ from sensory_atlas.loaders import (
     project_root,
     write_jsonl,
 )
+from sensory_atlas.paths import (
+    PROJECT_ROOT,
+    SENSORY_OBJECTS_PATH,
+    EVALUATION_DATASET_PATHS,
+    CURATED_SHORTLIST_PATH,
+)
 from sensory_atlas.evaluator import evaluate_parser, write_eval_report
 from sensory_atlas.parser import parse_sentence
 from sensory_atlas.candidate_workflow import (
@@ -19,28 +25,25 @@ from sensory_atlas.candidate_workflow import (
     write_curated_shortlist_outputs,
 )
 
-
-DATASET_PATHS = {
-    "default": ("test_sentences_20.jsonl", "eval_report.md"),
-    "blind": ("blind_test_sentences_30.jsonl", "eval_report_blind.md"),
-    "holdout": ("holdout_test_sentences_50.jsonl", "eval_report_holdout.md"),
-}
+OUTPUTS_DIR = PROJECT_ROOT / "outputs"
 
 
 def resolve_dataset_paths(
-    root: Path,
     dataset: str,
     tests_path: Path | None,
     output_path: Path | None,
 ) -> tuple[Path, Path]:
-    if dataset not in DATASET_PATHS:
-        allowed = ", ".join(sorted(DATASET_PATHS))
+    report_names = {
+        "default": "eval_report.md",
+        "blind": "eval_report_blind.md",
+        "holdout": "eval_report_holdout.md",
+    }
+    if dataset not in EVALUATION_DATASET_PATHS:
+        allowed = ", ".join(sorted(EVALUATION_DATASET_PATHS))
         raise ValueError(f"Unknown dataset '{dataset}'. Expected one of: {allowed}")
-
-    dataset_file, report_file = DATASET_PATHS[dataset]
     return (
-        tests_path or root / "data" / dataset_file,
-        output_path or root / "outputs" / report_file,
+        tests_path or EVALUATION_DATASET_PATHS[dataset],
+        output_path or OUTPUTS_DIR / report_names[dataset],
     )
 
 
@@ -50,23 +53,18 @@ def validate_data(args: argparse.Namespace) -> int:
     except JsonlValidationError as exc:
         print(f"Schema validation failed: {exc}")
         return 1
-
     print(f"Validated {len(objects)} sensory objects")
     return 0
 
 
 def dry_run(args: argparse.Namespace) -> int:
-    root = project_root()
-    objects_path = args.objects_path or root / "data" / "sensory_objects.jsonl"
-    tests_path = args.tests_path or root / "data" / "test_sentences_20.jsonl"
-    output_path = args.output_path or root / "outputs" / "parser_results.jsonl"
+    objects_path = args.objects_path or SENSORY_OBJECTS_PATH
+    tests_path = args.tests_path or EVALUATION_DATASET_PATHS["default"]
+    output_path = args.output_path or OUTPUTS_DIR / "parser_results.jsonl"
 
     objects = load_sensory_objects(objects_path)
     sentences = load_test_sentences(tests_path)
-    results = [
-        parse_sentence(record["raw_text"], objects)
-        for record in sentences
-    ]
+    results = [parse_sentence(record["raw_text"], objects) for record in sentences]
     write_jsonl(output_path, results)
 
     parsed_count = sum(1 for result in results if result.detected_objects)
@@ -77,14 +75,10 @@ def dry_run(args: argparse.Namespace) -> int:
 
 
 def evaluate(args: argparse.Namespace) -> int:
-    root = project_root()
-    objects_path = args.objects_path or root / "data" / "sensory_objects.jsonl"
+    objects_path = args.objects_path or SENSORY_OBJECTS_PATH
     try:
         tests_path, output_path = resolve_dataset_paths(
-            root,
-            args.dataset,
-            args.tests_path,
-            args.output_path,
+            args.dataset, args.tests_path, args.output_path
         )
     except ValueError as exc:
         print(exc)
@@ -152,23 +146,23 @@ def build_parser() -> argparse.ArgumentParser:
     dry.set_defaults(func=dry_run)
 
     eval_parser = subparsers.add_parser("evaluate", help="Evaluate parser against target objects")
-    eval_parser.add_argument("--dataset", choices=sorted(DATASET_PATHS), default="default")
+    eval_parser.add_argument("--dataset", choices=sorted(EVALUATION_DATASET_PATHS), default="default")
     eval_parser.add_argument("--objects-path", type=Path, default=None)
     eval_parser.add_argument("--tests-path", type=Path, default=None)
     eval_parser.add_argument("--output-path", type=Path, default=None)
     eval_parser.set_defaults(func=evaluate)
 
     review = subparsers.add_parser("review-candidates", help="Generate candidate object review report")
-    review.add_argument("--report-path", type=Path, default=project_root() / "outputs" / "candidate_review_report.md")
-    review.add_argument("--summary-path", type=Path, default=project_root() / "outputs" / "candidate_review_summary.json")
+    review.add_argument("--report-path", type=Path, default=OUTPUTS_DIR / "candidate_review_report.md")
+    review.add_argument("--summary-path", type=Path, default=OUTPUTS_DIR / "candidate_review_summary.json")
     review.set_defaults(func=review_candidates)
 
     shortlist = subparsers.add_parser("select-curated-candidates", help="Generate v1.5 curated candidate shortlist")
     shortlist.add_argument("--min-count", type=int, default=10)
     shortlist.add_argument("--max-count", type=int, default=12)
-    shortlist.add_argument("--output", type=Path, default=project_root() / "data" / "curated_candidate_shortlist_v1_5.jsonl")
-    shortlist.add_argument("--report", type=Path, default=project_root() / "outputs" / "curated_candidate_shortlist_report.md")
-    shortlist.add_argument("--summary", type=Path, default=project_root() / "outputs" / "curated_candidate_shortlist_summary.json")
+    shortlist.add_argument("--output", type=Path, default=CURATED_SHORTLIST_PATH)
+    shortlist.add_argument("--report", type=Path, default=OUTPUTS_DIR / "curated_candidate_shortlist_report.md")
+    shortlist.add_argument("--summary", type=Path, default=OUTPUTS_DIR / "curated_candidate_shortlist_summary.json")
     shortlist.set_defaults(func=select_curated_candidates)
 
     return parser

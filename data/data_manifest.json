@@ -1,0 +1,149 @@
+{
+  "version": "v1.5.1",
+  "description": "Data manifest for Sensory Atlas. Describes all data files, their purpose, format, and which system components read them.",
+  "parser_compat_root": {
+    "note": "These files are copies kept at data/ root for parser.py backward compatibility. parser.py hardcodes data/sensory_axis_descriptors.json and data/sensory_modifier_groups.json. Do not remove until parser.py is updated to use paths.py.",
+    "files": ["sensory_axis_descriptors.json", "sensory_modifier_groups.json"]
+  },
+  "folders": {
+    "data/core": {
+      "purpose": "Parser runtime data. Files read directly by the parser pipeline on every inference call.",
+      "files": {
+        "sensory_objects.jsonl": {
+          "format": "jsonl",
+          "schema": "SensoryObject (src/sensory_atlas/schema.py)",
+          "read_by": ["loaders.load_sensory_objects", "candidate_workflow.load_existing_objects"],
+          "record_count": 58,
+          "notes": "Primary ontology. Each line is one sensory object with object_role and core_axes."
+        },
+        "phrase_cues.json": {
+          "format": "json",
+          "schema": "{ object_id: { boost: float, positive_cues: [str] } }",
+          "read_by": ["matcher.load_phrase_cues"],
+          "record_count": 58,
+          "notes": "Phrase-level cue boosts per object. Every object in sensory_objects.jsonl should have an entry."
+        },
+        "cue_hierarchy.json": {
+          "format": "json",
+          "schema": "{ group_id: { positive_cues, negative_cues, boost_objects, penalize_objects, axis_updates } }",
+          "read_by": ["cue_hierarchy.load_cue_hierarchy"],
+          "record_count": 8,
+          "notes": "Contextual cue groups for resolving surface keyword vs. context conflicts."
+        }
+      }
+    },
+    "data/evaluation": {
+      "purpose": "Evaluation datasets. Read by the CLI evaluate command and ui_helpers.",
+      "files": {
+        "test_sentences_20.jsonl": {
+          "format": "jsonl",
+          "schema": "{ test_id, raw_text, target_objects: [str] }",
+          "read_by": ["loaders.load_test_sentences", "cli.evaluate"],
+          "record_count": 20,
+          "notes": "default dataset — ontology sanity check. Expressions close to object labels and examples."
+        },
+        "blind_test_sentences_30.jsonl": {
+          "format": "jsonl",
+          "schema": "{ test_id, raw_text, target_objects: [str] }",
+          "read_by": ["loaders.load_test_sentences", "cli.evaluate"],
+          "record_count": 30,
+          "notes": "blind dataset — phrase-level generalization. Avoids direct object names."
+        },
+        "holdout_test_sentences_50.jsonl": {
+          "format": "jsonl",
+          "schema": "{ test_id, raw_text, target_objects: [str] }",
+          "read_by": ["loaders.load_test_sentences", "cli.evaluate"],
+          "record_count": 50,
+          "notes": "holdout dataset — stricter metaphor generalization. Intentionally hard. Do not tune parser against this set."
+        }
+      }
+    },
+    "data/vocabulary": {
+      "purpose": "Reference vocabulary and extended ontology descriptors. Not read by parser at inference time.",
+      "files": {
+        "sensory_axis_descriptors.json": {
+          "format": "json",
+          "schema": "{ version, description, axes: { axis_name: { definition, descriptors } } }",
+          "read_by": [],
+          "notes": "Extended axis vocabulary (17 axes). Use axis_mapping.json to map extended → canonical parser axes."
+        },
+        "axis_mapping.json": {
+          "format": "json",
+          "schema": "{ canonical_axes: [str], extended_to_canonical: { ext_axis: { maps_to, note } } }",
+          "read_by": [],
+          "notes": "Mapping layer from extended axis vocabulary to the 10 parser canonical axes."
+        },
+        "sensory_modifier_groups.json": {
+          "format": "json",
+          "schema": "{ group_id: { modifiers: [str], axis_affinity: { axis: weight } } }",
+          "read_by": [],
+          "notes": "Modifier group taxonomy for vocabulary annotation."
+        },
+        "sensory_expression_patterns.jsonl": {
+          "format": "jsonl",
+          "schema": "{ pattern_id, pattern_type, template, target_objects, axis_signals }",
+          "read_by": [],
+          "notes": "Expression pattern library for ontology expansion and cue design."
+        },
+        "general_sensory_vocabulary.csv": {
+          "format": "csv",
+          "schema": "term, category, axis_affinity, frequency",
+          "read_by": [],
+          "notes": "General sensory vocabulary seed for phrase cue expansion."
+        },
+        "domain_vocabulary_seed.csv": {
+          "format": "csv",
+          "schema": "term, domain, korean_term, axis_affinity",
+          "read_by": [],
+          "notes": "Domain-specific vocabulary seed (fragrance, taste, texture) for ontology seeding."
+        },
+        "domain_mapping.json": {
+          "format": "json",
+          "schema": "{ version, domains, cross_domain_mappings }",
+          "read_by": [],
+          "notes": "Cross-domain sensory mapping (fragrance ↔ taste ↔ texture) for future recommendation layer."
+        }
+      }
+    },
+    "data/workflow": {
+      "purpose": "Candidate object review workflow artifacts. Read by candidate_workflow.py and CLI review commands.",
+      "files": {
+        "sensory_object_candidates.jsonl": {
+          "format": "jsonl",
+          "schema": "SensoryObject-like (may be incomplete)",
+          "read_by": ["candidate_workflow.load_candidate_objects"],
+          "notes": "Candidate pool for new sensory objects. Records here are not yet in the ontology."
+        },
+        "candidate_review_status.jsonl": {
+          "format": "jsonl",
+          "schema": "{ candidate_object_id, status, recommended_action, priority, notes }",
+          "read_by": ["candidate_workflow.load_candidate_review_status"],
+          "notes": "Review status for each candidate. Drives CLI review-candidates command output."
+        },
+        "curated_candidate_shortlist_v1_5.jsonl": {
+          "format": "jsonl",
+          "schema": "SensoryObject-like with review metadata",
+          "read_by": ["candidate_workflow.load_curated_shortlist"],
+          "notes": "Curated shortlist from v1.5 batch. Candidates approved for promotion review."
+        }
+      }
+    },
+    "data/regression": {
+      "purpose": "Regression and failure case datasets for parser analysis.",
+      "files": {
+        "dev_failure_cases.jsonl": {
+          "format": "jsonl",
+          "schema": "{ test_id, raw_text, target_objects, error_type, notes }",
+          "read_by": [],
+          "notes": "Curated failure cases from holdout evaluation. Used for regression tracking across parser versions."
+        },
+        "ontology_expansion_v1_5_cases.jsonl": {
+          "format": "jsonl",
+          "schema": "{ case_id, raw_text, expected_objects, ontology_gap, proposed_action }",
+          "read_by": [],
+          "notes": "Cases that motivated the v1.5 ontology expansion batch."
+        }
+      }
+    }
+  }
+}

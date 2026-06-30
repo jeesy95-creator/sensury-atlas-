@@ -1,0 +1,2286 @@
+{
+  "version": "v1.2",
+  "description": "General sensory descriptor layer grouped by sensory axes.",
+  "axes": {
+    "temperature": {
+      "definition": "Perceived thermal quality of a sensory expression.",
+      "descriptors": {
+        "cool_cold": {
+          "korean_terms": [
+            "서늘한",
+            "차가운",
+            "냉랭한"
+          ],
+          "intensity_scale": [
+            "서늘한",
+            "차가운",
+            "냉랭한"
+          ],
+          "related_objects": [
+            "cold_metal",
+            "winter_dawn",
+            "cold_fog",
+            "crystal"
+          ],
+          "opposites": [
+            "따뜻한",
+            "포근한",
+            "뜨거운"
+          ],
+          "example_patterns": [
+            "차갑고 투명한",
+            "서늘하게 퍼지는",
+            "냉랭하고 금속적인"
+          ]
+        },
+        "warm_soft": {
+          "korean_terms": [
+            "따뜻한",
+            "포근한",
+            "온기 있는"
+          ],
+          "intensity_scale": [
+            "온기 있는",
+            "따뜻한",
+            "포근한"
+          ],
+          "related_objects": [
+            "cashmere",
+            "warm_cotton",
+            "vanilla_cream"
+          ],
+          "opposites": [
+            "차가운",
+            "냉랭한"
+          ],
+          "example_patterns": [
+            "따뜻하고 부드러운",
+            "포근하게 감싸는",
+            "온기 있게 남는"
+          ]
+        },
+        "hot_heat": {
+          "korean_terms": [
+            "뜨거운",
+            "열감 있는",
+            "달아오른"
+          ],
+          "intensity_scale": [
+            "열감 있는",
+            "뜨거운",
+            "달아오른"
+          ],
+          "related_objects": [
+            "summer_noon",
+            "burnt_sugar",
+            "charred_oak"
+          ],
+          "opposites": [
+            "식어 있는",
+            "서늘한"
+          ],
+          "example_patterns": [
+            "뜨겁게 퍼지는",
+            "열감이 남는",
+            "달아오른 표면 같은"
+          ]
+        },
+        "tepid_flat": {
+          "korean_terms": [
+            "미지근한",
+            "애매하게 식은",
+            "온도가 흐린"
+          ],
+          "intensity_scale": [
+            "미지근한",
+            "애매하게 식은",
+            "식어 있는"
+          ],
+          "related_objects": [
+            "wet_stone",
+            "rainy_street"
+          ],
+          "opposites": [
+            "차갑게 선명한",
+            "따뜻하게 감싸는"
+          ],
+          "example_patterns": [
+            "미지근하게 머무는",
+            "식어 있지만 날카롭지 않은",
+            "온도가 애매한"
+          ]
+        },
+        "cooled_down": {
+          "korean_terms": [
+            "식어 있는",
+            "차게 가라앉은",
+            "열이 빠진"
+          ],
+          "intensity_scale": [
+            "열이 빠진",
+            "식어 있는",
+            "차게 가라앉은"
+          ],
+          "related_objects": [
+            "fireplace_ash",
+            "late_night_air",
+            "cold_fog"
+          ],
+          "opposites": [
+            "뜨거운",
+            "달아오른"
+          ],
+          "example_patterns": [
+            "식은 재처럼 남는",
+            "열이 빠져 조용한",
+            "차게 가라앉은 잔향"
+          ]
+        }
+      }
+    },
+    "texture": {
+      "definition": "Tactile surface or mouthfeel quality.",
+      "descriptors": {
+        "soft_smooth": {
+          "korean_terms": [
+            "부드러운",
+            "매끈한",
+            "실키한"
+          ],
+          "intensity_scale": [
+            "부드러운",
+            "매끈한",
+            "실키한"
+          ],
+          "related_objects": [
+            "silk",
+            "cashmere",
+            "vanilla_cream"
+          ],
+          "opposites": [
+            "거친",
+            "까슬한"
+          ],
+          "example_patterns": [
+            "부드럽게 스치는",
+            "매끈하게 흐르는",
+            "실키하게 남는"
+          ]
+        },
+        "powdery_dry": {
+          "korean_terms": [
+            "보송한",
+            "파우더리한",
+            "가루 같은"
+          ],
+          "intensity_scale": [
+            "보송한",
+            "파우더리한",
+            "가루 같은"
+          ],
+          "related_objects": [
+            "suede",
+            "velvet",
+            "dry_herb"
+          ],
+          "opposites": [
+            "축축한",
+            "끈적한"
+          ],
+          "example_patterns": [
+            "보송하게 깔리는",
+            "가루처럼 부드러운",
+            "파우더리하게 흐려지는"
+          ]
+        },
+        "rough_grainy": {
+          "korean_terms": [
+            "거친",
+            "까슬한",
+            "입자감 있는"
+          ],
+          "intensity_scale": [
+            "까슬한",
+            "거친",
+            "입자감 있는"
+          ],
+          "related_objects": [
+            "bark",
+            "granite",
+            "forest_floor"
+          ],
+          "opposites": [
+            "매끈한",
+            "크리미한"
+          ],
+          "example_patterns": [
+            "거칠게 걸리는",
+            "까슬하게 남는",
+            "입자가 느껴지는"
+          ]
+        },
+        "sticky_viscous": {
+          "korean_terms": [
+            "끈적한",
+            "점성 있는",
+            "시럽 같은"
+          ],
+          "intensity_scale": [
+            "점성 있는",
+            "끈적한",
+            "시럽 같은"
+          ],
+          "related_objects": [
+            "honeycomb",
+            "burnt_sugar"
+          ],
+          "opposites": [
+            "보송한",
+            "가벼운"
+          ],
+          "example_patterns": [
+            "끈적하게 남는",
+            "점성 있게 흐르는",
+            "시럽처럼 감기는"
+          ]
+        },
+        "crisp_brittle": {
+          "korean_terms": [
+            "바삭한",
+            "아삭한",
+            "얇게 부서지는"
+          ],
+          "intensity_scale": [
+            "아삭한",
+            "바삭한",
+            "얇게 부서지는"
+          ],
+          "related_objects": [
+            "citrus_peel",
+            "green_stem",
+            "butter_toast"
+          ],
+          "opposites": [
+            "눅눅한",
+            "크리미한"
+          ],
+          "example_patterns": [
+            "아삭하게 꺾이는",
+            "바삭하게 끊기는",
+            "얇게 부서지는"
+          ]
+        }
+      }
+    },
+    "density": {
+      "definition": "Perceived weight, thickness, or concentration.",
+      "descriptors": {
+        "light_airy": {
+          "korean_terms": [
+            "가벼운",
+            "공기처럼 뜨는",
+            "얇은"
+          ],
+          "intensity_scale": [
+            "얇은",
+            "가벼운",
+            "공기처럼 뜨는"
+          ],
+          "related_objects": [
+            "organza",
+            "cold_fog",
+            "sea_breeze"
+          ],
+          "opposites": [
+            "무거운",
+            "묵직한"
+          ],
+          "example_patterns": [
+            "가볍게 떠오르는",
+            "공기처럼 뜨는",
+            "얇게 지나가는"
+          ]
+        },
+        "heavy_dense": {
+          "korean_terms": [
+            "무거운",
+            "묵직한",
+            "밀도 있는"
+          ],
+          "intensity_scale": [
+            "밀도 있는",
+            "묵직한",
+            "무거운"
+          ],
+          "related_objects": [
+            "dark_chocolate",
+            "leather",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "가벼운",
+            "비어 있는"
+          ],
+          "example_patterns": [
+            "묵직하게 깔리는",
+            "밀도 있게 남는",
+            "무겁게 내려앉는"
+          ]
+        },
+        "thick_compressed": {
+          "korean_terms": [
+            "두꺼운",
+            "압축된",
+            "꽉 찬"
+          ],
+          "intensity_scale": [
+            "두꺼운",
+            "꽉 찬",
+            "압축된"
+          ],
+          "related_objects": [
+            "velvet",
+            "honeycomb",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "얇은",
+            "성긴"
+          ],
+          "example_patterns": [
+            "두껍게 감싸는",
+            "압축되어 남는",
+            "꽉 찬 밀도"
+          ]
+        },
+        "empty_hollow": {
+          "korean_terms": [
+            "비어 있는",
+            "성긴",
+            "허공 같은"
+          ],
+          "intensity_scale": [
+            "성긴",
+            "비어 있는",
+            "허공 같은"
+          ],
+          "related_objects": [
+            "cold_fog",
+            "clean_room"
+          ],
+          "opposites": [
+            "꽉 찬",
+            "밀도 있는"
+          ],
+          "example_patterns": [
+            "비어 있는 듯한",
+            "성기게 흩어지는",
+            "허공처럼 남는"
+          ]
+        },
+        "low_settled": {
+          "korean_terms": [
+            "낮게 깔리는",
+            "아래로 가라앉는",
+            "바닥에 붙는"
+          ],
+          "intensity_scale": [
+            "낮게 깔리는",
+            "아래로 가라앉는",
+            "바닥에 붙는"
+          ],
+          "related_objects": [
+            "forest_floor",
+            "wet_moss",
+            "tobacco_leaf"
+          ],
+          "opposites": [
+            "위로 뜨는",
+            "가볍게 올라오는"
+          ],
+          "example_patterns": [
+            "낮게 깔리는 향",
+            "바닥에 붙듯 남는",
+            "아래로 가라앉는 느낌"
+          ]
+        }
+      }
+    },
+    "light": {
+      "definition": "Brightness, darkness, reflection, or glow.",
+      "descriptors": {
+        "bright_clear": {
+          "korean_terms": [
+            "밝은",
+            "환한",
+            "빛나는"
+          ],
+          "intensity_scale": [
+            "밝은",
+            "환한",
+            "빛나는"
+          ],
+          "related_objects": [
+            "citrus_peel",
+            "four_k_clarity",
+            "crystal"
+          ],
+          "opposites": [
+            "어두운",
+            "희미한"
+          ],
+          "example_patterns": [
+            "밝게 올라오는",
+            "환하게 트이는",
+            "빛나듯 퍼지는"
+          ]
+        },
+        "dark_low": {
+          "korean_terms": [
+            "어두운",
+            "검은빛의",
+            "빛을 삼키는"
+          ],
+          "intensity_scale": [
+            "어두운",
+            "검은빛의",
+            "빛을 삼키는"
+          ],
+          "related_objects": [
+            "dark_chocolate",
+            "tobacco_leaf",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "밝은",
+            "투명한"
+          ],
+          "example_patterns": [
+            "어둡게 깔리는",
+            "빛을 삼키는",
+            "검은빛으로 남는"
+          ]
+        },
+        "glossy_shiny": {
+          "korean_terms": [
+            "윤이 나는",
+            "반짝이는",
+            "광택 있는"
+          ],
+          "intensity_scale": [
+            "윤이 나는",
+            "광택 있는",
+            "반짝이는"
+          ],
+          "related_objects": [
+            "marble",
+            "silver_spoon",
+            "crystal"
+          ],
+          "opposites": [
+            "매트한",
+            "탁한"
+          ],
+          "example_patterns": [
+            "윤이 나게 흐르는",
+            "반짝이며 남는",
+            "광택 있게 비치는"
+          ]
+        },
+        "matte_flat": {
+          "korean_terms": [
+            "매트한",
+            "광택 없는",
+            "차분한"
+          ],
+          "intensity_scale": [
+            "차분한",
+            "매트한",
+            "광택 없는"
+          ],
+          "related_objects": [
+            "slate",
+            "suede",
+            "dry_herb"
+          ],
+          "opposites": [
+            "반짝이는",
+            "윤이 나는"
+          ],
+          "example_patterns": [
+            "매트하게 깔리는",
+            "광택 없이 차분한",
+            "빛을 누르는"
+          ]
+        },
+        "dim_faint": {
+          "korean_terms": [
+            "희미한",
+            "흐린 빛의",
+            "낮은 조명의"
+          ],
+          "intensity_scale": [
+            "희미한",
+            "흐린 빛의",
+            "낮은 조명의"
+          ],
+          "related_objects": [
+            "film_grain",
+            "old_library",
+            "late_night_air"
+          ],
+          "opposites": [
+            "선명한",
+            "환한"
+          ],
+          "example_patterns": [
+            "희미하게 남는",
+            "낮은 조명 같은",
+            "흐린 빛으로 감싸는"
+          ]
+        }
+      }
+    },
+    "clarity": {
+      "definition": "Degree of transparency, focus, cleanliness, or muddiness.",
+      "descriptors": {
+        "transparent_clear": {
+          "korean_terms": [
+            "투명한",
+            "맑은",
+            "깨끗한"
+          ],
+          "intensity_scale": [
+            "맑은",
+            "투명한",
+            "깨끗한"
+          ],
+          "related_objects": [
+            "crystal",
+            "winter_dawn",
+            "mountain_stream"
+          ],
+          "opposites": [
+            "탁한",
+            "흐릿한"
+          ],
+          "example_patterns": [
+            "투명하게 보이는",
+            "맑게 올라오는",
+            "깨끗하게 정리되는"
+          ]
+        },
+        "cloudy_muddy": {
+          "korean_terms": [
+            "탁한",
+            "혼탁한",
+            "뿌연"
+          ],
+          "intensity_scale": [
+            "탁한",
+            "뿌연",
+            "혼탁한"
+          ],
+          "related_objects": [
+            "rain_on_asphalt",
+            "cold_fog",
+            "forest_floor"
+          ],
+          "opposites": [
+            "투명한",
+            "선명한"
+          ],
+          "example_patterns": [
+            "탁하게 번지는",
+            "뿌옇게 덮이는",
+            "혼탁하게 남는"
+          ]
+        },
+        "sharp_focused": {
+          "korean_terms": [
+            "선명한",
+            "초점이 맞은",
+            "또렷한"
+          ],
+          "intensity_scale": [
+            "또렷한",
+            "선명한",
+            "초점이 맞은"
+          ],
+          "related_objects": [
+            "four_k_clarity",
+            "cut_diamond",
+            "crystal"
+          ],
+          "opposites": [
+            "흐릿한",
+            "퍼진"
+          ],
+          "example_patterns": [
+            "선명하게 잡히는",
+            "초점이 맞은 듯한",
+            "또렷하게 보이는"
+          ]
+        },
+        "blurred_softfocus": {
+          "korean_terms": [
+            "흐릿한",
+            "초점이 풀린",
+            "soft-focus 같은"
+          ],
+          "intensity_scale": [
+            "흐릿한",
+            "초점이 풀린",
+            "soft-focus 같은"
+          ],
+          "related_objects": [
+            "film_grain",
+            "cold_fog"
+          ],
+          "opposites": [
+            "4K 같은",
+            "또렷한"
+          ],
+          "example_patterns": [
+            "흐릿하게 남는",
+            "초점이 풀리는",
+            "soft-focus처럼 번지는"
+          ]
+        },
+        "clean_ordered": {
+          "korean_terms": [
+            "정돈된",
+            "단정한",
+            "잡음 없는"
+          ],
+          "intensity_scale": [
+            "정돈된",
+            "단정한",
+            "잡음 없는"
+          ],
+          "related_objects": [
+            "clean_room",
+            "fresh_linen",
+            "four_k_clarity"
+          ],
+          "opposites": [
+            "산만한",
+            "탁한"
+          ],
+          "example_patterns": [
+            "정돈되어 보이는",
+            "단정하게 떨어지는",
+            "잡음 없이 맑은"
+          ]
+        }
+      }
+    },
+    "motion": {
+      "definition": "How the sensation moves through time or space.",
+      "descriptors": {
+        "spreading": {
+          "korean_terms": [
+            "퍼지는",
+            "번지는",
+            "넓게 열리는"
+          ],
+          "intensity_scale": [
+            "퍼지는",
+            "번지는",
+            "넓게 열리는"
+          ],
+          "related_objects": [
+            "sea_breeze",
+            "citrus_peel",
+            "cold_fog"
+          ],
+          "opposites": [
+            "가라앉는",
+            "멈춘"
+          ],
+          "example_patterns": [
+            "넓게 퍼지는",
+            "옆으로 번지는",
+            "공기 중에 열리는"
+          ]
+        },
+        "wrapping": {
+          "korean_terms": [
+            "감싸는",
+            "두르는",
+            "덮는"
+          ],
+          "intensity_scale": [
+            "감싸는",
+            "두르는",
+            "덮는"
+          ],
+          "related_objects": [
+            "cashmere",
+            "wool_blanket",
+            "warm_cotton"
+          ],
+          "opposites": [
+            "날카롭게 끊기는",
+            "튀는"
+          ],
+          "example_patterns": [
+            "몸을 감싸는",
+            "부드럽게 두르는",
+            "담요처럼 덮는"
+          ]
+        },
+        "seeping": {
+          "korean_terms": [
+            "스며드는",
+            "배어드는",
+            "천천히 젖는"
+          ],
+          "intensity_scale": [
+            "스며드는",
+            "배어드는",
+            "천천히 젖는"
+          ],
+          "related_objects": [
+            "wet_moss",
+            "honeycomb",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "튄다",
+            "금방 사라진다"
+          ],
+          "example_patterns": [
+            "천천히 스며드는",
+            "표면에 배어드는",
+            "조용히 젖어드는"
+          ]
+        },
+        "rising": {
+          "korean_terms": [
+            "올라오는",
+            "솟는",
+            "위로 뜨는"
+          ],
+          "intensity_scale": [
+            "올라오는",
+            "솟는",
+            "위로 뜨는"
+          ],
+          "related_objects": [
+            "mountain_stream",
+            "green_stem",
+            "citrus_peel"
+          ],
+          "opposites": [
+            "가라앉는",
+            "낮게 깔리는"
+          ],
+          "example_patterns": [
+            "위로 올라오는",
+            "코끝으로 솟는",
+            "가볍게 뜨는"
+          ]
+        },
+        "settling": {
+          "korean_terms": [
+            "가라앉는",
+            "낮게 머무는",
+            "바닥으로 내려가는"
+          ],
+          "intensity_scale": [
+            "가라앉는",
+            "낮게 머무는",
+            "바닥으로 내려가는"
+          ],
+          "related_objects": [
+            "forest_floor",
+            "tobacco_leaf",
+            "dark_chocolate"
+          ],
+          "opposites": [
+            "튀는",
+            "위로 뜨는"
+          ],
+          "example_patterns": [
+            "낮게 가라앉는",
+            "바닥에 머무는",
+            "천천히 내려앉는"
+          ]
+        }
+      }
+    },
+    "time": {
+      "definition": "Temporal placement or phase of the sensory impression.",
+      "descriptors": {
+        "first_strong": {
+          "korean_terms": [
+            "처음엔 강한",
+            "첫인상이 센",
+            "초반에 튀는"
+          ],
+          "intensity_scale": [
+            "첫인상이 센",
+            "처음엔 강한",
+            "초반에 튀는"
+          ],
+          "related_objects": [
+            "citrus_peel",
+            "four_k_clarity"
+          ],
+          "opposites": [
+            "뒤늦게 올라오는",
+            "천천히 남는"
+          ],
+          "example_patterns": [
+            "처음엔 강하게 오는",
+            "첫인상이 선명한",
+            "초반에 튀는"
+          ]
+        },
+        "late_rising": {
+          "korean_terms": [
+            "뒤늦게 올라오는",
+            "나중에 보이는",
+            "시간차가 있는"
+          ],
+          "intensity_scale": [
+            "시간차가 있는",
+            "뒤늦게 올라오는",
+            "나중에 보이는"
+          ],
+          "related_objects": [
+            "black_tea",
+            "tobacco_leaf",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "처음부터 강한",
+            "짧게 끊기는"
+          ],
+          "example_patterns": [
+            "뒤늦게 올라오는",
+            "나중에 보이는",
+            "시간차를 두고 남는"
+          ]
+        },
+        "aging_old": {
+          "korean_terms": [
+            "오래된",
+            "시간이 밴",
+            "숙성된"
+          ],
+          "intensity_scale": [
+            "오래된",
+            "시간이 밴",
+            "숙성된"
+          ],
+          "related_objects": [
+            "old_library",
+            "old_wood",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "새것 같은",
+            "갓 세탁한"
+          ],
+          "example_patterns": [
+            "시간이 밴",
+            "숙성되어 남는",
+            "오래된 공간 같은"
+          ]
+        },
+        "fresh_now": {
+          "korean_terms": [
+            "갓 만든",
+            "막 지나간",
+            "새로운"
+          ],
+          "intensity_scale": [
+            "새로운",
+            "막 지나간",
+            "갓 만든"
+          ],
+          "related_objects": [
+            "fresh_linen",
+            "after_rain_garden",
+            "rain_on_asphalt"
+          ],
+          "opposites": [
+            "낡은",
+            "숙성된"
+          ],
+          "example_patterns": [
+            "막 지나간 비처럼",
+            "갓 세탁한 듯한",
+            "새롭게 올라오는"
+          ]
+        },
+        "seasonal_memory": {
+          "korean_terms": [
+            "겨울 같은",
+            "여름 같은",
+            "계절감 있는"
+          ],
+          "intensity_scale": [
+            "계절감 있는",
+            "겨울 같은",
+            "여름 같은"
+          ],
+          "related_objects": [
+            "winter_dawn",
+            "summer_noon"
+          ],
+          "opposites": [
+            "무시간적인",
+            "중립적인"
+          ],
+          "example_patterns": [
+            "겨울 새벽 같은",
+            "여름 정오 같은",
+            "계절이 떠오르는"
+          ]
+        }
+      }
+    },
+    "finish": {
+      "definition": "How the sensation ends or remains after the first impression.",
+      "descriptors": {
+        "long_lingering": {
+          "korean_terms": [
+            "오래 남는",
+            "여운이 긴",
+            "잔향이 긴"
+          ],
+          "intensity_scale": [
+            "오래 남는",
+            "여운이 긴",
+            "잔향이 긴"
+          ],
+          "related_objects": [
+            "tobacco_leaf",
+            "barrel_cellar",
+            "dark_chocolate"
+          ],
+          "opposites": [
+            "금방 사라지는",
+            "짧게 끊기는"
+          ],
+          "example_patterns": [
+            "오래 남는 향",
+            "여운이 길게 이어지는",
+            "잔향이 길다"
+          ]
+        },
+        "short_clean": {
+          "korean_terms": [
+            "금방 사라지는",
+            "짧게 끊기는",
+            "깨끗하게 떨어지는"
+          ],
+          "intensity_scale": [
+            "깨끗하게 떨어지는",
+            "짧게 끊기는",
+            "금방 사라지는"
+          ],
+          "related_objects": [
+            "fresh_linen",
+            "clean_room",
+            "citrus_peel"
+          ],
+          "opposites": [
+            "오래 남는",
+            "끈적하게 붙는"
+          ],
+          "example_patterns": [
+            "짧게 끊기는",
+            "깨끗하게 떨어지는",
+            "금방 사라지는"
+          ]
+        },
+        "afterimage": {
+          "korean_terms": [
+            "잔상이 남는",
+            "기억처럼 남는",
+            "장면이 남는"
+          ],
+          "intensity_scale": [
+            "잔상이 남는",
+            "기억처럼 남는",
+            "장면이 남는"
+          ],
+          "related_objects": [
+            "film_grain",
+            "old_library",
+            "late_night_air"
+          ],
+          "opposites": [
+            "즉시 사라지는",
+            "선명하게 끊기는"
+          ],
+          "example_patterns": [
+            "잔상이 남는",
+            "기억처럼 남는",
+            "장면이 남는 향"
+          ]
+        },
+        "drydown_round": {
+          "korean_terms": [
+            "뒤로 갈수록 둥근",
+            "마지막이 부드러운",
+            "끝이 둥근"
+          ],
+          "intensity_scale": [
+            "끝이 둥근",
+            "마지막이 부드러운",
+            "뒤로 갈수록 둥근"
+          ],
+          "related_objects": [
+            "vanilla_cream",
+            "warm_cotton",
+            "cashmere"
+          ],
+          "opposites": [
+            "끝이 날카로운",
+            "짧게 끊기는"
+          ],
+          "example_patterns": [
+            "뒤로 갈수록 둥근",
+            "마지막이 부드러운",
+            "끝이 포근한"
+          ]
+        },
+        "dry_finish": {
+          "korean_terms": [
+            "끝이 마른",
+            "드라이하게 끝나는",
+            "수렴감 있는"
+          ],
+          "intensity_scale": [
+            "끝이 마른",
+            "드라이하게 끝나는",
+            "수렴감 있는"
+          ],
+          "related_objects": [
+            "black_tea",
+            "dry_herb",
+            "charred_oak"
+          ],
+          "opposites": [
+            "시럽 같은",
+            "크리미한"
+          ],
+          "example_patterns": [
+            "끝이 마른",
+            "드라이하게 사라지는",
+            "입안을 조이며 끝나는"
+          ]
+        }
+      }
+    },
+    "space": {
+      "definition": "Spatial scale, openness, enclosure, or directionality.",
+      "descriptors": {
+        "wide_open": {
+          "korean_terms": [
+            "넓은",
+            "탁 트인",
+            "열린"
+          ],
+          "intensity_scale": [
+            "넓은",
+            "열린",
+            "탁 트인"
+          ],
+          "related_objects": [
+            "sea_breeze",
+            "summer_noon"
+          ],
+          "opposites": [
+            "좁은",
+            "답답한"
+          ],
+          "example_patterns": [
+            "넓게 열린 공기",
+            "탁 트인 느낌",
+            "수평으로 퍼지는"
+          ]
+        },
+        "narrow_enclosed": {
+          "korean_terms": [
+            "좁은",
+            "닫힌",
+            "밀폐된"
+          ],
+          "intensity_scale": [
+            "좁은",
+            "닫힌",
+            "밀폐된"
+          ],
+          "related_objects": [
+            "old_library",
+            "barrel_cellar",
+            "clean_room"
+          ],
+          "opposites": [
+            "넓은",
+            "야외적인"
+          ],
+          "example_patterns": [
+            "좁게 갇힌",
+            "닫힌 공간 같은",
+            "밀폐된 공기"
+          ]
+        },
+        "indoor": {
+          "korean_terms": [
+            "실내적인",
+            "방 안 같은",
+            "정돈된 공간의"
+          ],
+          "intensity_scale": [
+            "실내적인",
+            "방 안 같은",
+            "정돈된 공간의"
+          ],
+          "related_objects": [
+            "clean_room",
+            "old_library",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "야외적인",
+            "해안가의"
+          ],
+          "example_patterns": [
+            "실내적인 공기",
+            "방 안에 머무는",
+            "정돈된 공간 같은"
+          ]
+        },
+        "outdoor": {
+          "korean_terms": [
+            "야외적인",
+            "바깥 공기의",
+            "자연에 열린"
+          ],
+          "intensity_scale": [
+            "야외적인",
+            "바깥 공기의",
+            "자연에 열린"
+          ],
+          "related_objects": [
+            "sea_breeze",
+            "forest_floor",
+            "after_rain_garden"
+          ],
+          "opposites": [
+            "실내적인",
+            "밀폐된"
+          ],
+          "example_patterns": [
+            "야외 공기 같은",
+            "바깥에서 들어오는",
+            "자연에 열린 느낌"
+          ]
+        },
+        "low_grounded": {
+          "korean_terms": [
+            "바닥 가까운",
+            "낮은 공간의",
+            "지면에 붙은"
+          ],
+          "intensity_scale": [
+            "바닥 가까운",
+            "낮은 공간의",
+            "지면에 붙은"
+          ],
+          "related_objects": [
+            "forest_floor",
+            "rain_on_asphalt",
+            "wet_stone"
+          ],
+          "opposites": [
+            "공중에 뜬",
+            "높게 열리는"
+          ],
+          "example_patterns": [
+            "바닥 가까이 남는",
+            "지면에 붙어 있는",
+            "낮은 공간감"
+          ]
+        }
+      }
+    },
+    "atmosphere": {
+      "definition": "Scene-level mood, emotional air, or environmental quality.",
+      "descriptors": {
+        "calm_quiet": {
+          "korean_terms": [
+            "고요한",
+            "차분한",
+            "조용한"
+          ],
+          "intensity_scale": [
+            "차분한",
+            "고요한",
+            "조용한"
+          ],
+          "related_objects": [
+            "late_night_air",
+            "old_library",
+            "slate"
+          ],
+          "opposites": [
+            "산만한",
+            "튀는"
+          ],
+          "example_patterns": [
+            "고요하게 남는",
+            "차분하게 가라앉는",
+            "조용한 분위기"
+          ]
+        },
+        "stuffy_closed": {
+          "korean_terms": [
+            "답답한",
+            "막힌",
+            "공기가 무거운"
+          ],
+          "intensity_scale": [
+            "막힌",
+            "답답한",
+            "공기가 무거운"
+          ],
+          "related_objects": [
+            "barrel_cellar",
+            "old_library"
+          ],
+          "opposites": [
+            "맑은",
+            "탁 트인"
+          ],
+          "example_patterns": [
+            "답답하게 머무는",
+            "공기가 무거운",
+            "막힌 공간 같은"
+          ]
+        },
+        "clean_orderly": {
+          "korean_terms": [
+            "깨끗한",
+            "정돈된",
+            "단정한"
+          ],
+          "intensity_scale": [
+            "깨끗한",
+            "정돈된",
+            "단정한"
+          ],
+          "related_objects": [
+            "clean_room",
+            "fresh_linen"
+          ],
+          "opposites": [
+            "낡은",
+            "흙내 나는"
+          ],
+          "example_patterns": [
+            "깨끗하게 정리된",
+            "단정한 분위기",
+            "먼지 없이 맑은"
+          ]
+        },
+        "urban": {
+          "korean_terms": [
+            "도시적인",
+            "도로 같은",
+            "콘크리트 느낌의"
+          ],
+          "intensity_scale": [
+            "도시적인",
+            "도로 같은",
+            "콘크리트 느낌의"
+          ],
+          "related_objects": [
+            "rain_on_asphalt",
+            "rainy_street",
+            "cold_metal"
+          ],
+          "opposites": [
+            "숲 같은",
+            "정원 같은"
+          ],
+          "example_patterns": [
+            "도시적인 비 냄새",
+            "도로 같은 분위기",
+            "콘크리트 위의 공기"
+          ]
+        },
+        "forest_like": {
+          "korean_terms": [
+            "숲 같은",
+            "그늘진",
+            "흙과 잎의"
+          ],
+          "intensity_scale": [
+            "숲 같은",
+            "그늘진",
+            "흙과 잎의"
+          ],
+          "related_objects": [
+            "forest_floor",
+            "wet_moss",
+            "bark"
+          ],
+          "opposites": [
+            "도시적인",
+            "금속적인"
+          ],
+          "example_patterns": [
+            "숲 같은 공기",
+            "그늘진 습도",
+            "흙과 잎이 섞인"
+          ]
+        }
+      }
+    },
+    "shape": {
+      "definition": "Overall geometric contour or body of the sensation.",
+      "descriptors": {
+        "round": {
+          "korean_terms": [
+            "둥근",
+            "모서리 없는",
+            "원형의"
+          ],
+          "intensity_scale": [
+            "둥근",
+            "모서리 없는",
+            "원형의"
+          ],
+          "related_objects": [
+            "vanilla_cream",
+            "cashmere",
+            "warm_cotton"
+          ],
+          "opposites": [
+            "각진",
+            "날카로운"
+          ],
+          "example_patterns": [
+            "둥글게 감싸는",
+            "모서리 없이 남는",
+            "원형으로 퍼지는"
+          ]
+        },
+        "angular": {
+          "korean_terms": [
+            "각진",
+            "모서리가 있는",
+            "기하학적인"
+          ],
+          "intensity_scale": [
+            "각진",
+            "모서리가 있는",
+            "기하학적인"
+          ],
+          "related_objects": [
+            "cut_diamond",
+            "cold_metal",
+            "slate"
+          ],
+          "opposites": [
+            "둥근",
+            "흐린"
+          ],
+          "example_patterns": [
+            "각지게 서 있는",
+            "모서리가 느껴지는",
+            "기하학적인 선"
+          ]
+        },
+        "flat": {
+          "korean_terms": [
+            "납작한",
+            "평평한",
+            "얇게 눌린"
+          ],
+          "intensity_scale": [
+            "납작한",
+            "평평한",
+            "얇게 눌린"
+          ],
+          "related_objects": [
+            "slate",
+            "marble"
+          ],
+          "opposites": [
+            "두꺼운",
+            "부풀어 오른"
+          ],
+          "example_patterns": [
+            "납작하게 깔리는",
+            "평평한 표면 같은",
+            "얇게 눌린 느낌"
+          ]
+        },
+        "pointed": {
+          "korean_terms": [
+            "뾰족한",
+            "끝이 선",
+            "찌르는 듯한"
+          ],
+          "intensity_scale": [
+            "뾰족한",
+            "끝이 선",
+            "찌르는 듯한"
+          ],
+          "related_objects": [
+            "citrus_peel",
+            "cut_diamond",
+            "cold_metal"
+          ],
+          "opposites": [
+            "둥근",
+            "무딘"
+          ],
+          "example_patterns": [
+            "뾰족하게 올라오는",
+            "끝이 선 느낌",
+            "찌르듯 지나가는"
+          ]
+        },
+        "diffuse": {
+          "korean_terms": [
+            "퍼져 있는",
+            "형체가 흐린",
+            "구름 같은"
+          ],
+          "intensity_scale": [
+            "퍼져 있는",
+            "형체가 흐린",
+            "구름 같은"
+          ],
+          "related_objects": [
+            "cold_fog",
+            "film_grain",
+            "organza"
+          ],
+          "opposites": [
+            "중심이 또렷한",
+            "각진"
+          ],
+          "example_patterns": [
+            "형체 없이 퍼지는",
+            "구름처럼 흐려지는",
+            "중심이 흐린"
+          ]
+        }
+      }
+    },
+    "edge": {
+      "definition": "Boundary sharpness, line quality, and contour definition.",
+      "descriptors": {
+        "sharp_edge": {
+          "korean_terms": [
+            "날카로운",
+            "경계가 선명한",
+            "잘린 듯한"
+          ],
+          "intensity_scale": [
+            "날카로운",
+            "경계가 선명한",
+            "잘린 듯한"
+          ],
+          "related_objects": [
+            "cut_diamond",
+            "four_k_clarity",
+            "cold_metal"
+          ],
+          "opposites": [
+            "경계가 흐린",
+            "둥근"
+          ],
+          "example_patterns": [
+            "경계가 선명한",
+            "날카롭게 잘린",
+            "선이 또렷한"
+          ]
+        },
+        "soft_edge": {
+          "korean_terms": [
+            "경계가 부드러운",
+            "모서리가 둥근",
+            "무딘"
+          ],
+          "intensity_scale": [
+            "무딘",
+            "경계가 부드러운",
+            "모서리가 둥근"
+          ],
+          "related_objects": [
+            "cashmere",
+            "vanilla_cream",
+            "velvet"
+          ],
+          "opposites": [
+            "날카로운",
+            "각진"
+          ],
+          "example_patterns": [
+            "경계가 부드러운",
+            "모서리가 둥근",
+            "무디게 남는"
+          ]
+        },
+        "thin_line": {
+          "korean_terms": [
+            "선이 얇은",
+            "가느다란",
+            "실처럼 지나가는"
+          ],
+          "intensity_scale": [
+            "가느다란",
+            "선이 얇은",
+            "실처럼 지나가는"
+          ],
+          "related_objects": [
+            "organza",
+            "silk",
+            "citrus_peel"
+          ],
+          "opposites": [
+            "두꺼운",
+            "넓게 번지는"
+          ],
+          "example_patterns": [
+            "선이 얇게 지나가는",
+            "가느다랗게 남는",
+            "실처럼 이어지는"
+          ]
+        },
+        "blurred_boundary": {
+          "korean_terms": [
+            "경계가 흐린",
+            "번진",
+            "뭉개진"
+          ],
+          "intensity_scale": [
+            "경계가 흐린",
+            "번진",
+            "뭉개진"
+          ],
+          "related_objects": [
+            "film_grain",
+            "cold_fog"
+          ],
+          "opposites": [
+            "중심이 또렷한",
+            "선명한"
+          ],
+          "example_patterns": [
+            "경계가 흐린",
+            "번져서 남는",
+            "뭉개진 윤곽"
+          ]
+        },
+        "centered_focus": {
+          "korean_terms": [
+            "중심이 또렷한",
+            "핵이 있는",
+            "초점이 있는"
+          ],
+          "intensity_scale": [
+            "핵이 있는",
+            "중심이 또렷한",
+            "초점이 있는"
+          ],
+          "related_objects": [
+            "four_k_clarity",
+            "crystal",
+            "cut_diamond"
+          ],
+          "opposites": [
+            "중심이 없는",
+            "퍼져 있는"
+          ],
+          "example_patterns": [
+            "중심이 또렷한",
+            "핵이 선명한",
+            "초점이 잡힌"
+          ]
+        }
+      }
+    },
+    "moisture": {
+      "definition": "Perceived wetness, dryness, dampness, or water content.",
+      "descriptors": {
+        "wet": {
+          "korean_terms": [
+            "젖은",
+            "물기 어린",
+            "촉촉한"
+          ],
+          "intensity_scale": [
+            "촉촉한",
+            "물기 어린",
+            "젖은"
+          ],
+          "related_objects": [
+            "wet_moss",
+            "wet_stone",
+            "after_rain_garden"
+          ],
+          "opposites": [
+            "마른",
+            "보송한"
+          ],
+          "example_patterns": [
+            "물기 어린 향",
+            "젖은 표면 같은",
+            "촉촉하게 남는"
+          ]
+        },
+        "damp": {
+          "korean_terms": [
+            "축축한",
+            "눅눅한",
+            "습기 찬"
+          ],
+          "intensity_scale": [
+            "축축한",
+            "습기 찬",
+            "눅눅한"
+          ],
+          "related_objects": [
+            "forest_floor",
+            "rain_on_asphalt",
+            "barrel_cellar"
+          ],
+          "opposites": [
+            "바짝 마른",
+            "건조한"
+          ],
+          "example_patterns": [
+            "축축하게 깔리는",
+            "습기 차게 남는",
+            "눅눅한 공기"
+          ]
+        },
+        "dry": {
+          "korean_terms": [
+            "마른",
+            "건조한",
+            "바짝 마른"
+          ],
+          "intensity_scale": [
+            "마른",
+            "건조한",
+            "바짝 마른"
+          ],
+          "related_objects": [
+            "dry_herb",
+            "cedarwood",
+            "fresh_linen"
+          ],
+          "opposites": [
+            "젖은",
+            "눅눅한"
+          ],
+          "example_patterns": [
+            "마르게 남는",
+            "건조하게 깔리는",
+            "바짝 마른 느낌"
+          ]
+        },
+        "dewy": {
+          "korean_terms": [
+            "이슬 맺힌",
+            "맑은 물방울의",
+            "산뜻한 물기"
+          ],
+          "intensity_scale": [
+            "이슬 맺힌",
+            "맑은 물방울의",
+            "산뜻한 물기"
+          ],
+          "related_objects": [
+            "green_stem",
+            "after_rain_garden"
+          ],
+          "opposites": [
+            "끈적한",
+            "탁한"
+          ],
+          "example_patterns": [
+            "이슬처럼 맺힌",
+            "맑은 물방울 같은",
+            "산뜻한 물기"
+          ]
+        },
+        "sticky_moist": {
+          "korean_terms": [
+            "끈적한 물기",
+            "점성 있는 습기",
+            "달라붙는 습도"
+          ],
+          "intensity_scale": [
+            "끈적한 물기",
+            "점성 있는 습기",
+            "달라붙는 습도"
+          ],
+          "related_objects": [
+            "honeycomb",
+            "burnt_sugar"
+          ],
+          "opposites": [
+            "보송한",
+            "맑은 물기"
+          ],
+          "example_patterns": [
+            "끈적한 물기",
+            "점성 있게 젖은",
+            "달라붙는 습도"
+          ]
+        }
+      }
+    },
+    "organic": {
+      "definition": "Vegetal, earthy, animalic, skin-like, or living qualities.",
+      "descriptors": {
+        "green_vegetal": {
+          "korean_terms": [
+            "초록빛의",
+            "식물성의",
+            "풋풋한"
+          ],
+          "intensity_scale": [
+            "풋풋한",
+            "초록빛의",
+            "식물성의"
+          ],
+          "related_objects": [
+            "green_stem",
+            "wet_moss",
+            "dry_herb"
+          ],
+          "opposites": [
+            "금속적인",
+            "광물적인"
+          ],
+          "example_patterns": [
+            "초록빛으로 올라오는",
+            "식물성으로 남는",
+            "풋풋한 줄기 같은"
+          ]
+        },
+        "earthy": {
+          "korean_terms": [
+            "흙내 나는",
+            "뿌리 같은",
+            "대지의"
+          ],
+          "intensity_scale": [
+            "흙내 나는",
+            "뿌리 같은",
+            "대지의"
+          ],
+          "related_objects": [
+            "forest_floor",
+            "wet_stone",
+            "after_rain_garden"
+          ],
+          "opposites": [
+            "비누 같은",
+            "유리 같은"
+          ],
+          "example_patterns": [
+            "흙내가 나는",
+            "뿌리처럼 낮은",
+            "대지의 습도"
+          ]
+        },
+        "woody": {
+          "korean_terms": [
+            "나무 같은",
+            "목질적인",
+            "껍질 같은"
+          ],
+          "intensity_scale": [
+            "나무 같은",
+            "목질적인",
+            "껍질 같은"
+          ],
+          "related_objects": [
+            "cedarwood",
+            "bark",
+            "old_wood"
+          ],
+          "opposites": [
+            "금속적인",
+            "크리미한"
+          ],
+          "example_patterns": [
+            "나무결 같은",
+            "목질적으로 남는",
+            "껍질처럼 거친"
+          ]
+        },
+        "animalic_skin": {
+          "korean_terms": [
+            "살갗 같은",
+            "동물성의",
+            "체온 섞인"
+          ],
+          "intensity_scale": [
+            "살갗 같은",
+            "체온 섞인",
+            "동물성의"
+          ],
+          "related_objects": [
+            "leather",
+            "warm_cotton",
+            "cashmere"
+          ],
+          "opposites": [
+            "유리 같은",
+            "차가운 금속"
+          ],
+          "example_patterns": [
+            "살갗 가까운",
+            "체온 섞인",
+            "동물성으로 낮은"
+          ]
+        },
+        "herbal_bitter": {
+          "korean_terms": [
+            "허브 같은",
+            "씁쓸한 식물성",
+            "마른 잎의"
+          ],
+          "intensity_scale": [
+            "허브 같은",
+            "마른 잎의",
+            "씁쓸한 식물성"
+          ],
+          "related_objects": [
+            "dry_herb",
+            "black_tea",
+            "tobacco_leaf"
+          ],
+          "opposites": [
+            "크리미한",
+            "시럽 같은"
+          ],
+          "example_patterns": [
+            "허브처럼 씁쓸한",
+            "마른 잎처럼 남는",
+            "식물성 쌉싸름함"
+          ]
+        }
+      }
+    },
+    "mineral": {
+      "definition": "Stone, metal, glass, crystal, or inorganic qualities.",
+      "descriptors": {
+        "stone_like": {
+          "korean_terms": [
+            "돌 같은",
+            "석재 같은",
+            "광물적인"
+          ],
+          "intensity_scale": [
+            "돌 같은",
+            "석재 같은",
+            "광물적인"
+          ],
+          "related_objects": [
+            "wet_stone",
+            "slate",
+            "granite"
+          ],
+          "opposites": [
+            "식물성",
+            "살갗 같은"
+          ],
+          "example_patterns": [
+            "돌 같은 차가움",
+            "광물적인 잔향",
+            "석재 표면 같은"
+          ]
+        },
+        "metallic": {
+          "korean_terms": [
+            "금속적인",
+            "쇠맛 같은",
+            "은빛의"
+          ],
+          "intensity_scale": [
+            "은빛의",
+            "금속적인",
+            "쇠맛 같은"
+          ],
+          "related_objects": [
+            "cold_metal",
+            "silver_spoon"
+          ],
+          "opposites": [
+            "크리미한",
+            "목질적인"
+          ],
+          "example_patterns": [
+            "금속적으로 남는",
+            "은빛으로 차가운",
+            "쇠맛 같은 긴장감"
+          ]
+        },
+        "glass_like": {
+          "korean_terms": [
+            "유리 같은",
+            "투명한 표면의",
+            "차가운 반사감"
+          ],
+          "intensity_scale": [
+            "유리 같은",
+            "투명한 표면의",
+            "차가운 반사감"
+          ],
+          "related_objects": [
+            "crystal",
+            "cut_diamond",
+            "silver_spoon"
+          ],
+          "opposites": [
+            "흙내 나는",
+            "보송한"
+          ],
+          "example_patterns": [
+            "유리 같은 표면",
+            "차갑게 반사되는",
+            "투명한 단단함"
+          ]
+        },
+        "crystalline": {
+          "korean_terms": [
+            "결정질의",
+            "크리스탈 같은",
+            "쨍한"
+          ],
+          "intensity_scale": [
+            "쨍한",
+            "결정질의",
+            "크리스탈 같은"
+          ],
+          "related_objects": [
+            "crystal",
+            "cut_diamond",
+            "winter_dawn"
+          ],
+          "opposites": [
+            "흐릿한",
+            "탁한"
+          ],
+          "example_patterns": [
+            "결정질로 반짝이는",
+            "쨍하게 선명한",
+            "크리스탈 같은 투명감"
+          ]
+        },
+        "concrete_urban": {
+          "korean_terms": [
+            "콘크리트 같은",
+            "아스팔트의",
+            "도시 광물성"
+          ],
+          "intensity_scale": [
+            "콘크리트 같은",
+            "아스팔트의",
+            "도시 광물성"
+          ],
+          "related_objects": [
+            "rain_on_asphalt",
+            "rainy_street",
+            "wet_stone"
+          ],
+          "opposites": [
+            "숲 같은",
+            "크림 같은"
+          ],
+          "example_patterns": [
+            "콘크리트 위의 비",
+            "아스팔트 같은 미네랄",
+            "도시적인 광물성"
+          ]
+        }
+      }
+    },
+    "rendering": {
+      "definition": "Perceptual rendering style such as film-like, precise, soft-focus, or high-resolution.",
+      "descriptors": {
+        "film_like": {
+          "korean_terms": [
+            "필름 같은",
+            "노이즈 있는",
+            "감정이 남는"
+          ],
+          "intensity_scale": [
+            "필름 같은",
+            "노이즈 있는",
+            "감정이 남는"
+          ],
+          "related_objects": [
+            "film_grain",
+            "old_library",
+            "late_night_air"
+          ],
+          "opposites": [
+            "4K 같은",
+            "고해상도의"
+          ],
+          "example_patterns": [
+            "필름처럼 남는",
+            "노이즈가 있는 장면",
+            "감정이 남는 렌더링"
+          ]
+        },
+        "four_k_like": {
+          "korean_terms": [
+            "4K 같은",
+            "고해상도의",
+            "입자가 다 보이는"
+          ],
+          "intensity_scale": [
+            "고해상도의",
+            "4K 같은",
+            "입자가 다 보이는"
+          ],
+          "related_objects": [
+            "four_k_clarity",
+            "cut_diamond",
+            "crystal"
+          ],
+          "opposites": [
+            "흐릿한",
+            "필름 같은"
+          ],
+          "example_patterns": [
+            "4K처럼 선명한",
+            "입자가 다 보이는",
+            "고해상도로 잡히는"
+          ]
+        },
+        "soft_focus": {
+          "korean_terms": [
+            "소프트 포커스의",
+            "부드럽게 흐려진",
+            "초점이 풀린"
+          ],
+          "intensity_scale": [
+            "초점이 풀린",
+            "소프트 포커스의",
+            "부드럽게 흐려진"
+          ],
+          "related_objects": [
+            "film_grain",
+            "cold_fog",
+            "organza"
+          ],
+          "opposites": [
+            "정밀한",
+            "초점이 맞은"
+          ],
+          "example_patterns": [
+            "소프트 포커스로 남는",
+            "부드럽게 흐려진",
+            "초점이 풀린 장면"
+          ]
+        },
+        "precision_first": {
+          "korean_terms": [
+            "정밀한",
+            "세밀한",
+            "디테일 중심의"
+          ],
+          "intensity_scale": [
+            "세밀한",
+            "정밀한",
+            "디테일 중심의"
+          ],
+          "related_objects": [
+            "four_k_clarity",
+            "cut_diamond",
+            "silver_spoon"
+          ],
+          "opposites": [
+            "분위기 중심의",
+            "흐린"
+          ],
+          "example_patterns": [
+            "정밀하게 보이는",
+            "디테일이 살아 있는",
+            "세밀하게 잘린"
+          ]
+        },
+        "atmosphere_first": {
+          "korean_terms": [
+            "분위기 중심의",
+            "장면적인",
+            "무드가 먼저인"
+          ],
+          "intensity_scale": [
+            "분위기 중심의",
+            "장면적인",
+            "무드가 먼저인"
+          ],
+          "related_objects": [
+            "film_grain",
+            "barrel_cellar",
+            "forest_floor"
+          ],
+          "opposites": [
+            "정밀한",
+            "건조하게 분석되는"
+          ],
+          "example_patterns": [
+            "분위기가 먼저 오는",
+            "장면적으로 남는",
+            "무드가 핵심인"
+          ]
+        }
+      }
+    },
+    "balance": {
+      "definition": "Harmony, contrast, tension, stability, or compositional balance.",
+      "descriptors": {
+        "harmonious": {
+          "korean_terms": [
+            "조화로운",
+            "균형 잡힌",
+            "자연스럽게 이어지는"
+          ],
+          "intensity_scale": [
+            "조화로운",
+            "균형 잡힌",
+            "자연스럽게 이어지는"
+          ],
+          "related_objects": [
+            "warm_cotton",
+            "vanilla_cream",
+            "clean_room"
+          ],
+          "opposites": [
+            "불균형한",
+            "산만한"
+          ],
+          "example_patterns": [
+            "조화롭게 이어지는",
+            "균형 있게 남는",
+            "자연스럽게 연결되는"
+          ]
+        },
+        "contrasting": {
+          "korean_terms": [
+            "대비되는",
+            "A지만 B인",
+            "반전 있는"
+          ],
+          "intensity_scale": [
+            "대비되는",
+            "반전 있는",
+            "A지만 B인"
+          ],
+          "related_objects": [
+            "film_grain",
+            "wet_moss"
+          ],
+          "opposites": [
+            "단일한",
+            "평평한"
+          ],
+          "example_patterns": [
+            "달콤하지만 무겁지 않은",
+            "차갑지만 부드러운",
+            "반전이 있는"
+          ]
+        },
+        "scattered": {
+          "korean_terms": [
+            "산만한",
+            "흩어진",
+            "중심이 없는"
+          ],
+          "intensity_scale": [
+            "흩어진",
+            "산만한",
+            "중심이 없는"
+          ],
+          "related_objects": [
+            "cold_fog",
+            "rainy_street"
+          ],
+          "opposites": [
+            "단정한",
+            "중심이 또렷한"
+          ],
+          "example_patterns": [
+            "산만하게 퍼지는",
+            "중심 없이 흩어지는",
+            "정리되지 않은"
+          ]
+        },
+        "restrained": {
+          "korean_terms": [
+            "절제된",
+            "단정한",
+            "과하지 않은"
+          ],
+          "intensity_scale": [
+            "절제된",
+            "단정한",
+            "과하지 않은"
+          ],
+          "related_objects": [
+            "clean_room",
+            "fresh_linen",
+            "slate"
+          ],
+          "opposites": [
+            "과한",
+            "폭발적인"
+          ],
+          "example_patterns": [
+            "절제되어 남는",
+            "단정하게 정리된",
+            "과하지 않은 균형"
+          ]
+        },
+        "unstable": {
+          "korean_terms": [
+            "불균형한",
+            "긴장감 있는",
+            "삐걱이는"
+          ],
+          "intensity_scale": [
+            "긴장감 있는",
+            "불균형한",
+            "삐걱이는"
+          ],
+          "related_objects": [
+            "cold_metal",
+            "rain_on_asphalt"
+          ],
+          "opposites": [
+            "조화로운",
+            "둥근"
+          ],
+          "example_patterns": [
+            "불균형하게 흔들리는",
+            "긴장감 있게 남는",
+            "삐걱이는 느낌"
+          ]
+        }
+      }
+    }
+  }
+}
