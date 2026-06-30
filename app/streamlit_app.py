@@ -14,6 +14,7 @@ if str(SRC_DIR) not in sys.path:
 
 from sensory_atlas.loaders import load_test_sentences
 from sensory_atlas.parser import parse_sentence
+from sensory_atlas.paths import SENSORY_OBJECTS_PATH
 from sensory_atlas.ui_helpers import (
     candidate_detail_for_display,
     candidate_review_rows_to_dataframe,
@@ -41,17 +42,17 @@ EXAMPLE_INPUTS = [
 
 @st.cache_data
 def cached_objects():
-    return load_objects_for_ui(PROJECT_ROOT / "data" / "sensory_objects.jsonl")
+    return load_objects_for_ui(SENSORY_OBJECTS_PATH)
 
 
 @st.cache_data
 def cached_evaluation():
-    return evaluate_all_datasets(PROJECT_ROOT)
+    return evaluate_all_datasets()
 
 
 @st.cache_data
 def cached_candidate_review():
-    return load_candidate_review_for_ui(PROJECT_ROOT)
+    return load_candidate_review_for_ui()
 
 
 def render_axes(axes: dict[str, str]) -> None:
