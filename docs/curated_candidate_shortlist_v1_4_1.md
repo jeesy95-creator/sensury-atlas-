@@ -33,7 +33,7 @@ Sensory Atlas에서는 object 수보다 ontology 품질이 더 중요합니다. 
 
 ## 산출물
 
-- `data/curated_candidate_shortlist_v1_5.jsonl`
+- `data/workflow/curated_candidate_shortlist_v1_5.jsonl`
 - `outputs/curated_candidate_shortlist_report.md`
 - `outputs/curated_candidate_shortlist_summary.json`
 

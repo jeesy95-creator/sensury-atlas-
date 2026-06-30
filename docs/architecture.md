@@ -38,12 +38,12 @@ flowchart TD
 
 ## Data Files
 
-- `data/sensory_objects.jsonl`: sensory ontology seed objects
-- `data/phrase_cues.json`: object-level phrase cues
-- `data/cue_hierarchy.json`: abstract cue groups
-- `data/test_sentences_20.jsonl`: default sanity set
-- `data/blind_test_sentences_30.jsonl`: blind phrase-level set
-- `data/holdout_test_sentences_50.jsonl`: stricter holdout set
+- `data/core/sensory_objects.jsonl`: sensory ontology seed objects
+- `data/core/phrase_cues.json`: object-level phrase cues
+- `data/core/cue_hierarchy.json`: abstract cue groups
+- `data/evaluation/test_sentences_20.jsonl`: default sanity set
+- `data/evaluation/blind_test_sentences_30.jsonl`: blind phrase-level set
+- `data/evaluation/holdout_test_sentences_50.jsonl`: stricter holdout set
 
 ## Parser Flow
 

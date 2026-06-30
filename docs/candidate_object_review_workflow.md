@@ -16,7 +16,7 @@ v1.1에서는 domain vocabulary에서 발견된 잠재적 감각 단위를 `cand
 - 어떤 용어는 example expression이나 negative cue가 부족합니다.
 - 어떤 용어는 감각적 원형보다 ingredient 이름에 가깝습니다.
 
-따라서 candidate object는 검토 없이 `data/sensory_objects.jsonl`에 자동 병합하지 않습니다.
+따라서 candidate object는 검토 없이 `data/core/sensory_objects.jsonl`에 자동 병합하지 않습니다.
 
 ## 승격 기준
 
