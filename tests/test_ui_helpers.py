@@ -9,11 +9,14 @@ from sensory_atlas.ui_helpers import (
     format_axis_confidence,
     format_axis_value,
     format_readiness_score,
+    format_semantic_similarity,
     get_candidate_lookup,
     get_object_lookup,
     load_candidate_review_for_ui,
     objects_to_dataframe,
     parser_output_to_display_dict,
+    parser_output_semantic_summary,
+    semantic_matches_to_dataframe,
 )
 
 
@@ -42,6 +45,12 @@ def test_format_readiness_score_handles_empty_and_float_values() -> None:
     assert format_readiness_score(0.812) == "0.81"
 
 
+def test_semantic_similarity_formatting_and_empty_table() -> None:
+    assert format_semantic_similarity(None) == ""
+    assert format_semantic_similarity(0.426) == "0.43"
+    assert semantic_matches_to_dataframe([]).empty
+
+
 def test_parser_output_to_display_dict_contains_anchor_and_axes() -> None:
     objects = load_sensory_objects()
     lookup = get_object_lookup(objects)
@@ -54,6 +63,50 @@ def test_parser_output_to_display_dict_contains_anchor_and_axes() -> None:
     assert "axis_evidence_table" in display
     assert "clarification_questions" in display
     assert "Rendering" in display["axes"]
+    assert "semantic_matches_table" in display
+
+
+def test_semantic_matches_to_dataframe_contains_source_and_reason() -> None:
+    df = semantic_matches_to_dataframe(
+        [
+            {
+                "rank": 1,
+                "object_id": "wet_soil",
+                "object_source": "main_ontology",
+                "similarity": 0.42,
+                "family": "Earth",
+                "object_role": "organic_anchor",
+                "match_reason": ["semantic text similarity"],
+            },
+            {
+                "rank": 2,
+                "object_id": "candidate_x",
+                "object_source": "candidate_object",
+                "similarity": 0.31,
+                "family": "Candidate",
+                "object_role": "candidate",
+                "match_reason": ["semantic text similarity"],
+            },
+        ]
+    )
+
+    assert list(df["Source"]) == ["main_ontology", "candidate_object"]
+    assert list(df["Similarity"]) == ["0.42", "0.31"]
+
+
+def test_parser_output_semantic_summary_passes_metadata() -> None:
+    summary = parser_output_semantic_summary(
+        {
+            "semantic_fallback_used": True,
+            "semantic_fallback_reason": "low_confidence",
+            "semantic_fallback_backend": "tfidf_char_ngram",
+            "semantic_matches": [{"object_id": "wet_soil"}],
+        }
+    )
+
+    assert summary["used"] is True
+    assert summary["reason"] == "low_confidence"
+    assert summary["matches"][0]["object_id"] == "wet_soil"
 
 
 def test_axis_evidence_to_dataframe_contains_display_columns() -> None:

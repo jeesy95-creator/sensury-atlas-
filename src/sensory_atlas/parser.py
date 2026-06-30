@@ -359,6 +359,7 @@ def parse_sentence(
     sensory_objects: list[SensoryObject],
     *,
     limit: int = 5,
+    use_semantic_fallback: bool = True,
 ) -> ParserOutput:
     matches = match_objects(text, sensory_objects, limit=limit)
     activations = detect_cue_groups(text)
@@ -378,7 +379,7 @@ def parse_sentence(
         low_confidence or confidence < QUESTION_CONFIDENCE_THRESHOLD,
     )
 
-    return ParserOutput(
+    output = ParserOutput(
         input_text=text,
         detected_objects=[
             DetectedObject(object_id=match.object.object_id, score=round(match.score, 2))
@@ -407,3 +408,12 @@ def parse_sentence(
         low_confidence=low_confidence,
         parser_version=PARSER_VERSION,
     )
+    if use_semantic_fallback:
+        from sensory_atlas.semantic_fallback import run_semantic_fallback
+
+        fallback = run_semantic_fallback(text, output)
+        output.semantic_fallback_used = bool(fallback["fallback_used"])
+        output.semantic_fallback_reason = fallback["fallback_reason"]
+        output.semantic_fallback_backend = fallback["backend"]
+        output.semantic_matches = fallback["matches"]
+    return output

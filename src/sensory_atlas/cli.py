@@ -20,6 +20,12 @@ from sensory_atlas.paths import (
 )
 from sensory_atlas.evaluator import evaluate_parser, write_eval_report
 from sensory_atlas.parser import parse_sentence
+from sensory_atlas.semantic_fallback import (
+    evaluate_semantic_fallback,
+    load_semantic_documents,
+    search_semantic_matches,
+    write_fallback_report,
+)
 from sensory_atlas.candidate_workflow import (
     write_candidate_review_outputs,
     write_curated_shortlist_outputs,
@@ -98,6 +104,62 @@ def evaluate(args: argparse.Namespace) -> int:
     return 0
 
 
+def semantic_search(args: argparse.Namespace) -> int:
+    documents = load_semantic_documents(include_candidates=args.include_candidates)
+    matches = search_semantic_matches(
+        args.query,
+        documents,
+        top_k=args.top_k,
+        backend=args.backend,
+    )
+    print(f"Query: {args.query}")
+    print(f"Backend: {args.backend}")
+    print(f"Documents searched: {len(documents)}")
+    for match in matches:
+        print(
+            f"{match['rank']}. {match['object_id']} "
+            f"({match['object_source']}, similarity={match['similarity']:.2f}) "
+            f"- {match.get('korean_label', '')}"
+        )
+    return 0
+
+
+def evaluate_fallback(args: argparse.Namespace) -> int:
+    objects_path = args.objects_path or SENSORY_OBJECTS_PATH
+    try:
+        tests_path, _ = resolve_dataset_paths(args.dataset, args.tests_path, None)
+    except ValueError as exc:
+        print(exc)
+        return 1
+
+    report_path = args.report_path or OUTPUTS_DIR / f"semantic_fallback_report_{args.dataset}.md"
+    summary_path = args.summary_path or OUTPUTS_DIR / f"semantic_fallback_summary_{args.dataset}.json"
+    objects = load_sensory_objects(objects_path)
+    sentences = load_test_sentences(tests_path)
+    report = evaluate_semantic_fallback(
+        sentences,
+        objects,
+        dataset_name=args.dataset,
+        top_k=args.top_k,
+        include_candidates=args.include_candidates,
+    )
+    write_fallback_report(report_path, summary_path, report)
+
+    print(f"Dataset: {report.dataset_name}")
+    print(f"Total test sentences: {report.total}")
+    print(f"Rule Top-1 hit rate: {report.rule_top1_hit_rate:.2f}")
+    print(f"Rule Top-3 hit rate: {report.rule_top3_hit_rate:.2f}")
+    print(f"Fallback assist Top-1 hit rate: {report.fallback_assist_top1_hit_rate:.2f}")
+    print(f"Fallback assist Top-3 hit rate: {report.fallback_assist_top3_hit_rate:.2f}")
+    print(f"Fallback used count: {report.fallback_used_count}")
+    print(f"Fallback helped count: {report.fallback_helped_count}")
+    print(f"Fallback hurt count: {report.fallback_hurt_count}")
+    print(f"Low confidence cases: {report.low_confidence_count}")
+    print(f"Report saved to {Path(report_path).resolve()}")
+    print(f"Summary saved to {Path(summary_path).resolve()}")
+    return 0
+
+
 def review_candidates(args: argparse.Namespace) -> int:
     report_path, summary_path, rows = write_candidate_review_outputs(
         args.report_path,
@@ -151,6 +213,23 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--tests-path", type=Path, default=None)
     eval_parser.add_argument("--output-path", type=Path, default=None)
     eval_parser.set_defaults(func=evaluate)
+
+    semantic = subparsers.add_parser("semantic-search", help="Search semantic fallback candidates")
+    semantic.add_argument("query")
+    semantic.add_argument("--top-k", type=int, default=5)
+    semantic.add_argument("--include-candidates", action="store_true", default=False)
+    semantic.add_argument("--backend", default="tfidf_char_ngram")
+    semantic.set_defaults(func=semantic_search)
+
+    fallback = subparsers.add_parser("evaluate-fallback", help="Evaluate semantic fallback separately")
+    fallback.add_argument("--dataset", choices=sorted(EVALUATION_DATASET_PATHS), default="holdout")
+    fallback.add_argument("--objects-path", type=Path, default=None)
+    fallback.add_argument("--tests-path", type=Path, default=None)
+    fallback.add_argument("--top-k", type=int, default=5)
+    fallback.add_argument("--include-candidates", action=argparse.BooleanOptionalAction, default=True)
+    fallback.add_argument("--report-path", type=Path, default=None)
+    fallback.add_argument("--summary-path", type=Path, default=None)
+    fallback.set_defaults(func=evaluate_fallback)
 
     review = subparsers.add_parser("review-candidates", help="Generate candidate object review report")
     review.add_argument("--report-path", type=Path, default=OUTPUTS_DIR / "candidate_review_report.md")

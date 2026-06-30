@@ -342,6 +342,15 @@ ontology 구조와 data 관리 체계를 정리한 governance 버전입니다. s
 
 자세한 내용은 [Ontology Taxonomy Cleanup v1.5.1](docs/ontology_taxonomy_cleanup_v1_5_1.md)를 참고하세요.
 
+## v1.6 — Semantic Fallback Layer
+
+- 낮은 확신 또는 모호한 감각 표현에 대해 semantic fallback suggestion을 추가했습니다.
+- main ontology와 candidate sensory object를 대상으로 의미 유사도 검색을 추가했습니다.
+- rule-based parser metrics와 분리된 fallback evaluation을 추가했습니다.
+- Streamlit demo에서 semantic fallback 후보를 rule-based 결과와 분리해 표시합니다.
+
+자세한 내용은 [Semantic Fallback Layer v1.6](docs/semantic_fallback_layer_v1_6.md)을 참고하세요.
+
 ## 버전 히스토리
 
 | Version | Summary |
@@ -360,6 +369,7 @@ ontology 구조와 data 관리 체계를 정리한 governance 버전입니다. s
 | v1.4.1 | curated candidate shortlist |
 | v1.5 | curated ontology expansion batch 1 |
 | v1.5.1 | ontology taxonomy cleanup & data governance |
+| v1.6 | semantic fallback layer |
 
 ## 12. 프로젝트 구조
 

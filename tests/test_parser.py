@@ -32,6 +32,10 @@ def test_parser_output_contains_required_fields() -> None:
         "interpretation_summary",
         "confidence",
         "low_confidence",
+        "semantic_fallback_used",
+        "semantic_fallback_reason",
+        "semantic_fallback_backend",
+        "semantic_matches",
         "parser_version",
     ):
         assert field in payload

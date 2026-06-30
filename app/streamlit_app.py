@@ -122,6 +122,22 @@ def render_parse_demo(objects, object_lookup) -> None:
         else:
             st.caption("현재 입력은 충분히 명확하게 해석되었습니다.")
 
+        st.markdown("### Semantic Fallback Suggestions")
+        if display["semantic_fallback_used"] or display["semantic_matches"]:
+            st.caption(
+                "Semantic fallback은 rule-based parser가 낮은 확신을 보일 때 보조적으로 제안하는 "
+                "의미 유사도 기반 후보입니다. 기존 anchor object를 대체하지 않습니다."
+            )
+            meta_cols = st.columns(2)
+            meta_cols[0].metric("reason", display["semantic_fallback_reason"] or "")
+            meta_cols[1].metric("backend", display["semantic_fallback_backend"] or "")
+            if not display["semantic_matches_table"].empty:
+                st.dataframe(display["semantic_matches_table"], hide_index=True, use_container_width=True)
+            else:
+                st.caption("No semantic fallback matches.")
+        else:
+            st.caption("Rule-based parser가 충분히 명확하게 해석하여 semantic fallback을 사용하지 않았습니다.")
+
         with st.expander("Raw parser JSON"):
             st.json(display["raw"])
 

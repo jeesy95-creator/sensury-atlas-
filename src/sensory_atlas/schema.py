@@ -98,4 +98,8 @@ class ParserOutput(BaseModel):
     interpretation_summary: str
     confidence: float = Field(ge=0.0, le=1.0)
     low_confidence: bool = False
+    semantic_fallback_used: bool = False
+    semantic_fallback_reason: str | None = None
+    semantic_fallback_backend: str | None = None
+    semantic_matches: list[dict[str, Any]] = Field(default_factory=list)
     parser_version: str

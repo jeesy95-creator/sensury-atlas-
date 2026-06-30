@@ -1,0 +1,16 @@
+{
+  "dataset_name": "holdout",
+  "total": 50,
+  "rule_top1_hits": 39,
+  "rule_top3_hits": 44,
+  "fallback_assist_top1_hits": 20,
+  "fallback_assist_top3_hits": 29,
+  "fallback_used_count": 33,
+  "fallback_helped_count": 5,
+  "fallback_hurt_count": 3,
+  "low_confidence_count": 5,
+  "rule_top1_hit_rate": 0.78,
+  "rule_top3_hit_rate": 0.88,
+  "fallback_assist_top1_hit_rate": 0.61,
+  "fallback_assist_top3_hit_rate": 0.88
+}

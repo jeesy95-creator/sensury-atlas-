@@ -83,6 +83,39 @@ def format_axis_confidence(value: float | None) -> str:
     return f"{value:.2f}"
 
 
+def format_semantic_similarity(value: float | None) -> str:
+    if value is None:
+        return ""
+    return f"{value:.2f}"
+
+
+def semantic_matches_to_dataframe(matches: list[dict[str, Any]]) -> pd.DataFrame:
+    rows: list[dict[str, Any]] = []
+    for index, match in enumerate(matches, start=1):
+        rows.append(
+            {
+                "Rank": match.get("rank", index),
+                "Object": match.get("object_id", ""),
+                "Source": match.get("object_source", ""),
+                "Similarity": format_semantic_similarity(match.get("similarity")),
+                "Family": match.get("family", ""),
+                "Object Role": match.get("object_role", ""),
+                "Match Reason": format_axis_value(match.get("match_reason", [])),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def parser_output_semantic_summary(display_dict: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "used": display_dict.get("semantic_fallback_used", False),
+        "reason": display_dict.get("semantic_fallback_reason"),
+        "backend": display_dict.get("semantic_fallback_backend"),
+        "matches": display_dict.get("semantic_matches", []),
+        "table": display_dict.get("semantic_matches_table", pd.DataFrame()),
+    }
+
+
 def axis_evidence_to_dataframe(output: ParserOutput) -> pd.DataFrame:
     axes_payload = output.axes.model_dump()
     axis_keys = sorted(
@@ -249,6 +282,11 @@ def parser_output_to_display_dict(
         "activated_cue_groups": cue_groups,
         "confidence": output.confidence,
         "low_confidence": output.low_confidence,
+        "semantic_fallback_used": output.semantic_fallback_used,
+        "semantic_fallback_reason": output.semantic_fallback_reason,
+        "semantic_fallback_backend": output.semantic_fallback_backend,
+        "semantic_matches": output.semantic_matches,
+        "semantic_matches_table": semantic_matches_to_dataframe(output.semantic_matches),
         "raw": output.model_dump(mode="json"),
     }
 
