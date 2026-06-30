@@ -1,0 +1,1126 @@
+{
+  "version": "v1.1",
+  "description": "Domain vocabulary mapping layer for fragrance, whisky, wine, coffee, and cross-domain sensory descriptors.",
+  "domains": {
+    "fragrance": {
+      "families": {
+        "citrus": {
+          "terms": [
+            "bergamot",
+            "neroli",
+            "orange blossom"
+          ],
+          "existing_objects": [
+            "citrus_peel",
+            "fresh_linen"
+          ],
+          "candidate_objects": [
+            "bergamot_brightness",
+            "neroli_air",
+            "orange_blossom_softness"
+          ],
+          "axes": [
+            "temperature",
+            "light",
+            "texture",
+            "atmosphere"
+          ]
+        },
+        "musk_clean": {
+          "terms": [
+            "musk",
+            "white musk",
+            "skin scent",
+            "clean laundry"
+          ],
+          "existing_objects": [
+            "warm_cotton",
+            "fresh_linen",
+            "clean_room"
+          ],
+          "candidate_objects": [
+            "white_musk_clean_skin",
+            "skin_musk_warmth",
+            "laundry_musk"
+          ],
+          "axes": [
+            "texture",
+            "temperature",
+            "atmosphere"
+          ]
+        },
+        "resin_smoke": {
+          "terms": [
+            "amber",
+            "incense",
+            "patchouli"
+          ],
+          "existing_objects": [
+            "pine_resin",
+            "fireplace_ash"
+          ],
+          "candidate_objects": [
+            "amber_glow",
+            "incense_smoke",
+            "dark_resin"
+          ],
+          "axes": [
+            "density",
+            "atmosphere",
+            "motion"
+          ]
+        }
+      }
+    },
+    "whisky": {
+      "families": {
+        "smoke_coastal": {
+          "terms": [
+            "peat smoke",
+            "iodine",
+            "coastal air"
+          ],
+          "existing_objects": [
+            "fireplace_ash",
+            "sea_breeze",
+            "charred_oak"
+          ],
+          "candidate_objects": [
+            "peat_smoke",
+            "iodine_coast",
+            "medicinal_smoke"
+          ],
+          "axes": [
+            "atmosphere",
+            "texture",
+            "density"
+          ]
+        },
+        "cask_sweet": {
+          "terms": [
+            "sherry cask",
+            "bourbon cask",
+            "vanilla cream",
+            "burnt sugar"
+          ],
+          "existing_objects": [
+            "barrel_cellar",
+            "vanilla_cream",
+            "burnt_sugar"
+          ],
+          "candidate_objects": [
+            "sherry_dried_fruit",
+            "bourbon_vanilla_oak",
+            "golden_density"
+          ],
+          "axes": [
+            "temperature",
+            "density",
+            "time"
+          ]
+        }
+      }
+    },
+    "wine": {
+      "families": {
+        "fruit_acid": {
+          "terms": [
+            "red fruit",
+            "black fruit",
+            "stone fruit",
+            "acidity"
+          ],
+          "existing_objects": [
+            "honeycomb",
+            "citrus_peel",
+            "dark_chocolate"
+          ],
+          "candidate_objects": [
+            "red_fruit_juiciness",
+            "black_fruit_density",
+            "stone_fruit_glow",
+            "wine_acidity_lift"
+          ],
+          "axes": [
+            "temperature",
+            "light",
+            "texture"
+          ]
+        },
+        "earth_mineral_tannin": {
+          "terms": [
+            "forest floor",
+            "wet stone",
+            "minerality",
+            "tannin"
+          ],
+          "existing_objects": [
+            "forest_floor",
+            "wet_stone",
+            "black_tea"
+          ],
+          "candidate_objects": [
+            "mineral_spark",
+            "wine_tannin_grip",
+            "wet_soil"
+          ],
+          "axes": [
+            "texture",
+            "density",
+            "atmosphere"
+          ]
+        }
+      }
+    },
+    "coffee": {
+      "families": {
+        "roast_cocoa": {
+          "terms": [
+            "roasted nut",
+            "dark chocolate",
+            "cocoa",
+            "caramel"
+          ],
+          "existing_objects": [
+            "roasted_almond",
+            "dark_chocolate",
+            "burnt_sugar"
+          ],
+          "candidate_objects": [
+            "coffee_roasted_nut",
+            "coffee_cocoa_depth",
+            "golden_density"
+          ],
+          "axes": [
+            "temperature",
+            "density",
+            "texture"
+          ]
+        },
+        "acidity_finish": {
+          "terms": [
+            "citrus acidity",
+            "berry acidity",
+            "tea-like",
+            "clean finish"
+          ],
+          "existing_objects": [
+            "citrus_peel",
+            "black_tea",
+            "clean_room"
+          ],
+          "candidate_objects": [
+            "coffee_berry_acidity",
+            "tea_like_clarity",
+            "clean_finish"
+          ],
+          "axes": [
+            "motion",
+            "texture",
+            "rendering"
+          ]
+        }
+      }
+    },
+    "cross_domain": {
+      "families": {
+        "citrus": {
+          "terms": [
+            "bergamot",
+            "neroli",
+            "orange blossom",
+            "citrus acidity"
+          ],
+          "existing_objects": [
+            "citrus_peel",
+            "fresh_linen"
+          ],
+          "candidate_objects": [
+            "bergamot_brightness",
+            "neroli_air",
+            "orange_blossom_softness",
+            "wine_acidity_lift"
+          ],
+          "axes": [
+            "temperature",
+            "light",
+            "texture",
+            "atmosphere"
+          ]
+        },
+        "floral": {
+          "terms": [
+            "rose",
+            "jasmine",
+            "violet",
+            "orange blossom"
+          ],
+          "existing_objects": [
+            "velvet",
+            "organza",
+            "fresh_linen"
+          ],
+          "candidate_objects": [
+            "rose_petal_glow",
+            "jasmine_lift",
+            "powder_cloud",
+            "orange_blossom_softness"
+          ],
+          "axes": [
+            "light",
+            "atmosphere",
+            "texture"
+          ]
+        },
+        "green": {
+          "terms": [
+            "green",
+            "grassy",
+            "green pepper",
+            "fig leaf"
+          ],
+          "existing_objects": [
+            "green_stem",
+            "dry_herb",
+            "wet_moss"
+          ],
+          "candidate_objects": [
+            "green_leaf_crush",
+            "green_pepper_snap",
+            "fig_leaf_green"
+          ],
+          "axes": [
+            "temperature",
+            "texture",
+            "atmosphere"
+          ]
+        },
+        "woody": {
+          "terms": [
+            "cedarwood",
+            "sandalwood",
+            "oak",
+            "old wood"
+          ],
+          "existing_objects": [
+            "cedarwood",
+            "old_wood",
+            "charred_oak"
+          ],
+          "candidate_objects": [
+            "oak_tannin_dryness",
+            "bourbon_vanilla_oak",
+            "warm_resin"
+          ],
+          "axes": [
+            "texture",
+            "density",
+            "atmosphere"
+          ]
+        },
+        "smoky": {
+          "terms": [
+            "peat smoke",
+            "incense",
+            "fireplace ash",
+            "smoky"
+          ],
+          "existing_objects": [
+            "fireplace_ash",
+            "charred_oak",
+            "tobacco_leaf"
+          ],
+          "candidate_objects": [
+            "peat_smoke",
+            "incense_smoke",
+            "medicinal_smoke"
+          ],
+          "axes": [
+            "texture",
+            "atmosphere",
+            "density"
+          ]
+        },
+        "resinous": {
+          "terms": [
+            "amber",
+            "resin",
+            "patchouli",
+            "incense"
+          ],
+          "existing_objects": [
+            "pine_resin",
+            "honeycomb",
+            "charred_oak"
+          ],
+          "candidate_objects": [
+            "warm_resin",
+            "dark_resin",
+            "amber_glow"
+          ],
+          "axes": [
+            "density",
+            "texture",
+            "atmosphere"
+          ]
+        },
+        "amber": {
+          "terms": [
+            "amber",
+            "ambergris",
+            "golden"
+          ],
+          "existing_objects": [
+            "honeycomb",
+            "vanilla_cream"
+          ],
+          "candidate_objects": [
+            "amber_glow",
+            "warm_resin",
+            "golden_density"
+          ],
+          "axes": [
+            "temperature",
+            "light",
+            "density"
+          ]
+        },
+        "musky": {
+          "terms": [
+            "musk",
+            "white musk",
+            "skin scent"
+          ],
+          "existing_objects": [
+            "warm_cotton",
+            "cashmere",
+            "clean_room"
+          ],
+          "candidate_objects": [
+            "white_musk_clean_skin",
+            "skin_musk_warmth",
+            "laundry_musk"
+          ],
+          "axes": [
+            "texture",
+            "temperature",
+            "atmosphere"
+          ]
+        },
+        "powdery": {
+          "terms": [
+            "powdery",
+            "iris",
+            "violet",
+            "cosmetic powder"
+          ],
+          "existing_objects": [
+            "velvet",
+            "warm_cotton"
+          ],
+          "candidate_objects": [
+            "powder_cloud",
+            "cosmetic_powder"
+          ],
+          "axes": [
+            "texture",
+            "density",
+            "light"
+          ]
+        },
+        "aquatic": {
+          "terms": [
+            "aquatic",
+            "ozonic",
+            "coastal air",
+            "rain"
+          ],
+          "existing_objects": [
+            "sea_breeze",
+            "mountain_stream",
+            "cold_fog"
+          ],
+          "candidate_objects": [
+            "aquatic_clean_water",
+            "ozonic_air",
+            "iodine_coast"
+          ],
+          "axes": [
+            "temperature",
+            "motion",
+            "atmosphere"
+          ]
+        },
+        "mineral": {
+          "terms": [
+            "mineral",
+            "minerality",
+            "wet stone",
+            "slate"
+          ],
+          "existing_objects": [
+            "wet_stone",
+            "slate",
+            "granite",
+            "crystal"
+          ],
+          "candidate_objects": [
+            "mineral_spark",
+            "cold_glass"
+          ],
+          "axes": [
+            "texture",
+            "temperature",
+            "light"
+          ]
+        },
+        "gourmand": {
+          "terms": [
+            "vanilla",
+            "caramel",
+            "honey",
+            "brown sugar"
+          ],
+          "existing_objects": [
+            "vanilla_cream",
+            "burnt_sugar",
+            "honeycomb",
+            "butter_toast"
+          ],
+          "candidate_objects": [
+            "golden_density",
+            "lactonic_milk_softness",
+            "sweet_spice"
+          ],
+          "axes": [
+            "temperature",
+            "density",
+            "texture"
+          ]
+        },
+        "roasted": {
+          "terms": [
+            "roasted nut",
+            "toast",
+            "malt",
+            "coffee roast"
+          ],
+          "existing_objects": [
+            "roasted_almond",
+            "butter_toast",
+            "charred_oak"
+          ],
+          "candidate_objects": [
+            "coffee_roasted_nut",
+            "malt_cereal_warmth"
+          ],
+          "axes": [
+            "temperature",
+            "time",
+            "texture"
+          ]
+        },
+        "spicy": {
+          "terms": [
+            "spice",
+            "cinnamon",
+            "clove",
+            "pepper"
+          ],
+          "existing_objects": [
+            "dry_herb",
+            "charred_oak",
+            "tobacco_leaf"
+          ],
+          "candidate_objects": [
+            "dry_spice",
+            "sweet_spice"
+          ],
+          "axes": [
+            "temperature",
+            "texture",
+            "motion"
+          ]
+        },
+        "earthy": {
+          "terms": [
+            "earthy",
+            "wet soil",
+            "forest floor",
+            "peat"
+          ],
+          "existing_objects": [
+            "forest_floor",
+            "wet_stone",
+            "after_rain_garden"
+          ],
+          "candidate_objects": [
+            "wet_soil",
+            "peat_smoke",
+            "dark_resin"
+          ],
+          "axes": [
+            "atmosphere",
+            "texture",
+            "density"
+          ]
+        },
+        "clean": {
+          "terms": [
+            "clean",
+            "soap",
+            "laundry",
+            "white musk"
+          ],
+          "existing_objects": [
+            "fresh_linen",
+            "clean_room",
+            "cold_fog"
+          ],
+          "candidate_objects": [
+            "white_musk_clean_skin",
+            "soap_clean",
+            "laundry_musk"
+          ],
+          "axes": [
+            "temperature",
+            "texture",
+            "atmosphere"
+          ]
+        },
+        "leathery": {
+          "terms": [
+            "leather",
+            "suede",
+            "leathery"
+          ],
+          "existing_objects": [
+            "leather",
+            "suede",
+            "tobacco_leaf"
+          ],
+          "candidate_objects": [
+            "skin_musk_warmth"
+          ],
+          "axes": [
+            "texture",
+            "density",
+            "atmosphere"
+          ]
+        },
+        "tannic": {
+          "terms": [
+            "tannin",
+            "oak tannin",
+            "astringent"
+          ],
+          "existing_objects": [
+            "black_tea",
+            "charred_oak",
+            "cedarwood"
+          ],
+          "candidate_objects": [
+            "wine_tannin_grip",
+            "oak_tannin_dryness",
+            "astringent_dryness"
+          ],
+          "axes": [
+            "texture",
+            "motion",
+            "density"
+          ]
+        },
+        "acidic": {
+          "terms": [
+            "acidity",
+            "citrus acidity",
+            "berry acidity"
+          ],
+          "existing_objects": [
+            "citrus_peel",
+            "mountain_stream"
+          ],
+          "candidate_objects": [
+            "wine_acidity_lift",
+            "coffee_berry_acidity",
+            "bergamot_brightness"
+          ],
+          "axes": [
+            "temperature",
+            "motion",
+            "texture"
+          ]
+        },
+        "creamy": {
+          "terms": [
+            "creamy",
+            "lactonic",
+            "vanilla cream"
+          ],
+          "existing_objects": [
+            "vanilla_cream",
+            "warm_cotton"
+          ],
+          "candidate_objects": [
+            "lactonic_milk_softness",
+            "creamy_sandalwood"
+          ],
+          "axes": [
+            "texture",
+            "density",
+            "temperature"
+          ]
+        }
+      }
+    }
+  },
+  "cross_domain_mappings": {
+    "citrus": {
+      "terms": [
+        "bergamot",
+        "neroli",
+        "orange blossom",
+        "citrus acidity"
+      ],
+      "existing_objects": [
+        "citrus_peel",
+        "fresh_linen"
+      ],
+      "candidate_objects": [
+        "bergamot_brightness",
+        "neroli_air",
+        "orange_blossom_softness",
+        "wine_acidity_lift"
+      ],
+      "axes": [
+        "temperature",
+        "light",
+        "texture",
+        "atmosphere"
+      ]
+    },
+    "floral": {
+      "terms": [
+        "rose",
+        "jasmine",
+        "violet",
+        "orange blossom"
+      ],
+      "existing_objects": [
+        "velvet",
+        "organza",
+        "fresh_linen"
+      ],
+      "candidate_objects": [
+        "rose_petal_glow",
+        "jasmine_lift",
+        "powder_cloud",
+        "orange_blossom_softness"
+      ],
+      "axes": [
+        "light",
+        "atmosphere",
+        "texture"
+      ]
+    },
+    "green": {
+      "terms": [
+        "green",
+        "grassy",
+        "green pepper",
+        "fig leaf"
+      ],
+      "existing_objects": [
+        "green_stem",
+        "dry_herb",
+        "wet_moss"
+      ],
+      "candidate_objects": [
+        "green_leaf_crush",
+        "green_pepper_snap",
+        "fig_leaf_green"
+      ],
+      "axes": [
+        "temperature",
+        "texture",
+        "atmosphere"
+      ]
+    },
+    "woody": {
+      "terms": [
+        "cedarwood",
+        "sandalwood",
+        "oak",
+        "old wood"
+      ],
+      "existing_objects": [
+        "cedarwood",
+        "old_wood",
+        "charred_oak"
+      ],
+      "candidate_objects": [
+        "oak_tannin_dryness",
+        "bourbon_vanilla_oak",
+        "warm_resin"
+      ],
+      "axes": [
+        "texture",
+        "density",
+        "atmosphere"
+      ]
+    },
+    "smoky": {
+      "terms": [
+        "peat smoke",
+        "incense",
+        "fireplace ash",
+        "smoky"
+      ],
+      "existing_objects": [
+        "fireplace_ash",
+        "charred_oak",
+        "tobacco_leaf"
+      ],
+      "candidate_objects": [
+        "peat_smoke",
+        "incense_smoke",
+        "medicinal_smoke"
+      ],
+      "axes": [
+        "texture",
+        "atmosphere",
+        "density"
+      ]
+    },
+    "resinous": {
+      "terms": [
+        "amber",
+        "resin",
+        "patchouli",
+        "incense"
+      ],
+      "existing_objects": [
+        "pine_resin",
+        "honeycomb",
+        "charred_oak"
+      ],
+      "candidate_objects": [
+        "warm_resin",
+        "dark_resin",
+        "amber_glow"
+      ],
+      "axes": [
+        "density",
+        "texture",
+        "atmosphere"
+      ]
+    },
+    "amber": {
+      "terms": [
+        "amber",
+        "ambergris",
+        "golden"
+      ],
+      "existing_objects": [
+        "honeycomb",
+        "vanilla_cream"
+      ],
+      "candidate_objects": [
+        "amber_glow",
+        "warm_resin",
+        "golden_density"
+      ],
+      "axes": [
+        "temperature",
+        "light",
+        "density"
+      ]
+    },
+    "musky": {
+      "terms": [
+        "musk",
+        "white musk",
+        "skin scent"
+      ],
+      "existing_objects": [
+        "warm_cotton",
+        "cashmere",
+        "clean_room"
+      ],
+      "candidate_objects": [
+        "white_musk_clean_skin",
+        "skin_musk_warmth",
+        "laundry_musk"
+      ],
+      "axes": [
+        "texture",
+        "temperature",
+        "atmosphere"
+      ]
+    },
+    "powdery": {
+      "terms": [
+        "powdery",
+        "iris",
+        "violet",
+        "cosmetic powder"
+      ],
+      "existing_objects": [
+        "velvet",
+        "warm_cotton"
+      ],
+      "candidate_objects": [
+        "powder_cloud",
+        "cosmetic_powder"
+      ],
+      "axes": [
+        "texture",
+        "density",
+        "light"
+      ]
+    },
+    "aquatic": {
+      "terms": [
+        "aquatic",
+        "ozonic",
+        "coastal air",
+        "rain"
+      ],
+      "existing_objects": [
+        "sea_breeze",
+        "mountain_stream",
+        "cold_fog"
+      ],
+      "candidate_objects": [
+        "aquatic_clean_water",
+        "ozonic_air",
+        "iodine_coast"
+      ],
+      "axes": [
+        "temperature",
+        "motion",
+        "atmosphere"
+      ]
+    },
+    "mineral": {
+      "terms": [
+        "mineral",
+        "minerality",
+        "wet stone",
+        "slate"
+      ],
+      "existing_objects": [
+        "wet_stone",
+        "slate",
+        "granite",
+        "crystal"
+      ],
+      "candidate_objects": [
+        "mineral_spark",
+        "cold_glass"
+      ],
+      "axes": [
+        "texture",
+        "temperature",
+        "light"
+      ]
+    },
+    "gourmand": {
+      "terms": [
+        "vanilla",
+        "caramel",
+        "honey",
+        "brown sugar"
+      ],
+      "existing_objects": [
+        "vanilla_cream",
+        "burnt_sugar",
+        "honeycomb",
+        "butter_toast"
+      ],
+      "candidate_objects": [
+        "golden_density",
+        "lactonic_milk_softness",
+        "sweet_spice"
+      ],
+      "axes": [
+        "temperature",
+        "density",
+        "texture"
+      ]
+    },
+    "roasted": {
+      "terms": [
+        "roasted nut",
+        "toast",
+        "malt",
+        "coffee roast"
+      ],
+      "existing_objects": [
+        "roasted_almond",
+        "butter_toast",
+        "charred_oak"
+      ],
+      "candidate_objects": [
+        "coffee_roasted_nut",
+        "malt_cereal_warmth"
+      ],
+      "axes": [
+        "temperature",
+        "time",
+        "texture"
+      ]
+    },
+    "spicy": {
+      "terms": [
+        "spice",
+        "cinnamon",
+        "clove",
+        "pepper"
+      ],
+      "existing_objects": [
+        "dry_herb",
+        "charred_oak",
+        "tobacco_leaf"
+      ],
+      "candidate_objects": [
+        "dry_spice",
+        "sweet_spice"
+      ],
+      "axes": [
+        "temperature",
+        "texture",
+        "motion"
+      ]
+    },
+    "earthy": {
+      "terms": [
+        "earthy",
+        "wet soil",
+        "forest floor",
+        "peat"
+      ],
+      "existing_objects": [
+        "forest_floor",
+        "wet_stone",
+        "after_rain_garden"
+      ],
+      "candidate_objects": [
+        "wet_soil",
+        "peat_smoke",
+        "dark_resin"
+      ],
+      "axes": [
+        "atmosphere",
+        "texture",
+        "density"
+      ]
+    },
+    "clean": {
+      "terms": [
+        "clean",
+        "soap",
+        "laundry",
+        "white musk"
+      ],
+      "existing_objects": [
+        "fresh_linen",
+        "clean_room",
+        "cold_fog"
+      ],
+      "candidate_objects": [
+        "white_musk_clean_skin",
+        "soap_clean",
+        "laundry_musk"
+      ],
+      "axes": [
+        "temperature",
+        "texture",
+        "atmosphere"
+      ]
+    },
+    "leathery": {
+      "terms": [
+        "leather",
+        "suede",
+        "leathery"
+      ],
+      "existing_objects": [
+        "leather",
+        "suede",
+        "tobacco_leaf"
+      ],
+      "candidate_objects": [
+        "skin_musk_warmth"
+      ],
+      "axes": [
+        "texture",
+        "density",
+        "atmosphere"
+      ]
+    },
+    "tannic": {
+      "terms": [
+        "tannin",
+        "oak tannin",
+        "astringent"
+      ],
+      "existing_objects": [
+        "black_tea",
+        "charred_oak",
+        "cedarwood"
+      ],
+      "candidate_objects": [
+        "wine_tannin_grip",
+        "oak_tannin_dryness",
+        "astringent_dryness"
+      ],
+      "axes": [
+        "texture",
+        "motion",
+        "density"
+      ]
+    },
+    "acidic": {
+      "terms": [
+        "acidity",
+        "citrus acidity",
+        "berry acidity"
+      ],
+      "existing_objects": [
+        "citrus_peel",
+        "mountain_stream"
+      ],
+      "candidate_objects": [
+        "wine_acidity_lift",
+        "coffee_berry_acidity",
+        "bergamot_brightness"
+      ],
+      "axes": [
+        "temperature",
+        "motion",
+        "texture"
+      ]
+    },
+    "creamy": {
+      "terms": [
+        "creamy",
+        "lactonic",
+        "vanilla cream"
+      ],
+      "existing_objects": [
+        "vanilla_cream",
+        "warm_cotton"
+      ],
+      "candidate_objects": [
+        "lactonic_milk_softness",
+        "creamy_sandalwood"
+      ],
+      "axes": [
+        "texture",
+        "density",
+        "temperature"
+      ]
+    }
+  }
+}
