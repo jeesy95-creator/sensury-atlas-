@@ -14,7 +14,10 @@ from sensory_atlas.loaders import (
 )
 from sensory_atlas.evaluator import evaluate_parser, write_eval_report
 from sensory_atlas.parser import parse_sentence
-from sensory_atlas.candidate_workflow import write_candidate_review_outputs
+from sensory_atlas.candidate_workflow import (
+    write_candidate_review_outputs,
+    write_curated_shortlist_outputs,
+)
 
 
 DATASET_PATHS = {
@@ -116,6 +119,24 @@ def review_candidates(args: argparse.Namespace) -> int:
     return 0
 
 
+def select_curated_candidates(args: argparse.Namespace) -> int:
+    output_path, report_path, summary_path, shortlist, summary = write_curated_shortlist_outputs(
+        args.output,
+        args.report,
+        args.summary,
+        min_count=args.min_count,
+        max_count=args.max_count,
+    )
+    print(f"Total candidates: {summary['total_candidates']}")
+    print(f"Ready-for-merge candidates reviewed: {summary['ready_for_curated_merge_reviewed']}")
+    print(f"Selected candidates: {len(shortlist)}")
+    print(f"Excluded ready candidates: {summary['excluded_ready_count']}")
+    print(f"Shortlist saved to {output_path.resolve()}")
+    print(f"Report saved to {report_path.resolve()}")
+    print(f"Summary saved to {summary_path.resolve()}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="sensory-atlas")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -141,6 +162,14 @@ def build_parser() -> argparse.ArgumentParser:
     review.add_argument("--report-path", type=Path, default=project_root() / "outputs" / "candidate_review_report.md")
     review.add_argument("--summary-path", type=Path, default=project_root() / "outputs" / "candidate_review_summary.json")
     review.set_defaults(func=review_candidates)
+
+    shortlist = subparsers.add_parser("select-curated-candidates", help="Generate v1.5 curated candidate shortlist")
+    shortlist.add_argument("--min-count", type=int, default=10)
+    shortlist.add_argument("--max-count", type=int, default=12)
+    shortlist.add_argument("--output", type=Path, default=project_root() / "data" / "curated_candidate_shortlist_v1_5.jsonl")
+    shortlist.add_argument("--report", type=Path, default=project_root() / "outputs" / "curated_candidate_shortlist_report.md")
+    shortlist.add_argument("--summary", type=Path, default=project_root() / "outputs" / "curated_candidate_shortlist_summary.json")
+    shortlist.set_defaults(func=select_curated_candidates)
 
     return parser
 

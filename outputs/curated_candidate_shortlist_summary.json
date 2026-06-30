@@ -1,0 +1,33 @@
+{
+  "version": "v1.4.1",
+  "total_candidates": 47,
+  "ready_for_curated_merge_reviewed": 17,
+  "selected_count": 12,
+  "excluded_ready_count": 5,
+  "selected_candidate_ids": [
+    "fig_leaf_green",
+    "syrupy_body",
+    "golden_density",
+    "lactonic_milk_softness",
+    "tea_like_clarity",
+    "dark_resin",
+    "green_leaf_crush",
+    "wet_soil",
+    "astringent_dryness",
+    "amber_glow",
+    "stone_fruit_glow",
+    "iodine_coast"
+  ],
+  "family_coverage": {
+    "finish / dryness / texture": 1,
+    "mineral / glass / clarity": 1,
+    "other sensory archetype": 1,
+    "powder / textile / softness": 3,
+    "smoke / resin / wood": 2,
+    "warm / amber / density": 2,
+    "wet / earth / green": 2
+  },
+  "highest_readiness_candidate": "fig_leaf_green",
+  "highest_risk_candidate_among_selected": "green_leaf_crush",
+  "selection_notes": "Shortlist created for v1.5 manual ontology expansion review. No candidates were merged into the main ontology."
+}

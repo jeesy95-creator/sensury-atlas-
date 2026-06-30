@@ -10,10 +10,12 @@ import pandas as pd
 from sensory_atlas.candidate_workflow import (
     build_candidate_review_rows,
     compare_candidate_to_existing,
+    load_curated_shortlist,
     generate_promotion_draft,
     load_candidate_objects,
     load_candidate_review_status,
     load_existing_objects,
+    summarize_shortlist_family_coverage,
     summarize_candidate_actions,
 )
 from sensory_atlas.evaluator import EvaluationReport, evaluate_parser
@@ -131,17 +133,39 @@ def candidate_review_rows_to_dataframe(rows: list[dict[str, Any]]) -> pd.DataFra
     return pd.DataFrame(display_rows)
 
 
+def curated_shortlist_to_dataframe(shortlist: list[dict[str, Any]]) -> pd.DataFrame:
+    rows: list[dict[str, Any]] = []
+    for item in shortlist:
+        scores = item.get("readiness_scores", {})
+        rows.append(
+            {
+                "candidate_object_id": item.get("candidate_object_id"),
+                "korean_label": item.get("korean_label"),
+                "source_domains": format_axis_value(item.get("source_domains", [])),
+                "family": item.get("family"),
+                "overall_readiness_score": format_readiness_score(scores.get("overall_readiness_score")),
+                "note_dictionary_risk": format_readiness_score(scores.get("note_dictionary_risk")),
+                "promotion_risk": item.get("promotion_risk"),
+                "selection_reason": format_axis_value(item.get("selection_reason", [])),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def load_candidate_review_for_ui(root: str | Path | None = None) -> dict[str, Any]:
     root_path = Path(root) if root else project_root()
     candidates = load_candidate_objects(root_path / "data" / "sensory_object_candidates.jsonl")
     existing = load_existing_objects(root_path / "data" / "sensory_objects.jsonl")
     status = load_candidate_review_status(root_path / "data" / "candidate_review_status.jsonl")
     rows = build_candidate_review_rows(candidates, existing, status)
+    shortlist = load_curated_shortlist(root_path / "data" / "curated_candidate_shortlist_v1_5.jsonl")
     return {
         "candidates": candidates,
         "existing_objects": existing,
         "review_status": status,
         "rows": rows,
+        "shortlist": shortlist,
+        "shortlist_family_coverage": summarize_shortlist_family_coverage(shortlist),
         "summary": summarize_candidate_actions(rows),
     }
 

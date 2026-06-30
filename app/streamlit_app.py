@@ -17,6 +17,7 @@ from sensory_atlas.parser import parse_sentence
 from sensory_atlas.ui_helpers import (
     candidate_detail_for_display,
     candidate_review_rows_to_dataframe,
+    curated_shortlist_to_dataframe,
     evaluate_all_datasets,
     get_object_lookup,
     get_candidate_lookup,
@@ -240,6 +241,7 @@ def render_candidate_review() -> None:
 
     review = cached_candidate_review()
     rows = review["rows"]
+    shortlist = review["shortlist"]
     candidates = review["candidates"]
     existing_objects = review["existing_objects"]
     candidate_lookup = get_candidate_lookup(candidates)
@@ -257,6 +259,29 @@ def render_candidate_review() -> None:
     metric_cols[0].metric("total candidates", len(rows))
     for col, key in zip(metric_cols[1:], metric_keys, strict=False):
         col.metric(key, summary.get(key, 0))
+
+    st.markdown("### Curated Shortlist for v1.5")
+    st.warning("이 shortlist는 v1.5 수동 검토용입니다. 어떤 candidate도 자동으로 main ontology에 병합하지 않습니다.")
+    if shortlist:
+        shortlist_cols = st.columns(2)
+        shortlist_cols[0].metric("selected candidates", len(shortlist))
+        shortlist_cols[1].metric("families covered", len(review["shortlist_family_coverage"]))
+        st.dataframe(curated_shortlist_to_dataframe(shortlist), hide_index=True, use_container_width=True)
+        with st.expander("Family coverage"):
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {"family_bucket": family, "count": count}
+                        for family, count in review["shortlist_family_coverage"].items()
+                    ]
+                ),
+                hide_index=True,
+                use_container_width=True,
+            )
+    else:
+        st.info(
+            "아직 curated shortlist가 생성되지 않았습니다. CLI에서 `python -m sensory_atlas.cli select-curated-candidates`를 실행해 생성할 수 있습니다."
+        )
 
     all_domains = sorted({domain for row in rows for domain in row.get("source_domains", [])})
     all_actions = sorted({row.get("recommended_action", "") for row in rows})

@@ -4,6 +4,7 @@ from sensory_atlas.ui_helpers import (
     axis_evidence_to_dataframe,
     candidate_detail_for_display,
     candidate_review_rows_to_dataframe,
+    curated_shortlist_to_dataframe,
     evaluate_all_datasets,
     format_axis_confidence,
     format_axis_value,
@@ -77,6 +78,17 @@ def test_candidate_review_helpers_return_display_data() -> None:
     assert first_id in lookup
     assert "promotion_draft" in detail
     assert "similar_existing_objects" in detail
+    assert "shortlist" in review
+    assert "shortlist_family_coverage" in review
+
+
+def test_curated_shortlist_to_dataframe_contains_display_columns() -> None:
+    review = load_candidate_review_for_ui()
+    df = curated_shortlist_to_dataframe(review["shortlist"])
+
+    assert not df.empty
+    for column in ("candidate_object_id", "selection_reason", "promotion_risk"):
+        assert column in df.columns
 
 
 def test_evaluate_all_datasets_returns_reports() -> None:

@@ -344,6 +344,327 @@ def summarize_candidate_actions(rows: list[dict[str, Any]]) -> dict[str, int]:
     return {action: counts.get(action, 0) for action in sorted(RECOMMENDED_ACTIONS)}
 
 
+def _family_bucket(candidate: dict[str, Any]) -> str:
+    text = " ".join(
+        [
+            str(candidate.get("family", "")),
+            str(candidate.get("label", "")),
+            str(candidate.get("korean_label", "")),
+            str(candidate.get("definition", "")),
+        ]
+    ).casefold()
+    buckets = [
+        ("clean / skin / musk", {"clean", "skin", "musk", "laundry", "soap", "비누", "세탁", "살갗"}),
+        ("powder / textile / softness", {"powder", "soft", "textile", "milk", "lactonic", "가루", "부드", "우유"}),
+        ("smoke / resin / wood", {"smoke", "resin", "oak", "wood", "peat", "incense", "연기", "수지", "오크"}),
+        ("wet / earth / green", {"wet", "soil", "green", "leaf", "earth", "fig", "흙", "잎", "초록"}),
+        ("mineral / glass / clarity", {"mineral", "glass", "clarity", "stone", "cold", "광물", "유리"}),
+        ("warm / amber / density", {"amber", "golden", "density", "syrup", "glow", "앰버", "금빛", "밀도"}),
+        ("finish / dryness / texture", {"finish", "dry", "astringent", "tannin", "body", "드라이", "수렴", "마무리"}),
+    ]
+    for bucket, keywords in buckets:
+        if any(keyword in text for keyword in keywords):
+            return bucket
+    return "other sensory archetype"
+
+
+def _selection_reasons(row: dict[str, Any]) -> list[str]:
+    reasons: list[str] = []
+    if row["sensory_archetype_score"] >= 0.8:
+        reasons.append("strong sensory archetype")
+    if row["cross_domain_reuse_score"] >= 0.65:
+        reasons.append("cross-domain reusable")
+    if row["note_dictionary_risk"] <= 0.35:
+        reasons.append("low note dictionary risk")
+    if row["distinctiveness_score"] >= 0.55:
+        reasons.append("distinct from existing ontology")
+    if row["phrase_cue_readiness_score"] >= 0.65:
+        reasons.append("phrase cue ready")
+    if row["negative_cue_readiness_score"] >= 1.0:
+        reasons.append("negative cues available")
+    return reasons or ["selected for manual ontology review"]
+
+
+def _promotion_risk(row: dict[str, Any]) -> str:
+    if row["note_dictionary_risk"] >= 0.45 or row["distinctiveness_score"] < 0.60:
+        return "medium"
+    return "low"
+
+
+def _selection_priority(row: dict[str, Any]) -> float:
+    bucket_bonus = 0.04 if _family_bucket(row) != "other sensory archetype" else 0.0
+    return round(
+        row["overall_readiness_score"] * 0.34
+        + row["sensory_archetype_score"] * 0.18
+        + row["cross_domain_reuse_score"] * 0.14
+        + row["distinctiveness_score"] * 0.16
+        + row["negative_cue_readiness_score"] * 0.08
+        - row["note_dictionary_risk"] * 0.18
+        + bucket_bonus,
+        4,
+    )
+
+
+def _shortlist_row(candidate: dict[str, Any], review_row: dict[str, Any]) -> dict[str, Any]:
+    score_keys = [
+        "overall_readiness_score",
+        "sensory_archetype_score",
+        "cross_domain_reuse_score",
+        "distinctiveness_score",
+        "example_coverage_score",
+        "phrase_cue_readiness_score",
+        "negative_cue_readiness_score",
+        "note_dictionary_risk",
+    ]
+    return {
+        "candidate_object_id": candidate["candidate_object_id"],
+        "korean_label": candidate.get("korean_label", ""),
+        "source_domains": candidate.get("source_domains", []),
+        "family": candidate.get("family", ""),
+        "selection_status": "selected_for_v1_5_review",
+        "selection_reason": _selection_reasons(review_row),
+        "readiness_scores": {key: review_row[key] for key in score_keys},
+        "related_existing_objects": candidate.get("related_existing_objects", []),
+        "similar_existing_objects": review_row.get("similar_existing_objects", []),
+        "promotion_risk": _promotion_risk(review_row),
+        "review_notes": (
+            "Good candidate for curated ontology expansion, but should remain distinct "
+            "from related existing sensory objects."
+        ),
+        "next_action": "manual_review_before_v1_5_merge",
+    }
+
+
+def select_curated_shortlist(
+    candidates: list[dict[str, Any]],
+    existing_objects: list[dict[str, Any]],
+    review_status: dict[str, dict[str, Any]],
+    min_count: int = 10,
+    max_count: int = 12,
+) -> list[dict[str, Any]]:
+    rows = build_candidate_review_rows(candidates, existing_objects, review_status)
+    candidate_lookup = {candidate["candidate_object_id"]: candidate for candidate in candidates}
+    ready_rows = [
+        row
+        for row in rows
+        if row["recommended_action"] == "ready_for_curated_merge"
+        and row["note_dictionary_risk"] < 0.50
+    ]
+    ranked = sorted(
+        ready_rows,
+        key=lambda row: (
+            -_selection_priority(row),
+            row["note_dictionary_risk"],
+            row["candidate_object_id"],
+        ),
+    )
+
+    selected: list[dict[str, Any]] = []
+    bucket_counts: Counter[str] = Counter()
+    for row in ranked:
+        bucket = _family_bucket(row)
+        if bucket_counts[bucket] >= 2 and len(selected) < min_count:
+            continue
+        selected.append(row)
+        bucket_counts[bucket] += 1
+        if len(selected) >= max_count:
+            break
+
+    if len(selected) < min_count:
+        selected_ids = {row["candidate_object_id"] for row in selected}
+        for row in ranked:
+            if row["candidate_object_id"] in selected_ids:
+                continue
+            selected.append(row)
+            selected_ids.add(row["candidate_object_id"])
+            if len(selected) >= min_count:
+                break
+
+    return [
+        _shortlist_row(candidate_lookup[row["candidate_object_id"]], row)
+        for row in selected[:max_count]
+    ]
+
+
+def load_curated_shortlist(
+    path: str | Path = "data/curated_candidate_shortlist_v1_5.jsonl",
+) -> list[dict[str, Any]]:
+    shortlist_path = _resolve(path)
+    if not shortlist_path.exists():
+        return []
+    return read_jsonl(shortlist_path)
+
+
+def summarize_shortlist_family_coverage(shortlist: list[dict[str, Any]]) -> dict[str, int]:
+    counts = Counter(_family_bucket(row) for row in shortlist)
+    return dict(sorted(counts.items()))
+
+
+def _shortlist_summary(
+    candidates: list[dict[str, Any]],
+    rows: list[dict[str, Any]],
+    shortlist: list[dict[str, Any]],
+) -> dict[str, Any]:
+    ready_rows = [row for row in rows if row["recommended_action"] == "ready_for_curated_merge"]
+    selected_ids = [row["candidate_object_id"] for row in shortlist]
+    selected_risks = [
+        row["readiness_scores"]["note_dictionary_risk"]
+        for row in shortlist
+    ]
+    return {
+        "version": "v1.4.1",
+        "total_candidates": len(candidates),
+        "ready_for_curated_merge_reviewed": len(ready_rows),
+        "selected_count": len(shortlist),
+        "excluded_ready_count": len(ready_rows) - len(shortlist),
+        "selected_candidate_ids": selected_ids,
+        "family_coverage": summarize_shortlist_family_coverage(shortlist),
+        "highest_readiness_candidate": max(
+            shortlist,
+            key=lambda row: row["readiness_scores"]["overall_readiness_score"],
+        )["candidate_object_id"] if shortlist else None,
+        "highest_risk_candidate_among_selected": shortlist[
+            selected_risks.index(max(selected_risks))
+        ]["candidate_object_id"] if shortlist else None,
+        "selection_notes": (
+            "Shortlist created for v1.5 manual ontology expansion review. "
+            "No candidates were merged into the main ontology."
+        ),
+    }
+
+
+def generate_curated_shortlist_report(
+    candidates: list[dict[str, Any]],
+    existing_objects: list[dict[str, Any]],
+    review_status: dict[str, dict[str, Any]],
+    shortlist: list[dict[str, Any]],
+) -> str:
+    rows = build_candidate_review_rows(candidates, existing_objects, review_status)
+    ready_rows = [row for row in rows if row["recommended_action"] == "ready_for_curated_merge"]
+    selected_ids = {row["candidate_object_id"] for row in shortlist}
+    excluded_ready = [row for row in ready_rows if row["candidate_object_id"] not in selected_ids]
+    candidate_lookup = {candidate["candidate_object_id"]: candidate for candidate in candidates}
+    summary = _shortlist_summary(candidates, rows, shortlist)
+
+    lines = [
+        "# Curated Candidate Shortlist Report v1.4.1",
+        "",
+        "## Summary",
+        f"- Total candidates: {summary['total_candidates']}",
+        f"- Ready-for-merge candidates reviewed: {summary['ready_for_curated_merge_reviewed']}",
+        f"- Selected candidates: {summary['selected_count']}",
+        f"- Excluded ready candidates: {summary['excluded_ready_count']}",
+        f"- Families covered: {len(summary['family_coverage'])}",
+        f"- Highest readiness candidate: {summary['highest_readiness_candidate']}",
+        f"- Highest risk candidate among selected: {summary['highest_risk_candidate_among_selected']}",
+        "",
+        "## Selection Principles",
+        "This is a shortlist, not an ontology merge. Candidates are selected for manual v1.5 review only.",
+        "Selection prioritizes reusable sensory archetypes, cross-domain usefulness, low note dictionary risk, distinctiveness, and family diversity.",
+        "",
+        "## Selected Candidates",
+        "",
+        "| candidate_object_id | korean_label | family | overall_readiness_score | note_dictionary_risk | promotion_risk | selection_reason |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in shortlist:
+        scores = row["readiness_scores"]
+        lines.append(
+            f"| {row['candidate_object_id']} | {row['korean_label']} | {row['family']} | {scores['overall_readiness_score']:.2f} | {scores['note_dictionary_risk']:.2f} | {row['promotion_risk']} | {', '.join(row['selection_reason'])} |"
+        )
+
+    lines.extend(["", "## Family Coverage"])
+    for family, count in summary["family_coverage"].items():
+        lines.append(f"- {family}: {count}")
+
+    lines.extend(["", "## Excluded Ready Candidates"])
+    if not excluded_ready:
+        lines.append("- No ready candidates were excluded.")
+    for row in excluded_ready:
+        reasons: list[str] = []
+        if row["note_dictionary_risk"] >= 0.35:
+            reasons.append("too note-like for batch 1")
+        if row["distinctiveness_score"] < 0.65:
+            reasons.append("too close to existing object")
+        if row["cross_domain_reuse_score"] < 0.65:
+            reasons.append("less cross-domain reusable")
+        if not reasons:
+            reasons.append("lower priority for batch 1")
+        lines.append(f"- {row['candidate_object_id']}: {', '.join(reasons)}")
+
+    lines.extend(["", "## Candidate Details"])
+    for row in shortlist:
+        candidate = candidate_lookup[row["candidate_object_id"]]
+        lines.extend(
+            [
+                "",
+                f"### {row['candidate_object_id']} / {row['korean_label']}",
+                f"- definition: {candidate.get('definition', '')}",
+                f"- core axes: `{json.dumps(candidate.get('core_axes', {}), ensure_ascii=False)}`",
+                f"- example expressions: {', '.join(candidate.get('example_expressions', []))}",
+                f"- suggested phrase cues: {', '.join(candidate.get('suggested_phrase_cues', []))}",
+                f"- negative cues: {', '.join(candidate.get('negative_cues', []))}",
+                f"- related existing objects: {', '.join(candidate.get('related_existing_objects', []))}",
+                f"- similar existing objects: {json.dumps(row.get('similar_existing_objects', []), ensure_ascii=False)}",
+                f"- promotion risks: {row['promotion_risk']}",
+                f"- recommended next action: {row['next_action']}",
+            ]
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Next Step: v1.5 Curated Ontology Expansion",
+            "- Manually review selected candidates.",
+            "- Add only selected candidates to main ontology in v1.5.",
+            "- Add phrase cues and negative cues for promoted objects.",
+            "- Add regression tests for promoted objects.",
+            "- Do not modify holdout during curated expansion.",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_curated_shortlist_outputs(
+    output_path: str | Path = "data/curated_candidate_shortlist_v1_5.jsonl",
+    report_path: str | Path = "outputs/curated_candidate_shortlist_report.md",
+    summary_path: str | Path = "outputs/curated_candidate_shortlist_summary.json",
+    *,
+    min_count: int = 10,
+    max_count: int = 12,
+) -> tuple[Path, Path, Path, list[dict[str, Any]], dict[str, Any]]:
+    candidates = load_candidate_objects()
+    existing_objects = load_existing_objects()
+    review_status = load_candidate_review_status()
+    rows = build_candidate_review_rows(candidates, existing_objects, review_status)
+    shortlist = select_curated_shortlist(
+        candidates,
+        existing_objects,
+        review_status,
+        min_count=min_count,
+        max_count=max_count,
+    )
+    report = generate_curated_shortlist_report(candidates, existing_objects, review_status, shortlist)
+    summary = _shortlist_summary(candidates, rows, shortlist)
+
+    resolved_output_path = _resolve(output_path)
+    resolved_report_path = _resolve(report_path)
+    resolved_summary_path = _resolve(summary_path)
+    for path in (resolved_output_path, resolved_report_path, resolved_summary_path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+    resolved_output_path.write_text(
+        "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in shortlist),
+        encoding="utf-8",
+    )
+    resolved_report_path.write_text(report, encoding="utf-8")
+    resolved_summary_path.write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    return resolved_output_path, resolved_report_path, resolved_summary_path, shortlist, summary
+
+
 def generate_candidate_review_report(
     candidates: list[dict[str, Any]],
     existing_objects: list[dict[str, Any]],
