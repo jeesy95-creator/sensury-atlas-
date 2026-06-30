@@ -1,0 +1,32 @@
+{"id": "v1_5_green_leaf_crush_001", "input": "손으로 으깬 초록 잎처럼 풋내가 선명하게 올라오는 향", "expected_top_objects": ["green_leaf_crush", "green_stem"], "notes": "New promoted object regression case."}
+{"id": "v1_5_green_leaf_crush_002", "input": "막 꺾은 잎의 단면처럼 아삭하고 푸른 수분감이 있어", "expected_top_objects": ["green_leaf_crush", "wet_moss"], "notes": "New promoted object regression case."}
+{"id": "v1_5_green_leaf_crush_003", "input": "달콤한 과일보다 잎즙이 손끝에 묻은 듯한 초록 느낌", "expected_top_objects": ["green_leaf_crush", "green_stem"], "notes": "New promoted object regression case."}
+{"id": "v1_5_green_leaf_crush_004", "input": "식물 줄기보다 으깨진 잎에 가까운 풋풋한 향", "expected_top_objects": ["green_leaf_crush", "green_stem"], "notes": "New promoted object regression case."}
+{"id": "v1_5_wet_soil_001", "input": "비 온 뒤 정원 흙처럼 낮고 축축하게 올라오는 냄새", "expected_top_objects": ["wet_soil", "forest_floor"], "notes": "New promoted object regression case."}
+{"id": "v1_5_wet_soil_002", "input": "물기가 스민 흙을 손으로 눌렀을 때처럼 어둡고 부드러워", "expected_top_objects": ["wet_soil", "wet_moss"], "notes": "New promoted object regression case."}
+{"id": "v1_5_wet_soil_003", "input": "아스팔트보다 흙이 젖은 쪽에 가까운 비 냄새", "expected_top_objects": ["wet_soil", "rain_on_asphalt"], "notes": "New promoted object regression case."}
+{"id": "v1_5_wet_soil_004", "input": "비 맞은 땅에서 올라오는 낮은 갈색의 습기", "expected_top_objects": ["wet_soil", "forest_floor"], "notes": "New promoted object regression case."}
+{"id": "v1_5_astringent_dryness_001", "input": "차 잎처럼 떫고 입 안을 조이는 건조한 피니시", "expected_top_objects": ["astringent_dryness", "black_tea"], "notes": "New promoted object regression case."}
+{"id": "v1_5_astringent_dryness_002", "input": "단맛보다 혀끝이 바짝 마르는 수렴감이 먼저 남아", "expected_top_objects": ["astringent_dryness", "dry_herb"], "notes": "New promoted object regression case."}
+{"id": "v1_5_astringent_dryness_003", "input": "껍질을 씹은 뒤처럼 입안이 조여드는 드라이한 느낌", "expected_top_objects": ["astringent_dryness", "black_tea"], "notes": "New promoted object regression case."}
+{"id": "v1_5_astringent_dryness_004", "input": "크리미하지 않고 타닌처럼 건조하게 당기는 향", "expected_top_objects": ["astringent_dryness", "charred_oak"], "notes": "New promoted object regression case."}
+{"id": "v1_5_amber_glow_001", "input": "앰버의 따뜻한 금빛 잔향처럼 피부 가까이에 오래 남아", "expected_top_objects": ["amber_glow", "honeycomb"], "notes": "New promoted object regression case."}
+{"id": "v1_5_amber_glow_002", "input": "부드러운 수지가 금색으로 녹아드는 듯한 온기", "expected_top_objects": ["amber_glow", "pine_resin"], "notes": "New promoted object regression case."}
+{"id": "v1_5_amber_glow_003", "input": "꿀보다 어둡고 크림보다 따뜻한 앰버의 잔향", "expected_top_objects": ["amber_glow", "vanilla_cream"], "notes": "New promoted object regression case."}
+{"id": "v1_5_amber_glow_004", "input": "끝으로 갈수록 둥글고 따뜻한 금빛이 감기는 향", "expected_top_objects": ["amber_glow", "honeycomb"], "notes": "New promoted object regression case."}
+{"id": "v1_5_dark_resin_001", "input": "어둡고 낮게 깔리는 수지처럼 끈적하게 남는 향", "expected_top_objects": ["dark_resin", "tobacco_leaf"], "notes": "New promoted object regression case."}
+{"id": "v1_5_dark_resin_002", "input": "검은 수지가 나무결 사이에서 천천히 배어 나오는 느낌", "expected_top_objects": ["dark_resin", "charred_oak"], "notes": "New promoted object regression case."}
+{"id": "v1_5_dark_resin_003", "input": "달지만 밝지 않고 흙빛으로 내려앉는 수지감", "expected_top_objects": ["dark_resin", "forest_floor"], "notes": "New promoted object regression case."}
+{"id": "v1_5_dark_resin_004", "input": "송진보다 어둡고 담뱃잎보다 끈적한 잔향", "expected_top_objects": ["dark_resin", "pine_resin"], "notes": "New promoted object regression case."}
+{"id": "v1_5_lactonic_milk_softness_001", "input": "우유처럼 하얗고 둥근 부드러움이 모서리를 낮춰줘", "expected_top_objects": ["lactonic_milk_softness", "vanilla_cream"], "notes": "New promoted object regression case."}
+{"id": "v1_5_lactonic_milk_softness_002", "input": "따뜻한 우유 거품 같은 유백색 질감이 남아", "expected_top_objects": ["lactonic_milk_softness", "warm_cotton"], "notes": "New promoted object regression case."}
+{"id": "v1_5_lactonic_milk_softness_003", "input": "크림보다 가볍고 면보다 둥근 밀키한 향", "expected_top_objects": ["lactonic_milk_softness", "vanilla_cream"], "notes": "New promoted object regression case."}
+{"id": "v1_5_lactonic_milk_softness_004", "input": "날카로운 향을 하얗게 눌러주는 부드러운 막 같아", "expected_top_objects": ["lactonic_milk_softness", "cashmere"], "notes": "New promoted object regression case."}
+{"id": "v1_5_tea_like_clarity_001", "input": "차처럼 맑고 건조한 투명감이 깨끗하게 지나가", "expected_top_objects": ["tea_like_clarity", "black_tea"], "notes": "New promoted object regression case."}
+{"id": "v1_5_tea_like_clarity_002", "input": "찻물의 얇은 쌉싸름함처럼 맑게 정리되는 향", "expected_top_objects": ["tea_like_clarity", "dry_herb"], "notes": "New promoted object regression case."}
+{"id": "v1_5_tea_like_clarity_003", "input": "달기보다 맑고 드라이한 차의 갈색 빛이 있어", "expected_top_objects": ["tea_like_clarity", "black_tea"], "notes": "New promoted object regression case."}
+{"id": "v1_5_tea_like_clarity_004", "input": "허브보다 정돈되고 물보다 건조한 투명한 식물감", "expected_top_objects": ["tea_like_clarity", "fresh_linen"], "notes": "New promoted object regression case."}
+{"id": "v1_5_golden_density_001", "input": "금빛으로 두껍게 남는 달콤한 밀도가 있어", "expected_top_objects": ["golden_density", "honeycomb"], "notes": "New promoted object regression case."}
+{"id": "v1_5_golden_density_002", "input": "설탕보다 깊고 꿀보다 단단한 금색 단맛", "expected_top_objects": ["golden_density", "burnt_sugar"], "notes": "New promoted object regression case."}
+{"id": "v1_5_golden_density_003", "input": "달콤함이 얇게 날지 않고 무겁게 가라앉아", "expected_top_objects": ["golden_density", "honeycomb"], "notes": "New promoted object regression case."}
+{"id": "v1_5_golden_density_004", "input": "따뜻한 빛과 점성이 같이 남는 두꺼운 잔향", "expected_top_objects": ["golden_density", "vanilla_cream"], "notes": "New promoted object regression case."}
